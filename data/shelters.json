@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Doboka High Ground School Shelter",
+    "lat": 26.13,
+    "lng": 92.78,
+    "elevation_m": 52,
+    "capacity": 2500,
+    "amenity": "School"
+  },
+  {
+    "name": "Hojai Civil Hospital Emergency Complex",
+    "lat": 26.02,
+    "lng": 92.86,
+    "elevation_m": 48,
+    "capacity": 1200,
+    "amenity": "Hospital"
+  },
+  {
+    "name": "Lanka Community & Disaster Centre",
+    "lat": 25.93,
+    "lng": 92.96,
+    "elevation_m": 55,
+    "capacity": 3000,
+    "amenity": "Community Center"
+  },
+  {
+    "name": "Nagaon Higher Secondary College",
+    "lat": 26.19,
+    "lng": 92.71,
+    "elevation_m": 60,
+    "capacity": 4000,
+    "amenity": "School"
+  }
+]

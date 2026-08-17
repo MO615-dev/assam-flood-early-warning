@@ -1,0 +1,32 @@
+# Local environments
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+
+# Logs and runtime output
+*.log
+webapp/sms_broadcasts.log
+
+# Downloaded/raw geospatial datasets
+chirps_data/
+hydrosheds_data/
+*.tif
+*.shp
+*.shx
+*.dbf
+*.prj
+*.cpg
+*.sbn
+*.sbx
+*.zip
+
+# Local cache
+cache/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

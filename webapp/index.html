@@ -1,0 +1,3271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assam Flood Early Warning & Evacuation Dashboard</title>
+  <meta name="description" content="An educational flood-response prototype for Assam's Kopili River Basin, with modeled inundation, evacuation routing, and interactive alert simulations." />
+
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Leaflet CSS & JS -->
+  <link rel="stylesheet" href="lib/leaflet.css" />
+  <script src="lib/leaflet.js"></script>
+  
+  <!-- Chart.js -->
+  <script src="lib/chart.js"></script>
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    /* ── DESIGN SYSTEM & CSS VARIABLES ──────────────────────────────── */
+    :root {
+      --bg-deep:       #030712;
+      --bg-panel:      rgba(10, 18, 36, 0.75);
+      --bg-card:       rgba(17, 24, 43, 0.45);
+      --bg-card-hover: rgba(23, 37, 72, 0.7);
+      --border-light:  rgba(56, 189, 248, 0.08);
+      --border-glow:   rgba(14, 165, 233, 0.25);
+      --text-primary:  #f8fafc;
+      --text-secondary:#94a3b8;
+      --text-muted:    #475569;
+      
+      --accent:        #00f0ff; /* Neon Cyan */
+      --accent-glow:   rgba(0, 240, 255, 0.25);
+      
+      --emerald:       #10b981;
+      --amber:         #fbbf24;
+      --coral:         #ff3b3b;
+      --crimson:       #dc2626;
+      --dark-red:      #7f1d1d;
+      
+      --font-sans:     'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono:     'JetBrains Mono', monospace;
+      
+      --sidebar-w:     380px;
+      --header-h:      64px;
+      --status-h:      32px;
+      --transition:    all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-deep);
+      background-image: 
+        radial-gradient(at 50% 0%, rgba(0, 240, 255, 0.08) 0px, transparent 60%),
+        linear-gradient(rgba(255, 255, 255, 0.003) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.003) 1px, transparent 1px);
+      background-size: 100% 100%, 25px 25px, 25px 25px;
+      color: var(--text-primary);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HEADER ─────────────────────────────────────────────────────── */
+    header {
+      height: var(--header-h);
+      background: linear-gradient(90deg, #040815 0%, #0c1830 50%, #040815 100%);
+      border-bottom: 1px solid rgba(0, 240, 255, 0.15);
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      gap: 16px;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1000;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6), inset 0 -1px 0 rgba(255, 255, 255, 0.02);
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+    .logo-wrap {
+      width: 42px; height: 42px;
+      background: linear-gradient(135deg, #00c8ff, #005f9e);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid var(--accent);
+      box-shadow: 0 0 15px var(--accent-glow);
+      position: relative;
+      overflow: hidden;
+    }
+    .logo-wrap::after {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%; width: 200%; height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transform: rotate(45deg);
+      animation: logo-shine 3s infinite;
+    }
+    @keyframes logo-shine {
+      0% { transform: translate(-30%, -30%) rotate(45deg); }
+      100% { transform: translate(30%, 30%) rotate(45deg); }
+    }
+    .logo-wrap i {
+      font-size: 20px;
+      color: white;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+    .header-title h1 {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: var(--text-primary);
+      line-height: 1.2;
+      text-shadow: 0 0 10px rgba(0, 240, 255, 0.15);
+    }
+    .header-title p {
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 1px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .header-badges {
+      margin-left: auto;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .badge {
+      padding: 5px 14px;
+      border-radius: 30px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      border: 1px solid;
+    }
+    .badge-live {
+      background: rgba(255, 59, 59, 0.08);
+      border-color: rgba(255, 59, 59, 0.4);
+      color: var(--coral);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 0 10px rgba(255, 59, 59, 0.1);
+    }
+    .badge-live::before {
+      content: "";
+      width: 8px; height: 8px;
+      background: var(--coral);
+      border-radius: 50%;
+      display: inline-block;
+      animation: pulse-dot 1.5s infinite;
+    }
+    @keyframes pulse-dot {
+      0% { transform: scale(0.9); opacity: 1; box-shadow: 0 0 0 0 rgba(255, 59, 59, 0.6); }
+      70% { transform: scale(1.1); opacity: 0.4; box-shadow: 0 0 0 8px rgba(255, 59, 59, 0); }
+      100% { transform: scale(0.9); opacity: 1; box-shadow: 0 0 0 0 rgba(255, 59, 59, 0); }
+    }
+    @keyframes relief-pulse {
+      0% { transform: scale(0.6); opacity: 0.85; }
+      100% { transform: scale(1.7); opacity: 0; }
+    }
+    .badge-date {
+      background: rgba(10, 18, 36, 0.6);
+      border-color: var(--border-light);
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      box-shadow: inset 0 0 8px rgba(255,255,255,0.02);
+    }
+
+    /* ── MAIN CONTAINER ─────────────────────────────────────────────── */
+    .main {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* ── SIDEBAR ────────────────────────────────────────────────────── */
+    .sidebar {
+      width: var(--sidebar-w);
+      background: var(--bg-panel);
+      backdrop-filter: blur(20px) saturate(180%);
+      border-right: 1px solid rgba(0, 240, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      flex-shrink: 0;
+      z-index: 999;
+      box-shadow: 10px 0 35px rgba(0,0,0,0.5);
+    }
+
+    /* Tab Headers */
+    .tabs-header {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid rgba(0, 240, 255, 0.08);
+      background: rgba(4, 8, 20, 0.6);
+    }
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 14px 4px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+      border-bottom: 2px solid transparent;
+      outline: none;
+    }
+    .tab-btn i { font-size: 15px; }
+    .tab-btn:hover {
+      color: var(--text-primary);
+      background: rgba(255,255,255,0.02);
+    }
+    .tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      background: rgba(0, 240, 255, 0.05);
+      text-shadow: 0 0 10px rgba(0, 240, 255, 0.35);
+    }
+
+    /* Tab Contents */
+    .tab-content-container {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+    .tab-panel {
+      padding: 16px;
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .tab-panel.active {
+      display: flex;
+    }
+
+    .tab-content-container::-webkit-scrollbar { width: 4px; }
+    .tab-content-container::-webkit-scrollbar-track { background: transparent; }
+    .tab-content-container::-webkit-scrollbar-thumb { background: rgba(0, 240, 255, 0.15); border-radius: 2px; }
+
+    /* Section Panels */
+    .sidebar-section-title {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ── TAB 1: TWIN SIMULATION ─────────────────────────────────────── */
+    .gauge-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2), inset 0 0 15px rgba(255,255,255,0.01);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+    .gauge-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 4px; height: 100%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+    }
+    .gauge-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .gauge-status-indicator {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--emerald);
+      box-shadow: 0 0 10px var(--emerald);
+      transition: var(--transition);
+    }
+    .gauge-meta {
+      display: flex;
+      flex-direction: column;
+    }
+    .gauge-title {
+      font-size: 13px; font-weight: 700;
+    }
+    .gauge-code {
+      font-size: 9px; color: var(--text-muted); font-family: var(--font-mono);
+    }
+    .gauge-main {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+    .gauge-number {
+      font-family: var(--font-mono);
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      background: linear-gradient(180deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gauge-unit {
+      font-size: 14px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .gauge-bar-track {
+      height: 8px;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--emerald) 0%, var(--amber) 55%, var(--coral) 80%, var(--crimson) 100%);
+      position: relative;
+    }
+    .gauge-bar-pin {
+      position: absolute;
+      top: -3px;
+      width: 6px; height: 14px;
+      background: #ffffff;
+      border-radius: 3px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.8), 0 0 6px #fff;
+      transition: left 0.4s cubic-bezier(0.1, 0.8, 0.2, 1);
+    }
+    .gauge-thresholds {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+    .thr-box {
+      background: rgba(255,255,255,0.01);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 6px;
+      text-align: center;
+      transition: var(--transition);
+    }
+    .thr-box:hover {
+      background: rgba(0, 240, 255, 0.02);
+      border-color: rgba(0, 240, 255, 0.15);
+    }
+    .thr-lbl { font-size: 9px; color: var(--text-secondary); text-transform: uppercase; font-weight: 600; }
+    .thr-v { font-size: 11px; font-weight: 700; font-family: var(--font-mono); margin-top: 2px; }
+
+    .status-alert-pill {
+      align-self: flex-start;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      border: 1px solid;
+      transition: var(--transition);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    /* Simulation Control Box */
+    .sim-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: rgba(17, 24, 43, 0.3);
+      border: 1px solid var(--border-light);
+      border-radius: 14px;
+      padding: 16px;
+    }
+    .sim-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .sim-mode-title {
+      font-size: 11px; font-weight: 700; color: var(--text-secondary);
+    }
+    .btn-sim-play {
+      background: var(--accent);
+      color: var(--bg-deep);
+      border: none;
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+      box-shadow: 0 0 12px var(--accent-glow);
+    }
+    .btn-sim-play:hover {
+      box-shadow: 0 0 20px var(--accent);
+      transform: translateY(-1px);
+    }
+    .sim-slider-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .sim-slider-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: var(--text-secondary);
+    }
+    .sim-slider {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: #111827;
+      border: 1px solid rgba(255,255,255,0.03);
+      outline: none;
+    }
+    .sim-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 3px solid var(--accent);
+      cursor: pointer;
+      box-shadow: 0 0 10px var(--accent);
+      transition: var(--transition);
+    }
+    .sim-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    /* Hydrograph Sparkline */
+    .hydrograph-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 14px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .sparkline-container {
+      height: 120px;
+      position: relative;
+    }
+
+    /* ── TAB 2: DISTRICT FLOOD DIRECTORY ────────────────────────────── */
+    .search-box-wrap {
+      position: relative;
+      width: 100%;
+    }
+    .search-input {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 10px 12px 10px 36px;
+      color: white;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      outline: none;
+      transition: var(--transition);
+    }
+    .search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+      background: rgba(0, 0, 0, 0.6);
+    }
+    .search-box-wrap i {
+      position: absolute;
+      left: 12px; top: 12px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    .districts-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 380px;
+      overflow-y: auto;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 6px;
+      background: rgba(0,0,0,0.25);
+    }
+    .districts-list::-webkit-scrollbar { width: 3px; }
+    .districts-list::-webkit-scrollbar-thumb { background: rgba(0, 240, 255, 0.15); border-radius: 2px; }
+
+    .district-card {
+      background: rgba(255,255,255,0.01);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: var(--transition);
+      border-left: 3px solid transparent;
+    }
+    .district-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent-glow);
+      transform: translateX(4px);
+      border-left-color: var(--accent);
+      box-shadow: 0 4px 15px rgba(0, 240, 255, 0.08);
+    }
+    .district-card.selected {
+      background: rgba(0, 240, 255, 0.08);
+      border-color: var(--accent);
+      border-left-color: var(--accent);
+      box-shadow: inset 0 0 10px rgba(0, 240, 255, 0.05);
+    }
+    .district-name-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+    .dist-name { font-size: 13px; font-weight: 700; }
+    .dist-zone { font-size: 10px; color: var(--text-secondary); }
+    
+    .dist-badge {
+      font-size: 9px;
+      font-weight: 800;
+      padding: 2.5px 7px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .badge-extreme { background: rgba(185, 28, 28, 0.25); color: #fca5a5; border: 1px solid var(--crimson); }
+    .badge-high { background: rgba(245, 158, 11, 0.25); color: #fde68a; border: 1px solid var(--amber); }
+    .badge-medium { background: rgba(16, 185, 129, 0.25); color: #a7f3d0; border: 1px solid var(--emerald); }
+    .badge-low-medium { background: rgba(0, 240, 255, 0.25); color: #bae6fd; border: 1px solid var(--accent); }
+
+    .district-detail-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    }
+    .dist-detail-title {
+      font-size: 15px; font-weight: 800; color: var(--accent);
+      border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+      padding-bottom: 6px;
+    }
+    .dist-detail-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      font-size: 11px;
+    }
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px dashed rgba(255,255,255,0.03);
+      padding-bottom: 4px;
+    }
+    .detail-label { color: var(--text-secondary); font-weight: 500; }
+    .detail-val { font-weight: 700; text-align: right; }
+    .btn-fly-district {
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 7px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 11.5px; font-weight: 800;
+      transition: var(--transition);
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      box-shadow: 0 0 8px rgba(0, 240, 255, 0.05);
+    }
+    .btn-fly-district:hover {
+      background: var(--accent);
+      color: var(--bg-deep);
+      box-shadow: 0 0 15px var(--accent-glow);
+    }
+
+    /* ── TAB 3: EVACUATION ROUTING ──────────────────────────────────── */
+    .route-status-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .route-status-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .gps-btn {
+      width: 100%;
+      background: rgba(0, 240, 255, 0.02);
+      border: 1px solid rgba(0, 240, 255, 0.15);
+      color: var(--accent);
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 12px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: var(--transition);
+      box-shadow: inset 0 0 8px rgba(0,240,255,0.02);
+    }
+    .gps-btn:hover {
+      background: rgba(0, 240, 255, 0.08);
+      border-color: var(--accent);
+      box-shadow: 0 0 12px var(--accent-glow);
+    }
+    .route-meta-data {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .directions-steps-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .dir-step-item {
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      cursor: pointer;
+      transition: var(--transition);
+      border-left: 2px solid transparent;
+    }
+    .dir-step-item:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent-glow);
+      border-left-color: var(--accent);
+      transform: translateX(2px);
+    }
+    .dir-step-icon {
+      font-size: 14px; color: var(--accent);
+      margin-top: 2px;
+    }
+    .dir-step-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .dir-step-text { font-size: 12px; font-weight: 600; }
+    .dir-step-dist { font-size: 10px; color: var(--text-secondary); font-family: var(--font-mono); }
+
+    /* Alert Message Box */
+    .danger-route-box {
+      background: rgba(255, 59, 59, 0.08);
+      border: 1.5px solid var(--coral);
+      color: #fca5a5;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 11.5px;
+      font-weight: 700;
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: 0 4px 15px rgba(255, 59, 59, 0.1);
+    }
+    .danger-route-box i { font-size: 18px; color: var(--coral); }
+    .danger-route-box button {
+      background: var(--coral);
+      border: none;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 10px; font-weight: 800;
+      cursor: pointer;
+      align-self: flex-start;
+      transition: var(--transition);
+    }
+    .danger-route-box button:hover {
+      box-shadow: 0 0 10px rgba(255, 59, 59, 0.4);
+      filter: brightness(1.1);
+    }
+
+    /* ── TAB 4: EMERGENCY SERVICES ──────────────────────────────────── */
+    .emergency-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .emerg-item {
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: var(--transition);
+    }
+    .emerg-item:hover {
+      background: rgba(255,255,255,0.02);
+      border-color: rgba(0, 240, 255, 0.1);
+    }
+    .emerg-icon {
+      font-size: 20px;
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      background: rgba(255, 59, 59, 0.08);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--coral);
+      flex-shrink: 0;
+    }
+    .emerg-icon.green {
+      background: rgba(16, 185, 129, 0.08);
+      color: var(--emerald);
+    }
+    .emerg-info { display: flex; flex-direction: column; }
+    .emerg-name { font-size: 13px; font-weight: 700; }
+    .emerg-num { font-size: 15px; font-weight: 800; color: var(--accent); font-family: var(--font-mono); margin-top: 1px;}
+
+    /* ── MAP CONTAINER & OVERLAYS ───────────────────────────────────── */
+    #map {
+      flex: 1;
+      background: #040815;
+      position: relative;
+    }
+
+    /* Floating Basemap Controller */
+    .basemap-control {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 1000;
+      display: flex;
+      background: var(--bg-panel);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(0, 240, 255, 0.15);
+      border-radius: 8px;
+      padding: 4px;
+      gap: 2px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.6), inset 0 0 10px rgba(255,255,255,0.02);
+    }
+    
+    /* Floating Map Legend */
+    .map-legend {
+      position: absolute;
+      bottom: 24px;
+      right: 12px;
+      z-index: 1000;
+      background: var(--bg-panel);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(0, 240, 255, 0.12);
+      border-radius: 8px;
+      padding: 12px 14px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-family: var(--font-sans);
+      font-size: 10.5px;
+      color: var(--text-primary);
+    }
+    .legend-title {
+      font-weight: 800;
+      font-size: 11px;
+      color: var(--accent);
+      margin-bottom: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      text-shadow: 0 0 6px var(--accent-glow);
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .legend-color {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    /* Phone Alert Toast Notification */
+    .sms-alert-container {
+      position: absolute;
+      top: 80px;
+      right: 12px;
+      z-index: 1001;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      pointer-events: none;
+    }
+    .sms-toast {
+      width: 320px;
+      background: rgba(10, 18, 36, 0.95);
+      border-left: 5px solid var(--accent);
+      border-radius: 8px;
+      padding: 12px 14px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.7);
+      display: flex;
+      gap: 10px;
+      transform: translateX(340px);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      pointer-events: auto;
+      border: 1px solid rgba(0, 240, 255, 0.1);
+      border-left-width: 5px;
+    }
+    .sms-toast.show {
+      transform: translateX(0);
+    }
+    .sms-toast.danger {
+      border-left-color: var(--coral);
+      box-shadow: 0 10px 25px rgba(255, 59, 59, 0.15), 0 12px 30px rgba(0,0,0,0.6);
+    }
+    .sms-toast.warning {
+      border-left-color: var(--amber);
+      box-shadow: 0 10px 25px rgba(251, 191, 36, 0.12), 0 12px 30px rgba(0,0,0,0.6);
+    }
+    .sms-toast.safe {
+      border-left-color: var(--emerald);
+      box-shadow: 0 10px 25px rgba(16, 185, 129, 0.12), 0 12px 30px rgba(0,0,0,0.6);
+    }
+    .sms-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .sms-icon.danger { color: var(--coral); }
+    .sms-icon.warning { color: var(--amber); }
+    .sms-icon.safe { color: var(--emerald); }
+    
+    .sms-body {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .sms-header-title {
+      font-weight: 800;
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+    .sms-text {
+      font-size: 11px;
+      color: var(--text-primary);
+      line-height: 1.4;
+    }
+    .sms-time {
+      font-size: 9px;
+      color: var(--text-secondary);
+      align-self: flex-end;
+    }
+
+    .basemap-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: var(--transition);
+      outline: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .basemap-btn:hover {
+      color: var(--text-primary);
+      background: rgba(255,255,255,0.05);
+    }
+    .basemap-btn.active {
+      color: var(--bg-deep);
+      background: var(--accent);
+      font-weight: 800;
+      box-shadow: 0 0 10px var(--accent-glow);
+    }
+
+    /* Custom Leaflet Controls */
+    .leaflet-control-zoom a {
+      background: var(--bg-panel) !important;
+      color: var(--text-primary) !important;
+      border: 1px solid var(--border-light) !important;
+      transition: var(--transition);
+    }
+    .leaflet-control-zoom a:hover {
+      background: var(--bg-card-hover) !important;
+      color: var(--accent) !important;
+    }
+    .leaflet-popup-content-wrapper {
+      background: #0b1224 !important;
+      border: 1px solid rgba(0, 240, 255, 0.15) !important;
+      color: var(--text-primary) !important;
+      border-radius: 12px !important;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6) !important;
+      font-family: var(--font-sans) !important;
+    }
+    .leaflet-popup-tip {
+      background: #0b1224 !important;
+    }
+
+    /* Pulse Markers */
+    .pulse-origin-marker {
+      width: 14px; height: 14px;
+      background: var(--accent);
+      border: 2px solid white;
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent);
+      animation: origin-pulse 2s infinite;
+    }
+    @keyframes origin-pulse {
+      0% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.8); }
+      70% { box-shadow: 0 0 0 10px rgba(0, 240, 255, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0); }
+    }
+
+    /* Holographic scanning overlay animation */
+    .qr-scanner-box {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(0, 240, 255, 0.15);
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      display: inline-flex;
+      padding: 8px;
+    }
+    .qr-scanner-box::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+      animation: qr-scan 2.5s linear infinite;
+    }
+    @keyframes qr-scan {
+      0% { top: 0%; }
+      50% { top: 100%; }
+      100% { top: 0%; }
+    }
+
+    /* ── BOTTOM STATUS BAR ──────────────────────────────────────────── */
+    .status-bar {
+      height: var(--status-h);
+      background: #03060f;
+      border-top: 1px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 20px;
+      font-size: 11px;
+      color: var(--text-secondary);
+      flex-shrink: 0;
+      z-index: 1000;
+    }
+    .status-item { display: flex; align-items: center; gap: 6px; }
+    .status-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--emerald);
+      box-shadow: 0 0 6px var(--emerald);
+    }
+    .status-sep { color: rgba(255,255,255,0.06); }
+    .status-bar-right { margin-left: auto; font-weight: 700; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+  <!-- ── HEADER ──────────────────────────────────────────────────────────── -->
+  <header>
+    <div class="logo-wrap">
+      <i class="fa-solid fa-satellite-dish"></i>
+    </div>
+    <div class="header-title">
+      <h1>Assam Flood Early Warning System</h1>
+      <p>Kopili River Basin · Flood response prototype</p>
+    </div>
+    <div class="header-badges">
+      <span class="badge badge-live">SIMULATED LIVE</span>
+      <span class="badge badge-date" id="hdr-date">—</span>
+    </div>
+  </header>
+
+  <!-- ── MAIN CONTENT ────────────────────────────────────────────────────── -->
+  <div class="main">
+
+    <!-- ── SIDEBAR ───────────────────────────────────────────────────────── -->
+    <aside class="sidebar">
+      
+      <!-- Tabs Selector -->
+      <nav class="tabs-header">
+        <button class="tab-btn active" onclick="switchTab('tab-twin')">
+          <i class="fa-solid fa-circle-nodes"></i>
+          <span>Simulation</span>
+        </button>
+        <button class="tab-btn" onclick="switchTab('tab-routing')">
+          <i class="fa-solid fa-route"></i>
+          <span>Evacuation</span>
+        </button>
+        <button class="tab-btn" onclick="switchTab('tab-directory')">
+          <i class="fa-solid fa-map-location-dot"></i>
+          <span>Districts</span>
+        </button>
+        <button class="tab-btn" onclick="switchTab('tab-emerg')">
+          <i class="fa-solid fa-hand-holding-hand"></i>
+          <span>Services</span>
+        </button>
+      </nav>
+
+      <!-- Scrollable Tab Content Panels -->
+      <div class="tab-content-container">
+
+        <!-- TAB 1: DIGITAL TWIN SIMULATION -->
+        <div class="tab-panel active" id="tab-twin">
+          
+          <div class="gauge-card">
+            <div class="gauge-header">
+              <div class="gauge-status-indicator" id="gauge-dot"></div>
+              <div class="gauge-meta">
+                <span class="gauge-title">Kopili at Umrangso Stage</span>
+                <span class="gauge-code">Illustrative gauge · KPL-001</span>
+              </div>
+            </div>
+            
+            <div class="gauge-main">
+              <span class="gauge-number" id="gauge-val">—</span>
+              <span class="gauge-unit">meters</span>
+            </div>
+
+            <!-- Custom linear level track -->
+            <div class="gauge-bar-track">
+              <div class="gauge-bar-pin" id="gauge-cursor" style="left: 0%;"></div>
+            </div>
+
+            <div class="gauge-thresholds">
+              <div class="thr-box">
+                <div class="thr-lbl">Warning</div>
+                <div class="thr-v" style="color:var(--amber);">5.5 m</div>
+              </div>
+              <div class="thr-box">
+                <div class="thr-lbl">Danger</div>
+                <div class="thr-v" style="color:var(--coral);">7.0 m</div>
+              </div>
+              <div class="thr-box">
+                <div class="thr-lbl">Extreme</div>
+                <div class="thr-v" style="color:var(--crimson);">9.0 m</div>
+              </div>
+            </div>
+
+            <span class="status-alert-pill" id="alert-badge">Normal</span>
+          </div>
+
+          <!-- Controls panel -->
+          <div class="sim-controls">
+            <div class="sim-header" style="justify-content: flex-start; gap: 8px;">
+              <span class="sim-mode-title" id="sim-mode-label" style="color:var(--accent); font-weight:800; font-size:11.5px; text-transform:uppercase; letter-spacing:0.5px;">
+                <i class="fa-solid fa-timeline"></i> Monsoon Timeline (Manual)
+              </span>
+            </div>
+
+            <div class="sim-slider-wrap" style="margin-top:4px;">
+              <div class="sim-slider-meta">
+                <span>Interactive Time Scrub:</span>
+                <span id="slider-val-lbl" style="font-weight: 800; color: white;">July 01, 2020</span>
+              </div>
+              <input type="range" class="sim-slider" id="stage-slider" min="0" max="743" step="1" value="0" oninput="handleManualSlider(this.value)">
+            </div>
+          </div>
+
+          <!-- Hydrograph Sparkline -->
+          <div class="hydrograph-card">
+            <div class="sidebar-section-title"><i class="fa-solid fa-chart-line"></i> Basin Discharge History</div>
+            <div class="sparkline-container">
+              <canvas id="gauge-chart"></canvas>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:10px; color:var(--text-secondary); margin-top:4px;">
+              <span id="gauge-ts">–</span>
+              <span id="gauge-trend"><i class="fa-solid fa-arrow-trend-up"></i> Rising</span>
+            </div>
+          </div>
+
+          <!-- Basin River Tributaries Status -->
+          <div style="background: rgba(255,255,255,0.01); border: 1px solid var(--border-light); border-radius: 12px; padding: 14px; margin-top: 12px; display: flex; flex-direction: column; gap: 8px;">
+            <div class="sidebar-section-title"><i class="fa-solid fa-water"></i> Brahmaputra &amp; Tributaries Status</div>
+            <div style="max-height: 180px; overflow-y: auto; border: 1px solid var(--border-light); border-radius: 8px; background: rgba(0,0,0,0.15);">
+              <table style="width: 100%; border-collapse: collapse; font-size: 11px; text-align: left;">
+                <thead>
+                  <tr style="border-bottom: 1px solid var(--border-light); background: rgba(255,255,255,0.02); position: sticky; top: 0; z-index: 10;">
+                    <th style="padding: 6px 8px; color: var(--accent); font-weight: 700;">River / Tributary</th>
+                    <th style="padding: 6px 8px; color: var(--accent); font-weight: 700;">Level</th>
+                    <th style="padding: 6px 8px; color: var(--accent); font-weight: 700;">Alert Status</th>
+                  </tr>
+                </thead>
+                <tbody id="river-status-tbody">
+                  <!-- Populated dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Kopili Basin Dam Operations Telemetry -->
+          <div style="background: rgba(17, 24, 43, 0.45); border: 1px solid var(--border-light); border-radius: 12px; padding: 14px; margin-top: 12px; display: flex; flex-direction: column; gap: 10px;">
+            <div class="sidebar-section-title"><i class="fa-solid fa-gopuran"></i> NEEPCO Kopili Dam Telemetry</div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+              <!-- Khandong Dam Card -->
+              <div style="background: rgba(0,0,0,0.25); border: 1px solid var(--border-light); border-radius: 8px; padding: 10px; display: flex; flex-direction: column; gap: 6px;">
+                <div style="font-size: 11px; font-weight: 800; color: var(--accent);">Khandong Dam</div>
+                <div style="font-size: 9px; color: var(--text-secondary); text-transform: uppercase;">Reservoir Level</div>
+                <div style="font-size: 14px; font-weight: 700; font-family: var(--font-mono);" id="dam-level-khandong">715.20 m</div>
+                <div style="font-size: 9px; color: var(--text-secondary); text-transform: uppercase; margin-top: 2px;">Radial Gates Status</div>
+                <span class="dist-badge" id="dam-gates-khandong" style="text-align: center; font-size: 8px;">CLOSED</span>
+                <div style="font-size: 9px; color: var(--text-secondary); text-transform: uppercase; margin-top: 2px;">Spillway Outflow</div>
+                <div style="font-size: 11px; font-weight: 700; font-family: var(--font-mono);" id="dam-flow-khandong">0.00 m³/s</div>
+              </div>
+
+              <!-- Umrangso Dam Card -->
+              <div style="background: rgba(0,0,0,0.25); border: 1px solid var(--border-light); border-radius: 8px; padding: 10px; display: flex; flex-direction: column; gap: 6px;">
+                <div style="font-size: 11px; font-weight: 800; color: var(--accent);">Umrangso Dam</div>
+                <div style="font-size: 9px; color: var(--text-secondary); text-transform: uppercase;">Reservoir Level</div>
+                <div style="font-size: 14px; font-weight: 700; font-family: var(--font-mono);" id="dam-level-umrangso">608.10 m</div>
+                <div style="font-size: 9px; color: var(--text-secondary); text-transform: uppercase; margin-top: 2px;">Sluice Gates Status</div>
+                <span class="dist-badge" id="dam-gates-umrangso" style="text-align: center; font-size: 8px;">CLOSED</span>
+                <div style="font-size: 9px; color: var(--text-secondary); text-transform: uppercase; margin-top: 2px;">Spillway Outflow</div>
+                <div style="font-size: 11px; font-weight: 700; font-family: var(--font-mono);" id="dam-flow-umrangso">0.00 m³/s</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Connection QR Portal -->
+          <div style="background: rgba(56, 189, 248, 0.04); border: 1px solid var(--border-light); border-radius: 12px; padding: 12px; margin-top: 12px; display: flex; flex-direction: column; gap: 8px; align-items: center; text-align: center;">
+            <div style="font-size: 11.5px; font-weight: 800; color: var(--accent); display: flex; align-items: center; gap: 6px; align-self: flex-start; text-transform: uppercase; letter-spacing: 0.5px;">
+              <i class="fa-solid fa-mobile-screen-button"></i> Mobile Alerts Portal
+            </div>
+            <div style="font-size: 9.5px; color: var(--text-secondary); line-height: 1.35;">
+              Scan the QR or click/copy the link below to view early warning alerts on your mobile phone:
+            </div>
+            <div class="qr-scanner-box" id="qr-container">
+              <span style="color:var(--text-secondary); font-size:9.5px; padding: 8px;">Generating QR...</span>
+            </div>
+            <div style="width: 100%; display: flex; flex-direction: column; gap: 4px; font-size: 10px; font-family: var(--font-mono); margin-top: 2px;">
+              <input type="text" id="mobile-url-input" readonly style="width: 100%; background: rgba(0,0,0,0.4); border: 1px solid var(--border-light); border-radius: 4px; padding: 5px; color: var(--accent); font-size: 10px; text-align: center; font-family: var(--font-mono); outline: none; cursor: pointer;" onclick="this.select(); document.execCommand('copy'); alert('Link copied to clipboard!');">
+              <span style="font-size: 8.5px; color: var(--text-muted);">Click to Copy Link</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- TAB 2: EVACUATION ROUTING -->
+        <div class="tab-panel" id="tab-routing">
+          
+          <button class="gps-btn" onclick="trackGPSLocation()">
+            <i class="fa-solid fa-crosshairs"></i> Get Current GPS Coordinates
+          </button>
+
+          <!-- Nearby Facilities POI Toggle Filters -->
+          <div style="background: rgba(10, 18, 36, 0.5); border: 1px solid var(--border-light); border-radius: 12px; padding: 12px; margin-top: 12px; display: flex; flex-direction: column; gap: 8px;">
+            <div class="sidebar-section-title"><i class="fa-solid fa-layer-group"></i> Filter Nearby Aid Facilities</div>
+            
+            <div style="display: flex; flex-direction: column; gap: 6px; font-size: 11px;">
+              <!-- Hospitals Toggle -->
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: var(--text-primary);">
+                <input type="checkbox" id="chk-poi-hospital" checked onchange="togglePoiFilter('hospital', this.checked)" style="accent-color: #ef4444; width: 14px; height: 14px; cursor: pointer;">
+                <span style="display: flex; align-items: center; gap: 4px;">
+                  <i class="fa-solid fa-square-h" style="color: #ef4444; font-size: 13px;"></i> Hospitals &amp; Clinics
+                </span>
+              </label>
+
+              <!-- Food Kitchens Toggle -->
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: var(--text-primary);">
+                <input type="checkbox" id="chk-poi-restaurant" checked onchange="togglePoiFilter('restaurant', this.checked)" style="accent-color: #f59e0b; width: 14px; height: 14px; cursor: pointer;">
+                <span style="display: flex; align-items: center; gap: 4px;">
+                  <i class="fa-solid fa-utensils" style="color: #f59e0b; font-size: 12px;"></i> Food &amp; Water Kitchens
+                </span>
+              </label>
+
+              <!-- Gov Camps Toggle -->
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: var(--text-primary);">
+                <input type="checkbox" id="chk-poi-govcamp" checked onchange="togglePoiFilter('govcamp', this.checked)" style="accent-color: #0ea5e9; width: 14px; height: 14px; cursor: pointer;">
+                <span style="display: flex; align-items: center; gap: 4px;">
+                  <i class="fa-solid fa-shield-halved" style="color: #0ea5e9; font-size: 12px;"></i> Government Rescue Camps
+                </span>
+              </label>
+            </div>
+            
+            <!-- Quick Action Find Closest Buttons -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px;">
+              <button onclick="findClosestFacility('hospital')" class="gps-btn" style="margin:0; padding:5px; font-size: 10px; border-color: rgba(239, 68, 68, 0.3);">
+                🚨 Nearest Hospital
+              </button>
+              <button onclick="findClosestFacility('govcamp')" class="gps-btn" style="margin:0; padding:5px; font-size: 10px; border-color: rgba(14, 165, 233, 0.3);">
+                ⛺ Nearest Gov Camp
+              </button>
+            </div>
+          </div>
+
+          <div class="route-status-card">
+            <div class="sidebar-section-title"><i class="fa-solid fa-hotel"></i> Select Evacuation Target</div>
+            <select id="shelter-select" onchange="selectShelter(this.value)" style="width:100%; background:var(--bg-card); border:1px solid var(--border-light); color:var(--text-primary); padding:8px 10px; border-radius:6px; font-size:11.5px; outline:none; font-family:var(--font-sans); margin-bottom:12px; cursor:pointer;">
+              <option value="lanka">Lanka Shelter (High-Ground) — Capacity 2,500</option>
+              <option value="hojai">Hojai College Relief Camp — Capacity 1,200</option>
+              <option value="dababasti">Dababasti School Shelter — Capacity 600</option>
+            </select>
+
+            <div class="sidebar-section-title" style="margin-top:6px;"><i class="fa-solid fa-route"></i> Evacuation Route Status</div>
+            <div class="route-meta-data" id="route-summary">
+              Initializing routing network...
+            </div>
+          </div>
+
+          <div class="directions-steps-wrap">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <div class="sidebar-section-title" style="margin-bottom:0;"><i class="fa-solid fa-list-ol"></i> Step-by-Step Directions</div>
+              <button id="nav-mode-btn" onclick="startNavigationMode()" class="gps-btn" style="width:auto; margin:0; padding:4px 8px; font-size:10px; display:none; border-color:var(--accent); color:var(--accent);">
+                <i class="fa-solid fa-location-arrow"></i> Start Navigation
+              </button>
+            </div>
+            
+            <!-- Navigation Assistant Panel (Simulating Google Maps Navigation) -->
+            <div id="nav-assistant-panel" style="display:none; background:rgba(0, 240, 255, 0.04); border:1.5px solid var(--accent); border-radius:10px; padding:12px; margin-bottom:12px; flex-direction:column; gap:8px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px dashed rgba(0, 240, 255, 0.15); padding-bottom:6px;">
+                <span style="font-size:10px; font-weight:800; color:var(--accent); text-transform:uppercase; letter-spacing:0.5px;"><i class="fa-solid fa-compass fa-spin"></i> Navigation Mode Active</span>
+                <button onclick="exitNavigationMode()" style="background:none; border:none; color:var(--coral); font-size:9.5px; font-weight:700; cursor:pointer; text-transform:uppercase;">Cancel</button>
+              </div>
+              <div style="display:flex; gap:10px; align-items:center; margin-top:2px;">
+                <div style="width:32px; height:32px; border-radius:50%; background:rgba(0, 240, 255, 0.08); border:1px solid var(--accent); display:flex; align-items:center; justify-content:center; font-size:15px; color:var(--accent); flex-shrink:0;" id="nav-step-icon">
+                  <i class="fa-solid fa-arrow-up"></i>
+                </div>
+                <div style="flex:1; display:flex; flex-direction:column; gap:2px;">
+                  <span style="font-size:9.5px; color:var(--text-secondary); text-transform:uppercase; font-family:var(--font-mono);" id="nav-step-counter">Step 1 of 5</span>
+                  <span style="font-size:11.5px; font-weight:700; color:white; line-height:1.35;" id="nav-step-text">Head towards destination.</span>
+                </div>
+              </div>
+              <button onclick="advanceNavigationStep()" class="gps-btn" style="margin:6px 0 0 0; background:var(--accent); color:var(--bg-dark); font-weight:800; font-size:10.5px; border:none; border-radius:6px; cursor:pointer; padding:6px;">
+                <i class="fa-solid fa-circle-check"></i> I Reached This Point / Done
+              </button>
+            </div>
+
+            <div id="directions-container" style="display:flex; flex-direction:column; gap:8px;">
+              <!-- Populated dynamically by Dijkstra routing -->
+              <div style="font-size:11.5px; color:var(--text-secondary); font-style:italic;">
+                Dijkstra paths will be calculated relative to your coordinates or active marker location.
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Relief Operations & Aid Tracker -->
+          <div style="background: rgba(16, 185, 129, 0.03); border: 1px solid var(--border-light); border-radius: 12px; padding: 14px; margin-top: 12px; display: flex; flex-direction: column; gap: 8px;">
+            <div class="sidebar-section-title" style="color: var(--emerald);"><i class="fa-solid fa-truck-field"></i> Live Relief &amp; Aid Tracker</div>
+            <div style="font-size: 10px; color: var(--text-secondary); line-height: 1.4; margin-bottom: 4px;">
+              Illustrative response scenarios linked to the simulated timeline; these are not historical records:
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px; max-height: 240px; overflow-y: auto;" id="relief-tracker-feed">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+
+        </div>
+
+        <!-- TAB 3: DISTRICT DIRECTORY -->
+        <div class="tab-panel" id="tab-directory">
+          
+          <div class="search-box-wrap">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" class="search-input" id="search-districts" placeholder="Search districts of Assam..." oninput="filterDistricts(this.value)">
+          </div>
+
+          <div class="districts-list" id="districts-list">
+            <!-- Populated dynamically -->
+          </div>
+
+          <!-- District Detail Viewer Card -->
+          <div class="district-detail-card" id="district-detail-card" style="display: none;">
+            <!-- Populated dynamically -->
+          </div>
+
+        </div>
+
+        <!-- TAB 4: EMERGENCY SERVICES -->
+        <div class="tab-panel" id="tab-emerg">
+          <div class="sidebar-section-title"><i class="fa-solid fa-phone-volume"></i> Emergency numbers</div>
+          <p style="font-size:10px;color:var(--text-secondary);margin:0 0 8px;">Check current numbers with <a href="https://asdma.assam.gov.in/information-services/detail/emergency-toll-free-numbers" target="_blank" rel="noopener noreferrer">ASDMA’s official directory</a>. This prototype does not contact these services.</p>
+          <div class="emergency-list">
+            <div class="emerg-item">
+              <div class="emerg-icon"><i class="fa-solid fa-shield-halved"></i></div>
+              <div class="emerg-info">
+                <span class="emerg-name">Assam State Emergency Operations Centre</span>
+                <span class="emerg-num">1070</span>
+              </div>
+            </div>
+            <div class="emerg-item">
+              <div class="emerg-icon"><i class="fa-solid fa-truck-medical"></i></div>
+              <div class="emerg-info">
+                <span class="emerg-name">NDMA India Helpline</span>
+                <span class="emerg-num">1078</span>
+              </div>
+            </div>
+            <div class="emerg-item">
+              <div class="emerg-icon green"><i class="fa-solid fa-truck-field"></i></div>
+              <div class="emerg-info">
+                <span class="emerg-name">District Emergency Operations Centre</span>
+                <span class="emerg-num">1077</span>
+              </div>
+            </div>
+            <div class="emerg-item">
+              <div class="emerg-icon green"><i class="fa-solid fa-house-medical"></i></div>
+              <div class="emerg-info">
+                <span class="emerg-name">Ambulance Service</span>
+                <span class="emerg-num">108</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </aside>
+
+    <!-- ── MAP CONTAINER ─────────────────────────────────────────────────── -->
+    <div id="map">
+      <!-- Floating Basemap Controller widget -->
+      <div class="basemap-control" id="basemap-widget">
+        <button class="basemap-btn active" onclick="switchBasemap('hybrid')">
+          <i class="fa-solid fa-layer-group"></i> Hybrid
+        </button>
+        <button class="basemap-btn" onclick="switchBasemap('satellite')">
+          Satellite
+        </button>
+        <button class="basemap-btn" onclick="switchBasemap('roadmap')">
+          Roadmap
+        </button>
+        <button class="basemap-btn" onclick="switchBasemap('terrain')">
+          Terrain
+        </button>
+        <button class="basemap-btn" onclick="switchBasemap('dark')">
+          Dark
+        </button>
+      </div>
+      
+      <!-- Floating Map Legend widget -->
+      <div class="map-legend" id="map-legend">
+        <div class="legend-title">Flood Risk Zones</div>
+        <div class="legend-item">
+          <div class="legend-color" style="background: rgba(153, 27, 27, 0.9); border-color: #991b1b;"></div>
+          <span>Extreme Danger (> 3.0 m)</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color" style="background: rgba(239, 68, 68, 0.75); border-color: #ef4444;"></div>
+          <span>High Danger (1.5 m – 3.0 m)</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color" style="background: rgba(245, 158, 11, 0.6); border-color: #f59e0b;"></div>
+          <span>Medium Alert (0.5 m – 1.5 m)</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color" style="background: rgba(251, 191, 36, 0.45); border-color: #fbbf24;"></div>
+          <span>Low Warning (0.0 m – 0.5 m)</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color" style="background: rgba(16, 185, 129, 0.25); border-color: #10b981;"></div>
+          <span>Dry / Safe (No water)</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Container for simulated phone SMS alerts -->
+    <div class="sms-alert-container" id="sms-container"></div>
+
+  </div>
+
+  <!-- ── STATUS BAR ──────────────────────────────────────────────────────── -->
+  <div class="status-bar">
+    <div class="status-item">
+      <div class="status-dot"></div>
+      <span>Kopili Basin Digital Twin Online</span>
+    </div>
+    <span class="status-sep">|</span>
+    <div class="status-item" id="sim-ticker-step">Step: —</div>
+    <span class="status-sep">|</span>
+    <div class="status-item">📍 Kopili Basin (25.5°N - 26.5°N, 92.0°E - 93.5°E)</div>
+    <span class="status-bar-right">PROTOTYPE · SIMULATION ONLY</span>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!--  SCRIPT LOGIC & ROUTING ENGINE                                          -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <script>
+    // 1. DATA PATHS
+    const DATA_PATHS = {
+      dynamic: 'data/dynamic_data.json',
+      gauge: 'data/gauge_readings.json'
+    };
+
+    // Mapbox/Leaflet Settings
+    const MAP_CENTER = [26.06, 92.82];
+    const MAP_DEFAULT_ZOOM = 11;
+    const WATER_ALERT_THRESHOLDS = { warning: 5.5, danger: 7.0, extreme: 9.0, max: 12.0 };
+
+    // 2. ASSAM DISTRICTS DATABASE (All 35 Districts of Assam)
+    const ASSAM_DISTRICTS_DATA = [
+      { name: "Baksa", lat: 26.69, lng: 91.59, zone: "North Assam", risk: "Medium", river: "Puthimari, Pagladiya", pop: 1.2, crop: 8400, hazard: "Flash Floods, Erosion", contact: "+91 3624 234555" },
+      { name: "Bajali", lat: 26.32, lng: 91.17, zone: "Lower Assam", risk: "Medium", river: "Pahumara, Kaldia", pop: 0.8, crop: 5200, hazard: "Riverine Floods", contact: "+91 3666 261300" },
+      { name: "Barpeta", lat: 26.32, lng: 91.00, zone: "Lower Assam", risk: "Extreme", river: "Brahmaputra, Beki, Nakhanda", pop: 4.8, crop: 22400, hazard: "Riverine Floods, Erosion", contact: "+91 3665 252129" },
+      { name: "Biswanath", lat: 26.74, lng: 93.15, zone: "North Assam", risk: "High", river: "Brahmaputra, Borgang", pop: 1.5, crop: 9200, hazard: "Flash Floods, Landslides", contact: "+91 3715 222123" },
+      { name: "Bongaigaon", lat: 26.28, lng: 90.56, zone: "Lower Assam", risk: "High", river: "Brahmaputra, Manas, Aie", pop: 2.1, crop: 11500, hazard: "Riverine Floods", contact: "+91 3664 230889" },
+      { name: "Cachar", lat: 24.83, lng: 92.80, zone: "Barak Valley", risk: "High", river: "Barak, Chiri, Madhura", pop: 3.2, crop: 14200, hazard: "Riverine Floods, Waterlogging", contact: "+91 3842 245055" },
+      { name: "Charaideo", lat: 26.90, lng: 94.90, zone: "Upper Assam", risk: "Medium", river: "Disang, Safrai", pop: 0.9, crop: 4800, hazard: "Riverine Floods, Landslides", contact: "+91 3772 255222" },
+      { name: "Chirang", lat: 26.54, lng: 90.50, zone: "Lower Assam", risk: "Medium", river: "Aie, Champamati", pop: 1.1, crop: 6100, hazard: "Flash Floods, Erosion", contact: "+91 3664 241243" },
+      { name: "Darrang", lat: 26.45, lng: 92.03, zone: "North Assam", risk: "High", river: "Brahmaputra, Mangaldai", pop: 2.5, crop: 13100, hazard: "Riverine Floods", contact: "+91 3713 222555" },
+      { name: "Dhemaji", lat: 27.48, lng: 94.57, zone: "Upper Assam", risk: "Extreme", river: "Brahmaputra, Jiadhal, Gainadi", pop: 3.9, crop: 28500, hazard: "Flash Floods, Sand Deposition", contact: "+91 3753 224343" },
+      { name: "Dhubri", lat: 26.02, lng: 89.97, zone: "Lower Assam", risk: "Extreme", river: "Brahmaputra, Gangadhar, Gadadhar", pop: 5.2, crop: 31200, hazard: "Riverine Floods, Erosion", contact: "+91 3662 230018" },
+      { name: "Dibrugarh", lat: 27.47, lng: 94.91, zone: "Upper Assam", risk: "High", river: "Brahmaputra, Dibru, Burhidehing", pop: 2.6, crop: 10400, hazard: "Erosion, Riverine Floods", contact: "+91 3732 231662" },
+      { name: "Dima Hasao", lat: 25.18, lng: 93.02, zone: "Barak Valley", risk: "Low-Medium", river: "Kopili, Jatinga", pop: 0.4, crop: 1500, hazard: "Landslides, Flash Floods", contact: "+91 3673 222123" },
+      { name: "Goalpara", lat: 26.17, lng: 90.62, zone: "Lower Assam", risk: "High", river: "Brahmaputra, Dudhnoi, Krishnai", pop: 2.8, crop: 12200, hazard: "Riverine Floods", contact: "+91 3663 240030" },
+      { name: "Golaghat", lat: 26.52, lng: 93.97, zone: "Upper Assam", risk: "High", river: "Dhansiri, Kakodonga", pop: 2.4, crop: 14500, hazard: "Riverine Floods, Elephant Conflict", contact: "+91 3774 280222" },
+      { name: "Hailakandi", lat: 24.68, lng: 92.56, zone: "Barak Valley", risk: "High", river: "Barak, Katakhal, Dhaleswari", pop: 1.8, crop: 8200, hazard: "Riverine Floods", contact: "+91 3844 222251" },
+      { name: "Hojai", lat: 26.00, lng: 92.85, zone: "Central Assam", risk: "High", river: "Kopili, Jamuna", pop: 2.3, crop: 12800, hazard: "Riverine Floods, Waterlogging", contact: "+91 3674 250100" },
+      { name: "Jorhat", lat: 26.75, lng: 94.22, zone: "Upper Assam", risk: "High", river: "Brahmaputra, Bhogdoi", pop: 2.1, crop: 9600, hazard: "Riverine Floods, Erosion", contact: "+91 3762 2320025" },
+      { name: "Kamrup Metropolitan", lat: 26.14, lng: 91.73, zone: "Lower Assam", risk: "Medium", river: "Brahmaputra, Bharalu, Digaru", pop: 1.8, crop: 1200, hazard: "Urban Flash Floods, Landslides", contact: "+91 3612 247012" },
+      { name: "Kamrup Rural", lat: 26.31, lng: 91.60, zone: "Lower Assam", risk: "High", river: "Brahmaputra, Puthimari, Borolia", pop: 3.5, crop: 17400, hazard: "Riverine Floods", contact: "+91 3612 268440" },
+      { name: "Karbi Anglong", lat: 26.00, lng: 93.50, zone: "Central Assam", risk: "Low-Medium", river: "Kopili, Dhansiri", pop: 0.6, crop: 3500, hazard: "Flash Floods, Landslides", contact: "+91 3671 272255" },
+      { name: "Karimganj", lat: 24.87, lng: 92.36, zone: "Barak Valley", risk: "High", river: "Kushiyara, Longai", pop: 2.7, crop: 11300, hazard: "Riverine Floods, Erosion", contact: "+91 3843 262105" },
+      { name: "Kokrajhar", lat: 26.40, lng: 90.27, zone: "Lower Assam", risk: "High", river: "Gaurang, Champamati", pop: 2.2, crop: 10900, hazard: "Flash Floods, Riverine Floods", contact: "+91 3661 270741" },
+      { name: "Lakhimpur", lat: 27.23, lng: 94.10, zone: "Upper Assam", risk: "Extreme", river: "Subansiri, Ranganadi, Dikrong", pop: 4.1, crop: 26100, hazard: "Riverine Floods, Flash Floods, Siltation", contact: "+91 3752 222277" },
+      { name: "Majuli", lat: 26.96, lng: 94.18, zone: "Upper Assam", risk: "Extreme", river: "Brahmaputra, Subansiri", pop: 1.7, crop: 11800, hazard: "Island Inundation, Extreme Erosion", contact: "+91 3775 274426" },
+      { name: "Morigaon", lat: 26.25, lng: 92.34, zone: "Central Assam", risk: "Extreme", river: "Brahmaputra, Kopili, Kolong", pop: 3.8, crop: 19600, hazard: "Riverine Floods, Soil Erosion", contact: "+91 3678 240225" },
+      { name: "Nagaon", lat: 26.35, lng: 92.68, zone: "Central Assam", risk: "Extreme", river: "Kopili, Kolong, Haria", pop: 4.5, crop: 24200, hazard: "Riverine Floods, Breach of Embankments", contact: "+91 3672 233185" },
+      { name: "Nalbari", lat: 26.45, lng: 91.44, zone: "Lower Assam", risk: "High", river: "Pagladiya, Nona, Borolia", pop: 2.4, crop: 12500, hazard: "Riverine Floods, Breaches", contact: "+91 3624 220496" },
+      { name: "Sivasagar", lat: 26.98, lng: 94.63, zone: "Upper Assam", risk: "High", river: "Dikhow, Disang", pop: 1.9, crop: 9800, hazard: "Riverine Floods", contact: "+91 3772 222137" },
+      { name: "South Salmara-Mankachar", lat: 25.80, lng: 89.90, zone: "Lower Assam", risk: "Extreme", river: "Brahmaputra", pop: 1.8, crop: 8900, hazard: "Severe Erosion, Inundation", contact: "+91 3662 286624" },
+      { name: "Sonitpur", lat: 26.63, lng: 92.79, zone: "North Assam", risk: "High", river: "Brahmaputra, Jiadhal, Gabharu", pop: 2.9, crop: 15400, hazard: "Riverine Floods, Flash Floods", contact: "+91 3712 220011" },
+      { name: "Tamulpur", lat: 26.63, lng: 91.58, zone: "Lower Assam", risk: "Medium", river: "Pagladiya, Bornadi", pop: 1.0, crop: 5900, hazard: "Flash Floods", contact: "+91 3624 230222" },
+      { name: "Tinsukia", lat: 27.50, lng: 95.36, zone: "Upper Assam", risk: "High", river: "Brahmaputra, Lohit, Dibru", pop: 2.5, crop: 11200, hazard: "Riverine Floods, Soil Erosion", contact: "+91 3742 233154" },
+      { name: "Udalguri", lat: 26.74, lng: 92.13, zone: "North Assam", risk: "Medium", river: "Dhansiri, Bornadi", pop: 1.2, crop: 7200, hazard: "Flash Floods", contact: "+91 3711 224433" },
+      { name: "West Karbi Anglong", lat: 25.80, lng: 92.50, zone: "Central Assam", risk: "Low-Medium", river: "Kopili", pop: 0.5, crop: 2200, hazard: "Landslides, Flash Floods", contact: "+91 3671 299901" }
+    ];
+
+    // 3. MAP INITIATION & GOOGLE TILES SETUP
+    const map = L.map('map', {
+      center: MAP_CENTER,
+      zoom: MAP_DEFAULT_ZOOM,
+      zoomControl: true,
+      attributionControl: true
+    });
+
+    const googleBasemaps = {
+      hybrid: L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+        maxZoom: 20, attribution: '© Google Hybrid Maps'
+      }),
+      satellite: L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+        maxZoom: 20, attribution: '© Google Satellite Image'
+      }),
+      roadmap: L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+        maxZoom: 20, attribution: '© Google Maps Engine'
+      }),
+      terrain: L.tileLayer('https://mt1.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
+        maxZoom: 20, attribution: '© Google Terrain Maps'
+      }),
+      dark: L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        maxZoom: 20, attribution: '© CARTO DB Dark basemap'
+      })
+    };
+
+    // Add default hybrid layer to map
+    googleBasemaps.hybrid.addTo(map);
+
+    function switchBasemap(key) {
+      Object.keys(googleBasemaps).forEach(k => {
+        if (map.hasLayer(googleBasemaps[k])) {
+          map.removeLayer(googleBasemaps[k]);
+        }
+      });
+      googleBasemaps[key].addTo(map);
+      
+      // Update active style of basemap buttons
+      const btns = document.querySelectorAll('.basemap-btn');
+      btns.forEach(btn => {
+        if (btn.getAttribute('onclick').includes(key)) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    // 4. MAP LAYER GROUPS
+    const floodLayerGroup = L.layerGroup().addTo(map);
+    const roadLayerGroup = L.layerGroup().addTo(map);
+    const routingLayerGroup = L.layerGroup().addTo(map);
+    const markerLayerGroup = L.layerGroup().addTo(map);
+    const poiLayerGroup = L.layerGroup().addTo(map);
+    const reliefLayerGroup = L.layerGroup().addTo(map);
+
+    // Cache for pre-compiled flood layers and static roads
+    const floodLayersCache = {};
+    let dryRoadsPolyline = null;
+    let floodedRoadsPolyline = null;
+
+    // Dynamic State Variables
+    let dynamicData = null;
+    let gaugeReadings = [];
+    let readingIdx = 0;
+    let isPlaying = false;
+    let timerId = null;
+    let currentStageValue = 5.0;
+
+    // Routing Origin/Destination Nodes (snapped in road network)
+    let originNodeId = 43; // Snapped default: Village [92.85, 26.00]
+    let shelterNodeId = 111; // Snapped default: Shelter [92.78, 26.13]
+    let gpsMarker = null;
+
+    // Sparkline Chart Instance
+    let sparklineChart = null;
+    const sparkLabels = [];
+    const sparkData = [];
+
+    // Illustrative relief-response scenarios (not historical event records).
+    const RELIEF_EVENTS = [
+      { step: 82, date: "July 04, 10:00 AM", type: "PRE-DEPLOY", icon: "fa-life-ring", label: "🛶 Boat Pre-deployment", desc: "Illustrative scenario event; not an actual response record.", lat: 25.99, lng: 92.83 },
+      { step: 134, date: "July 06, 02:00 PM", type: "FOOD RATIO", icon: "fa-box-open", label: "📦 Food Distribution", desc: "Illustrative scenario event; not an actual response record.", lat: 26.13, lng: 92.78 },
+      { step: 215, date: "July 09, 11:30 AM", type: "MEDICAL", icon: "fa-prescription-bottle-medical", label: "🩺 Mobile Medical Unit", desc: "Illustrative scenario event; not an actual response record.", lat: 26.06, lng: 92.87 },
+      { step: 273, date: "July 12, 09:00 AM", type: "HELI-DROP", icon: "fa-helicopter", label: "🚁 Air-drop", desc: "Illustrative scenario event; not an actual response record.", lat: 26.08, lng: 92.80 },
+      { step: 347, date: "July 15, 11:00 AM", type: "RESCUE", icon: "fa-person-swimming", label: "🛶 Resident Evacuation", desc: "Illustrative scenario event; not an actual response record.", lat: 25.98, lng: 92.84 },
+      { step: 398, date: "July 17, 04:00 PM", type: "MEDICAL", icon: "fa-truck-medical", label: "🩺 Health Support", desc: "Illustrative scenario event; not an actual response record.", lat: 26.12, lng: 92.73 },
+      { step: 469, date: "July 20, 01:00 PM", type: "FOOD RATIO", icon: "fa-wheat-awn", label: "📦 Emergency Rations", desc: "Illustrative scenario event; not an actual response record.", lat: 25.96, lng: 92.83 },
+      { step: 586, date: "July 25, 10:00 AM", type: "SANITATION", icon: "fa-soap", label: "🧼 Sanitation", desc: "Illustrative scenario event; not an actual response record.", lat: 26.15, lng: 92.71 }
+    ];
+
+    // Color Gradient Styling function for HAND depth values
+    function getFloodStyle(feature) {
+      const cls = feature.properties.class;
+      let col = '#10b981'; // default green (safe / no water)
+      let op = 0.25;       // subtle opacity for safe land
+      
+      if (cls === 1) { col = '#fbbf24'; op = 0.45; }      // Low water: amber yellow
+      else if (cls === 2) { col = '#f59e0b'; op = 0.60; } // Medium water: amber orange
+      else if (cls === 3) { col = '#ef4444'; op = 0.75; } // High water: red
+      else if (cls === 4) { col = '#991b1b'; op = 0.90; } // Extreme water: dark red
+      
+      return {
+        fillColor: col,
+        fillOpacity: op,
+        color: col,
+        weight: 0.5,
+        opacity: op + 0.05,
+        interactive: false // Ignore mouse clicks to allow map coordinate queries underneath
+      };
+    }
+
+    // 5. PRIORITY QUEUE FOR DIJKSTRA ALGORITHM
+    class PriorityQueue {
+      constructor() { this.items = []; }
+      enqueue(element, priority) {
+        const item = { element, priority };
+        let contain = false;
+        for (let i = 0; i < this.items.length; i++) {
+          if (this.items[i].priority > item.priority) {
+            this.items.splice(i, 0, item);
+            contain = true;
+            break;
+          }
+        }
+        if (!contain) this.items.push(item);
+      }
+      dequeue() { return this.items.shift().element; }
+      isEmpty() { return this.items.length === 0; }
+    }
+
+    function solveDijkstra(nodes, edges, startId, endId, stageVal) {
+      const adj = {};
+      nodes.forEach(n => { adj[n.id] = []; });
+      
+      edges.forEach(e => {
+        const depth = Math.max(0, stageVal - e.min_hand);
+        let weight = e.length;
+        if (depth >= 0.3) {
+          // Penalize flooded sectors heavily, but do not set weight to Infinity so a path is always found!
+          // Depth is scaled dynamically up to 100x length.
+          weight = e.length * (1.0 + depth * 50.0);
+        }
+        
+        adj[e.from].push({ to: e.to, weight: weight, edge: e });
+        adj[e.to].push({ to: e.from, weight: weight, edge: e });
+      });
+
+      const dist = {};
+      const parent = {};
+      const pq = new PriorityQueue();
+      const visited = new Set();
+
+      nodes.forEach(n => { dist[n.id] = Infinity; });
+      dist[startId] = 0;
+      pq.enqueue(startId, 0);
+
+      while (!pq.isEmpty()) {
+        const u = pq.dequeue();
+        if (u === endId) break;
+        if (visited.has(u)) continue;
+        visited.add(u);
+
+        adj[u].forEach(neighbor => {
+          const alt = dist[u] + neighbor.weight;
+          if (alt < dist[neighbor.to]) {
+            dist[neighbor.to] = alt;
+            parent[neighbor.to] = { from: u, edge: neighbor.edge };
+            pq.enqueue(neighbor.to, alt);
+          }
+        });
+      }
+
+      if (dist[endId] === Infinity) return null;
+
+      const pathSteps = [];
+      let curr = endId;
+      let maxDepth = 0;
+      let totalLength = 0;
+      
+      while (curr !== startId) {
+        const edgeInfo = parent[curr];
+        if (!edgeInfo) break;
+        
+        const edge = edgeInfo.edge;
+        const depth = Math.max(0, stageVal - edge.min_hand);
+        if (depth > maxDepth) {
+          maxDepth = depth;
+        }
+        totalLength += edge.length;
+        
+        pathSteps.unshift({
+          edge: edge,
+          fromNodeId: edgeInfo.from,
+          toNodeId: curr
+        });
+        curr = edgeInfo.from;
+      }
+      
+      let routeType = "dry";
+      if (maxDepth >= 1.0) {
+        routeType = "deep";
+      } else if (maxDepth >= 0.3) {
+        routeType = "shallow";
+      }
+      
+      return { 
+        path: pathSteps, 
+        distance_m: totalLength, 
+        maxDepth: maxDepth, 
+        routeType: routeType, 
+        isDry: (maxDepth < 0.3) 
+      };
+    }
+
+    // Snap custom Lat-Lng coordinates to the nearest Road Node
+    function getNearestNodeId(lat, lng) {
+      if (!dynamicData || !dynamicData.road_network) return 43;
+      let minDist = Infinity;
+      let closestId = 43;
+      dynamicData.road_network.nodes.forEach(n => {
+        const dist = Math.hypot(n.y - lat, n.x - lng);
+        if (dist < minDist) {
+          minDist = dist;
+          closestId = n.id;
+        }
+      });
+      return closestId;
+    }
+
+    // 6. RENDER DYNAMIC WATER OVERLAY, ROADS & ROUTING
+    function renderDynamicOverlay(stageVal) {
+      if (!dynamicData) return;
+      
+      // A. RENDER DYNAMIC RED-GRADIENT FLOOD EXTENTS
+      const roundedStageKey = Math.min(12.0, Math.max(1.0, Math.round(stageVal * 2) / 2)).toFixed(1);
+      floodLayerGroup.clearLayers();
+      const cachedLayer = floodLayersCache[roundedStageKey];
+      if (cachedLayer) {
+        floodLayerGroup.addLayer(cachedLayer);
+      }
+
+      // B. RENDER ROAD NETWORK SEGMENTS
+      const roadEdges = dynamicData.road_network.edges;
+      const dryCoords = [];
+      const floodedCoords = [];
+      
+      roadEdges.forEach(e => {
+        const isFlooded = (stageVal - e.min_hand) >= 0.3;
+        const coords = e.geometry.map(pt => [pt[1], pt[0]]);
+        if (isFlooded) {
+          floodedCoords.push(coords);
+        } else {
+          dryCoords.push(coords);
+        }
+      });
+      
+      if (dryRoadsPolyline) dryRoadsPolyline.setLatLngs(dryCoords);
+      if (floodedRoadsPolyline) floodedRoadsPolyline.setLatLngs(floodedCoords);
+
+      // C. COMPUTE DIJKSTRA ROUTING & POPULATE DIRECTIONS
+      routingLayerGroup.clearLayers();
+      const result = solveDijkstra(
+        dynamicData.road_network.nodes, 
+        roadEdges, 
+        originNodeId, 
+        shelterNodeId, 
+        stageVal
+      );
+
+      const summaryCard = document.getElementById('route-summary');
+      const directionsBox = document.getElementById('directions-container');
+      directionsBox.innerHTML = '';
+
+      if (result) {
+        const pathCoords = [];
+        result.path.forEach(step => {
+          const edge = step.edge;
+          const u = step.fromNodeId;
+          const v = step.toNodeId;
+          
+          const uNode = dynamicData.road_network.nodes.find(n => n.id === u);
+          const vNode = dynamicData.road_network.nodes.find(n => n.id === v);
+          
+          let coords = edge.geometry.map(pt => [pt[1], pt[0]]);
+          
+          if (coords.length > 0 && uNode && vNode) {
+            const firstPt = coords[0];
+            const lastPt = coords[coords.length - 1];
+            
+            const distToFirst = Math.hypot(firstPt[0] - uNode.y, firstPt[1] - uNode.x);
+            const distToLast = Math.hypot(lastPt[0] - uNode.y, lastPt[1] - uNode.x);
+            
+            // If the last point is closer to node u, the edge was traversed in reverse
+            if (distToLast < distToFirst) {
+              coords.reverse();
+            }
+          }
+          
+          coords.forEach(coord => {
+            pathCoords.push(coord);
+          });
+        });
+
+        let dashPattern = null;
+        if (result.routeType === 'deep') {
+          dashPattern = '2, 12'; // widely spaced dashes for boat routes
+        } else if (result.routeType === 'shallow') {
+          dashPattern = '6, 8'; // medium dashes for wading routes
+        }
+
+        // 1. Draw solid white background casing first for high contrast
+        L.polyline(pathCoords, {
+          color: '#ffffff', 
+          weight: 9, 
+          opacity: 0.95, 
+          lineCap: 'round', 
+          lineJoin: 'round'
+        }).addTo(routingLayerGroup);
+        
+        // 2. Draw black core line on top
+        L.polyline(pathCoords, {
+          color: '#000000', 
+          weight: 5, 
+          opacity: 1.0, 
+          dashArray: dashPattern,
+          lineCap: 'round', 
+          lineJoin: 'round'
+        }).addTo(routingLayerGroup);
+
+        const distKm = (result.distance_m / 1000.0).toFixed(2);
+        
+        if (result.routeType === 'dry') {
+          summaryCard.innerHTML = `
+            <div style="font-size:13px; font-weight:700; color:var(--emerald); display:flex; align-items:center; gap:6px;">
+              <i class="fa-solid fa-circle-check"></i> Safe Dry Route Open
+            </div>
+            <div style="margin-top:6px; font-size:11px;">
+              <b>Route Condition:</b> Clear roadway (Passable)<br>
+              <b>Evacuation Distance:</b> ${distKm} km · <b>Est. Time:</b> ${Math.round(result.distance_m / 250)} mins
+            </div>
+          `;
+        } else if (result.routeType === 'shallow') {
+          summaryCard.innerHTML = `
+            <div style="font-size:13px; font-weight:700; color:#f59e0b; display:flex; align-items:center; gap:6px;">
+              <i class="fa-solid fa-triangle-exclamation"></i> Shallow Flood Route (Wading Required)
+            </div>
+            <div style="margin-top:6px; font-size:11px; color:#fde047; line-height:1.45;">
+              <b>Route Condition:</b> Submerged (Max depth: ${result.maxDepth.toFixed(1)}m)<br>
+              <b>Evacuation Distance:</b> ${distKm} km · Wading gear or heavy vehicle required.
+            </div>
+          `;
+        } else {
+          summaryCard.innerHTML = `
+            <div style="font-size:13px; font-weight:700; color:#ef4444; display:flex; align-items:center; gap:6px; animation: flash-red 1.2s infinite alternate;">
+              <i class="fa-solid fa-ferry"></i> Extreme Inundation Route (Boat Required)
+            </div>
+            <div style="margin-top:6px; font-size:11px; color:#fca5a5; line-height:1.45;">
+              <b>Route Condition:</b> Deep Water Channel (Max depth: ${result.maxDepth.toFixed(1)}m)<br>
+              <b>Evacuation Distance:</b> ${distKm} km · Impassable for cars. Boat evacuation only.
+            </div>
+          `;
+        }
+
+        // Reset navigation data for current calculated path
+        navigationStepsText = [];
+        navigationStepsDetail = [];
+
+        // Render step-by-step instructions
+        let accumDist = 0;
+        result.path.forEach((step, idx) => {
+          const edge = step.edge;
+          accumDist += edge.length;
+          
+          const isEdgeFlooded = (stageVal - edge.min_hand) >= 0.3;
+          const floodDepthOnEdge = Math.max(0, stageVal - edge.min_hand);
+          const statusText = isEdgeFlooded ? `⚠️ Submerged (${floodDepthOnEdge.toFixed(1)}m water)` : 'Clear';
+          const statusColor = isEdgeFlooded ? 'var(--coral)' : 'var(--emerald)';
+          
+          // Compute turn instruction using segment angle deltas
+          let turnStr = "Proceed straight onto";
+          let icon = 'fa-arrow-right';
+          
+          if (idx === 0) {
+            turnStr = "Depart start point. Head onto";
+            icon = 'fa-right-to-bracket';
+          } else if (idx === result.path.length - 1) {
+            turnStr = "Arrive at destination via";
+            icon = 'fa-circle-chevron-down';
+          } else {
+            try {
+              const prevEdge = result.path[idx - 1].edge;
+              const prevPt1 = prevEdge.geometry[prevEdge.geometry.length - 2];
+              const prevPt2 = prevEdge.geometry[prevEdge.geometry.length - 1];
+              const currPt1 = edge.geometry[0];
+              const currPt2 = edge.geometry[1];
+              
+              if (prevPt1 && prevPt2 && currPt1 && currPt2) {
+                const prevDx = prevPt2[0] - prevPt1[0];
+                const prevDy = prevPt2[1] - prevPt1[1];
+                const currDx = currPt2[0] - currPt1[0];
+                const currDy = currPt2[1] - currPt1[1];
+                
+                const angleRad = Math.atan2(currDy, currDx) - Math.atan2(prevDy, prevDx);
+                let angleDeg = angleRad * (180 / Math.PI);
+                if (angleDeg > 180) angleDeg -= 360;
+                if (angleDeg < -180) angleDeg += 360;
+                
+                if (angleDeg < -15) {
+                  turnStr = "Turn left onto";
+                  icon = 'fa-arrow-left';
+                } else if (angleDeg > 15) {
+                  turnStr = "Turn right onto";
+                  icon = 'fa-arrow-right';
+                }
+              }
+            } catch (err) {
+              console.warn("Failed to calculate segment bearing:", err);
+            }
+          }
+          
+          const stepText = `${turnStr} ${edge.name} (${Math.round(edge.length)}m) · ${statusText}`;
+          navigationStepsText.push(stepText);
+          navigationStepsDetail.push(edge);
+
+          const stepDiv = document.createElement('div');
+          stepDiv.className = 'dir-step-item';
+          stepDiv.innerHTML = `
+            <div class="dir-step-icon"><i class="fa-solid ${icon}"></i></div>
+            <div class="dir-step-content">
+              <span class="dir-step-text" style="color: ${isEdgeFlooded ? 'var(--coral)' : 'inherit'}">${turnStr} ${edge.name}</span>
+              <span class="dir-step-dist">${Math.round(edge.length)} meters · <strong style="color: ${statusColor}">${statusText}</strong></span>
+            </div>
+          `;
+          
+          // Fly to road segment on click
+          stepDiv.onclick = () => {
+            const startPt = edge.geometry[0];
+            map.flyTo([startPt[1], startPt[0]], 15);
+          };
+          directionsBox.appendChild(stepDiv);
+        });
+
+        // Show start navigation button
+        const startNavBtn = document.getElementById('nav-mode-btn');
+        if (startNavBtn && !isNavigationActive) {
+          startNavBtn.style.display = 'inline-flex';
+        }
+
+        // Live update active navigation panel
+        if (isNavigationActive) {
+          updateNavigationDisplay();
+        }
+
+      } else {
+        // Reset navigation data since no path exists
+        navigationStepsText = [];
+        navigationStepsDetail = [];
+        currentNavStepIndex = 0;
+
+        // Hide start navigation button and turn off navigation mode
+        const startNavBtn = document.getElementById('nav-mode-btn');
+        if (startNavBtn) startNavBtn.style.display = 'none';
+        exitNavigationMode();
+
+        // Road network totally disconnected
+        summaryCard.innerHTML = `
+          <div style="font-size:13px; font-weight:800; color:var(--coral); display:flex; align-items:center; gap:6px;">
+            <i class="fa-solid fa-circle-xmark"></i> NO SAFE ROUTE AVAILABLE
+          </div>
+          <div style="margin-top:6px; font-size:11px; color:#fca5a5; line-height:1.4;">
+            The coordinates are completely cut off by deep floodwaters. All egress roads are submerged.
+          </div>
+        `;
+
+        directionsBox.innerHTML = `
+          <div class="danger-route-box">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <i class="fa-solid fa-circle-exclamation"></i>
+              <span>Route scenario unavailable</span>
+            </div>
+            <p style="font-size:10.5px; font-weight:400; color:#cbd5e1;">
+              This illustrative scenario does not contact responders. For real emergencies, use current official channels.
+            </p>
+            <button onclick="requestEmergencyBeacon()">Preview demo beacon</button>
+          </div>
+        `;
+      }
+    }
+
+    function requestEmergencyBeacon() {
+      if (dynamicData && dynamicData.road_network) {
+        const node = dynamicData.road_network.nodes.find(n => n.id === originNodeId);
+        if (node) {
+          if (window.beaconCircle) map.removeLayer(window.beaconCircle);
+          window.beaconCircle = L.circle([node.y, node.x], {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.6,
+            radius: 350
+          }).addTo(map);
+          map.flyTo([node.y, node.x], 13);
+          alert("DEMO ONLY — NO BEACON WAS SENT\nA marker was placed at the selected coordinates (" + node.y.toFixed(5) + ", " + node.x.toFixed(5) + "). This prototype does not contact emergency services.");
+        } else {
+          alert("DEMO ONLY — NO BEACON WAS SENT\nThis prototype does not contact emergency services.");
+        }
+      } else {
+        alert("DEMO ONLY — NO BEACON WAS SENT\nThis prototype does not contact emergency services.");
+      }
+    }
+
+    // 7. INITIALIZE MULTIPLE SHELTERS AND DRAGGABLE PIN ROUTING
+    const SHELTERS = [
+      { id: 'lanka', name: "Lanka Shelter (illustrative)", lat: 26.13, lng: 92.78, capacity: 2500, desc: "Example location and capacity only; current availability is not verified." },
+      { id: 'hojai', name: "Hojai College Relief Camp (illustrative)", lat: 26.00, lng: 92.86, capacity: 1200, desc: "Example location and capacity only; current availability is not verified." },
+      { id: 'dababasti', name: "Dababasti School Shelter (illustrative)", lat: 25.96, lng: 92.83, capacity: 600, desc: "Example location and capacity only; current availability is not verified." }
+    ];
+    let selectedShelterId = 'lanka';
+
+    let originMarker = null;
+    let destinationMarker = null;
+
+    function selectShelter(id) {
+      selectedShelterId = id;
+      const shelter = SHELTERS.find(s => s.id === id);
+      if (shelter) {
+        shelterNodeId = getNearestNodeId(shelter.lat, shelter.lng);
+        const dropdown = document.getElementById('shelter-select');
+        if (dropdown) dropdown.value = id;
+        
+        // Update destination marker position
+        if (destinationMarker) {
+          destinationMarker.setLatLng([shelter.lat, shelter.lng]);
+        }
+        
+        initMarkers();
+        renderDynamicOverlay(currentStageValue);
+        console.log(`Updated evacuation destination: ${shelter.name} (Node ID ${shelterNodeId})`);
+      }
+    }
+
+    function initMarkers() {
+      markerLayerGroup.clearLayers();
+      
+      // Draw background shelter markers
+      SHELTERS.forEach(shelter => {
+        const isActive = shelter.id === selectedShelterId;
+        const color = isActive ? '#10b981' : '#1e3a8a';
+        const borderColor = isActive ? '#34d399' : '#60a5fa';
+        const activeLabel = isActive ? ' ⭐ Active Target' : '';
+        
+        L.marker([shelter.lat, shelter.lng], {
+          icon: L.divIcon({
+            className: '',
+            html: `<div style="background:${color}; border:2.2px solid ${borderColor}; border-radius:6px;
+                               padding:4px 8px; font-size:10px; font-weight:800; color:white;
+                               white-space:nowrap; box-shadow:0 4px 12px rgba(0,0,0,0.5)">
+                     🏫 ${shelter.name}${activeLabel}
+                   </div>`,
+            iconAnchor: [45, 24]
+          })
+        }).addTo(markerLayerGroup).bindPopup(`
+          <div style="font-family:var(--font-sans);">
+            <div style="font-weight:700; font-size:13px; color:var(--accent); margin-bottom:4px;">🏫 ${shelter.name}</div>
+            <div style="font-size:11px; color:#94a3b8; line-height:1.4;">
+              <b>Type:</b> High-Ground Safety Area<br>
+              <b>Max Capacity:</b> ${shelter.capacity} evacuees<br>
+              <b>Status:</b> ${shelter.desc}<br>
+              <button onclick="selectShelter('${shelter.id}')" style="margin-top:8px; width:100%; padding:5px 8px; font-size:10px; background:var(--emerald); border:none; border-radius:4px; color:white; cursor:pointer; font-weight:700;">Set Destination</button>
+            </div>
+          </div>
+        `);
+      });
+
+      // Draw dynamic draggable origin marker (Green Pin)
+      if (!originMarker) {
+        originMarker = L.marker([26.00, 92.85], {
+          draggable: true,
+          title: "Drag to change Start location",
+          icon: L.divIcon({
+            className: '',
+            html: `<div style="background:#10b981; border:3px solid white; border-radius:50%; width:24px; height:24px; box-shadow:0 0 15px #10b981; display:flex; align-items:center; justify-content:center; color:white;"><i class="fa-solid fa-house" style="font-size:10px;"></i></div>`,
+            iconAnchor: [12, 12]
+          })
+        }).addTo(markerLayerGroup).bindPopup(`
+          <div style="font-family:var(--font-sans); text-align:center;">
+            <b>🟢 Start Location (Origin)</b><br>
+            <span style="font-size:10px; color:#94a3b8;">Drag this pin anywhere to change your starting point.</span>
+          </div>
+        `);
+
+        originMarker.on('dragend', function(e) {
+          const pos = e.target.getLatLng();
+          originNodeId = getNearestNodeId(pos.lat, pos.lng);
+          const node = dynamicData.road_network.nodes.find(n => n.id === originNodeId);
+          if (node) {
+            originMarker.setLatLng([node.y, node.x]);
+          }
+          renderDynamicOverlay(currentStageValue);
+          console.log(`Dragged origin to snapped: ${pos.lat.toFixed(4)}, ${pos.lng.toFixed(4)} (Node ${originNodeId})`);
+        });
+      } else {
+        originMarker.addTo(markerLayerGroup);
+      }
+
+      // Draw dynamic draggable destination marker (Red Pin)
+      if (!destinationMarker) {
+        const shelter = SHELTERS.find(s => s.id === selectedShelterId) || SHELTERS[0];
+        destinationMarker = L.marker([shelter.lat, shelter.lng], {
+          draggable: true,
+          title: "Drag to change Destination location",
+          icon: L.divIcon({
+            className: '',
+            html: `<div style="background:#ef4444; border:3px solid white; border-radius:50%; width:24px; height:24px; box-shadow:0 0 15px #ef4444; display:flex; align-items:center; justify-content:center; color:white;"><i class="fa-solid fa-person-running" style="font-size:11px;"></i></div>`,
+            iconAnchor: [12, 12]
+          })
+        }).addTo(markerLayerGroup).bindPopup(`
+          <div style="font-family:var(--font-sans); text-align:center;">
+            <b>🔴 Destination (Shelter)</b><br>
+            <span style="font-size:10px; color:#94a3b8;">Drag this pin anywhere to set a custom evacuation destination.</span>
+          </div>
+        `);
+
+        destinationMarker.on('dragend', function(e) {
+          const pos = e.target.getLatLng();
+          shelterNodeId = getNearestNodeId(pos.lat, pos.lng);
+          const node = dynamicData.road_network.nodes.find(n => n.id === shelterNodeId);
+          if (node) {
+            destinationMarker.setLatLng([node.y, node.x]);
+          }
+          const dropdown = document.getElementById('shelter-select');
+          if (dropdown) dropdown.value = "";
+          renderDynamicOverlay(currentStageValue);
+          console.log(`Dragged destination to snapped: ${pos.lat.toFixed(4)}, ${pos.lng.toFixed(4)} (Node ${shelterNodeId})`);
+        });
+      } else {
+        destinationMarker.addTo(markerLayerGroup);
+      }
+    }
+
+    // 8. TABS TRANSITIONS
+    function switchTab(tabId) {
+      const panels = document.querySelectorAll('.tab-panel');
+      panels.forEach(p => p.classList.remove('active'));
+      
+      const btns = document.querySelectorAll('.tab-btn');
+      btns.forEach(b => b.classList.remove('active'));
+
+      document.getElementById(tabId).classList.add('active');
+      
+      // Make tab header button active
+      btns.forEach(b => {
+        if (b.getAttribute('onclick').includes(tabId)) {
+          b.classList.add('active');
+        }
+      });
+    }
+
+    // 9. DISTRICT DIRECTORY LOGIC
+    function renderDistrictsList(districts) {
+      const listContainer = document.getElementById('districts-list');
+      listContainer.innerHTML = '';
+      
+      districts.forEach(d => {
+        const card = document.createElement('div');
+        card.className = 'district-card';
+        card.setAttribute('id', `dist-card-${d.name.replace(/\s+/g, '')}`);
+        
+        let riskClass = 'badge-low-medium';
+        if (d.risk === 'Extreme') riskClass = 'badge-extreme';
+        else if (d.risk === 'High') riskClass = 'badge-high';
+        else if (d.risk === 'Medium') riskClass = 'badge-medium';
+
+        card.innerHTML = `
+          <div class="district-name-wrap">
+            <span class="dist-name">${d.name}</span>
+            <span class="dist-zone">${d.zone}</span>
+          </div>
+          <span class="dist-badge ${riskClass}">${d.risk}</span>
+        `;
+        
+        card.onclick = () => selectDistrict(d);
+        listContainer.appendChild(card);
+      });
+    }
+
+    function filterDistricts(query) {
+      const filtered = ASSAM_DISTRICTS_DATA.filter(d => 
+        d.name.toLowerCase().includes(query.toLowerCase()) ||
+        d.zone.toLowerCase().includes(query.toLowerCase())
+      );
+      renderDistrictsList(filtered);
+    }
+
+    function selectDistrict(d) {
+      // Remove selected active class from all cards
+      const cards = document.querySelectorAll('.district-card');
+      cards.forEach(c => c.classList.remove('selected'));
+      
+      const selectedCard = document.getElementById(`dist-card-${d.name.replace(/\s+/g, '')}`);
+      if (selectedCard) selectedCard.classList.add('selected');
+
+      const detailCard = document.getElementById('district-detail-card');
+      detailCard.style.display = 'flex';
+      
+      let riskBadgeClass = 'badge-low-medium';
+      if (d.risk === 'Extreme') riskBadgeClass = 'badge-extreme';
+      else if (d.risk === 'High') riskBadgeClass = 'badge-high';
+      else if (d.risk === 'Medium') riskBadgeClass = 'badge-medium';
+
+      detailCard.innerHTML = `
+        <span class="dist-detail-title">📍 District: ${d.name}</span>
+        <div class="dist-detail-grid">
+          <div class="detail-row"><span class="detail-label">Vulnerability Zone:</span><span class="detail-val">${d.zone}</span></div>
+          <div class="detail-row"><span class="detail-label">Risk Rating:</span><span class="detail-val"><span class="dist-badge ${riskBadgeClass}">${d.risk}</span></span></div>
+          <div class="detail-row"><span class="detail-label">Primary Rivers:</span><span class="detail-val">${d.river}</span></div>
+          <div class="detail-row"><span class="detail-label">Key Risk Hazards:</span><span class="detail-val" style="color:var(--coral);">${d.hazard}</span></div>
+          <div class="detail-row"><span class="detail-label">Avg Population Displaced:</span><span class="detail-val">${d.pop} Lakhs/Yr</span></div>
+          <div class="detail-row"><span class="detail-label">Crop Submergence Avg:</span><span class="detail-val">${d.crop.toLocaleString()} Hectares</span></div>
+          <div class="detail-row"><span class="detail-label">Emergency Helpline:</span><span class="detail-val" style="color:var(--accent); font-family:var(--font-mono);">${d.contact}</span></div>
+        </div>
+        <button class="btn-fly-district" onclick="flyToDistrict(${d.lat}, ${d.lng}, '${d.name}', '${d.risk}')">
+          <i class="fa-solid fa-plane-up"></i> Center Map on ${d.name}
+        </button>
+      `;
+    }
+
+    function flyToDistrict(lat, lng, name, risk) {
+      map.flyTo([lat, lng], 10);
+      L.popup()
+        .setLatLng([lat, lng])
+        .setContent(`
+          <div style="font-family:var(--font-sans);">
+            <div style="font-weight:700; font-size:13px; color:var(--accent); margin-bottom:4px;">📍 District Headquarter: ${name}</div>
+            <div style="font-size:11px; color:#cbd5e1;">
+              <b>Annual Flood Danger Level:</b> ${risk.toUpperCase()}<br>
+              Prototype district marker. Not an official alert or support channel.
+            </div>
+          </div>
+        `)
+        .openOn(map);
+    }
+
+    // 10. REAL GPS TRACKING & SNAP ROUTING
+    function trackGPSLocation() {
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(position => {
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
+
+          // Remove old GPS marker
+          if (gpsMarker) map.removeLayer(gpsMarker);
+
+          gpsMarker = L.marker([lat, lng], {
+            icon: L.divIcon({
+              className: '',
+              html: `<div style="width:16px; height:16px; background:#0ea5e9; border:3px solid white; border-radius:50%; box-shadow:0 0 12px #0ea5e9;"></div>`,
+              iconAnchor: [8, 8]
+            })
+          }).addTo(map);
+
+          gpsMarker.bindPopup(`<b>📍 Your GPS Coordinate</b><br>${lat.toFixed(5)}, ${lng.toFixed(5)}`).openPopup();
+          map.flyTo([lat, lng], 12);
+
+          // Snapping calculation
+          originNodeId = getNearestNodeId(lat, lng);
+          if (originMarker) {
+            originMarker.setLatLng([lat, lng]);
+          }
+          renderDynamicOverlay(currentStageValue);
+
+        }, err => {
+          alert("GPS Signal unavailable or permissions denied. Snap routing falls back to Kopili Origin node (Hojai).");
+        });
+      } else {
+        alert("Geolocation is not supported by your browser.");
+      }
+    }
+
+    // Custom Set Origin / Destination methods from Map clicks
+    window.setCustomOrigin = function(lat, lng) {
+      originNodeId = getNearestNodeId(lat, lng);
+      const node = dynamicData.road_network.nodes.find(n => n.id === originNodeId);
+      if (node && originMarker) {
+        originMarker.setLatLng([node.y, node.x]);
+      } else if (originMarker) {
+        originMarker.setLatLng([lat, lng]);
+      }
+      map.closePopup();
+      renderDynamicOverlay(currentStageValue);
+      switchTab('tab-routing');
+      console.log(`Custom Start Origin set to: ${lat.toFixed(5)}, ${lng.toFixed(5)} (Node ${originNodeId})`);
+    };
+
+    window.setCustomDestination = function(lat, lng) {
+      shelterNodeId = getNearestNodeId(lat, lng);
+      const node = dynamicData.road_network.nodes.find(n => n.id === shelterNodeId);
+      if (node && destinationMarker) {
+        destinationMarker.setLatLng([node.y, node.x]);
+      } else if (destinationMarker) {
+        destinationMarker.setLatLng([lat, lng]);
+      }
+      const dropdown = document.getElementById('shelter-select');
+      if (dropdown) dropdown.value = "";
+      map.closePopup();
+      renderDynamicOverlay(currentStageValue);
+      switchTab('tab-routing');
+      console.log(`Custom End Destination set to: ${lat.toFixed(5)}, ${lng.toFixed(5)} (Node ${shelterNodeId})`);
+    };
+
+    // Setup Click Handler on Map to allow clicking ANYWHERE to route (Google Maps style popup selector)
+    map.on('click', function(e) {
+      const clickedLat = e.latlng.lat;
+      const clickedLng = e.latlng.lng;
+
+      // Only allow click routing within local bounds of Kopili Basin to avoid errors
+      if (clickedLat < 25.8 || clickedLat > 26.3 || clickedLng < 92.5 || clickedLng > 93.1) {
+        L.popup()
+          .setLatLng([clickedLat, clickedLng])
+          .setContent("<b>📍 Location Query</b><br>Click is outside the Kopili Basin road network domain (Lanka/Hojai area).")
+          .openOn(map);
+        return;
+      }
+
+      // Calculate path from clicked point to selected shelter to verify if safe route exists
+      const clickedNodeId = getNearestNodeId(clickedLat, clickedLng);
+      let routeStatusHtml = '';
+      
+      if (dynamicData && dynamicData.road_network) {
+        const testResult = solveDijkstra(
+          dynamicData.road_network.nodes, 
+          dynamicData.road_network.edges, 
+          clickedNodeId, 
+          shelterNodeId, 
+          currentStageValue
+        );
+        
+        if (testResult) {
+          const distKm = (testResult.distance_m / 1000.0).toFixed(2);
+          if (testResult.routeType === 'dry') {
+            routeStatusHtml = `<div style="font-size:10px; font-weight:700; color:var(--emerald); margin-bottom:10px; display:flex; align-items:center; gap:4px;"><i class="fa-solid fa-circle-check"></i> Safe Dry Route Open (${distKm} km)</div>`;
+          } else if (testResult.routeType === 'shallow') {
+            routeStatusHtml = `<div style="font-size:10px; font-weight:700; color:#f59e0b; margin-bottom:10px; display:flex; align-items:center; gap:4px;"><i class="fa-solid fa-triangle-exclamation"></i> Shallow Flood Route (${distKm} km)</div>`;
+          } else {
+            routeStatusHtml = `<div style="font-size:10px; font-weight:700; color:#ef4444; margin-bottom:10px; display:flex; align-items:center; gap:4px;"><i class="fa-solid fa-ferry"></i> Deep Flood Route (Boat/Truck, ${distKm} km)</div>`;
+          }
+        } else {
+          routeStatusHtml = `<div style="font-size:10.5px; font-weight:800; color:var(--coral); margin-bottom:10px; display:flex; align-items:center; gap:4px;"><i class="fa-solid fa-circle-xmark"></i> NO SAFE ROUTE AVAILABLE (Isolated Area)</div>`;
+        }
+      }
+
+      const aidLogHtml = getAidLogContent(clickedLat, clickedLng);
+
+      const popupContent = `
+        <div style="font-family:var(--font-sans); min-width:280px; padding:4px;">
+          <div style="font-weight:800; font-size:11.5px; margin-bottom:6px; color:var(--accent); text-transform:uppercase; letter-spacing:0.5px;"><i class="fa-solid fa-location-dot"></i> Coordinates Queried</div>
+          <div style="font-size:9.5px; color:#cbd5e1; margin-bottom:10px; font-family:var(--font-mono);">GPS: ${clickedLat.toFixed(5)}, ${clickedLng.toFixed(5)}</div>
+          
+          ${routeStatusHtml}
+          
+          <div style="display:flex; gap:6px; margin-bottom:6px;">
+            <button onclick="setCustomOrigin(${clickedLat}, ${clickedLng})" style="flex:1; padding:6px 8px; font-size:9.5px; background:#10b981; border:none; border-radius:4px; color:white; cursor:pointer; font-weight:800; text-transform:uppercase; letter-spacing:0.5px;">Set Start</button>
+            <button onclick="setCustomDestination(${clickedLat}, ${clickedLng})" style="flex:1; padding:6px 8px; font-size:9.5px; background:#ef4444; border:none; border-radius:4px; color:white; cursor:pointer; font-weight:800; text-transform:uppercase; letter-spacing:0.5px;">Set End</button>
+          </div>
+          
+          ${aidLogHtml}
+        </div>
+      `;
+
+      L.popup()
+        .setLatLng(e.latlng)
+        .setContent(popupContent)
+        .openOn(map);
+    });
+
+    // SMS alert state tracker
+    let lastAlertState = 'Normal';
+
+    function checkWaterLevelAlerts(stageVal, ts) {
+      let currentAlertState = 'Normal';
+      if (stageVal >= WATER_ALERT_THRESHOLDS.extreme) currentAlertState = 'Extreme';
+      else if (stageVal >= WATER_ALERT_THRESHOLDS.danger) currentAlertState = 'Danger';
+      else if (stageVal >= WATER_ALERT_THRESHOLDS.warning) currentAlertState = 'Warning';
+
+      if (currentAlertState !== lastAlertState) {
+        const dateStr = new Date(ts).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+        
+        if (currentAlertState === 'Warning' && lastAlertState === 'Normal') {
+          sendSimulatedSMS(
+            '⚠️ CAP-ALERT Broadcast',
+            `Simulation: modeled water level crossed ${stageVal.toFixed(2)}m (warning threshold) at the example Kopili gauge.`,
+            'warning',
+            dateStr
+          );
+        } else if (currentAlertState === 'Danger' && (lastAlertState === 'Warning' || lastAlertState === 'Normal')) {
+          sendSimulatedSMS(
+            '🚨 CRITICAL FLOOD WARNING',
+            `Simulation: modeled water level crossed ${stageVal.toFixed(2)}m (danger threshold). Example routes are being recalculated.`,
+            'danger',
+            dateStr
+          );
+        } else if (currentAlertState === 'Extreme' && lastAlertState !== 'Extreme') {
+          sendSimulatedSMS(
+            '🔴 EXTREME DISASTER ALERT',
+            `Simulation: modeled water level reached ${stageVal.toFixed(2)}m (extreme threshold). No responders have been notified.`,
+            'danger',
+            dateStr
+          );
+        } else if (currentAlertState === 'Normal' && lastAlertState !== 'Normal') {
+          sendSimulatedSMS(
+            '✅ ALL-CLEAR / SAFE RETURN',
+            `Simulation: modeled water level fell to ${stageVal.toFixed(2)}m. This does not indicate that local flood risk has cleared.`,
+            'safe',
+            dateStr
+          );
+        }
+        
+        lastAlertState = currentAlertState;
+      }
+    }
+
+    function sendSimulatedSMS(header, text, type, time) {
+      const container = document.getElementById('sms-container');
+      if (!container) return;
+
+      const toast = document.createElement('div');
+      toast.className = `sms-toast ${type}`;
+      
+      let icon = 'fa-comment-sms';
+      if (type === 'danger') icon = 'fa-triangle-exclamation';
+      else if (type === 'warning') icon = 'fa-bell';
+      else if (type === 'safe') icon = 'fa-circle-check';
+
+      toast.innerHTML = `
+        <div class="sms-icon ${type}"><i class="fa-solid ${icon}"></i></div>
+        <div class="sms-body">
+          <span class="sms-header-title">${header}</span>
+          <span class="sms-text">${text}</span>
+          <span class="sms-time">Simulated SMS · ${time}</span>
+        </div>
+      `;
+
+      container.appendChild(toast);
+      setTimeout(() => toast.classList.add('show'), 100);
+      
+      // Auto-remove after 7 seconds
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 400);
+      }, 7000);
+
+      // The optional local server records a simulated alert; it does not send SMS.
+      fetch('/api/send_alert', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: text,
+          stage: currentStageValue.toFixed(2),
+          status: header
+        })
+      }).catch(err => console.log("Local mode (CORS/Offline): alert sent locally."));
+    }
+
+
+    // 11. SPARKLINE HYDROGRAPH INIT
+    function initChart() {
+      try {
+        const canvas = document.getElementById('gauge-chart');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        if (typeof Chart === 'undefined') {
+          console.warn("Chart.js is not loaded. Skipping chart initialization.");
+          return;
+        }
+        sparklineChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: sparkLabels,
+            datasets: [{
+              data: sparkData,
+              borderColor: '#38bdf8',
+              borderWidth: 1.5,
+              pointRadius: 0,
+              fill: true,
+              backgroundColor: function(context) {
+                const chartCtx = context.chart.ctx;
+                const gradient = chartCtx.createLinearGradient(0, 0, 0, 120);
+                gradient.addColorStop(0, 'rgba(56, 189, 248, 0.25)');
+                gradient.addColorStop(1, 'rgba(56, 189, 248, 0)');
+                return gradient;
+              },
+              tension: 0.35
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: false,
+            plugins: { legend: { display: false }, tooltip: { enabled: false } },
+            scales: {
+              x: { display: false },
+              y: {
+                display: true, position: 'right',
+                grid: { color: 'rgba(255,255,255,0.03)', drawBorder: false },
+                ticks: { color: '#64748b', font: { size: 8, family: 'JetBrains Mono' }, maxTicksLimit: 4 }
+              }
+            }
+          }
+        });
+      } catch (err) {
+        console.warn("Failed to initialize Chart.js:", err.message);
+      }
+    }
+
+    // Major tributaries database and status generator
+    const TRIBUTARIES = [
+      { name: "Brahmaputra (Guwahati)", baseLevel: 48.2, dangerLevel: 49.5, factor: 1.0 },
+      { name: "Kopili River (Kampur)", baseLevel: 51.5, dangerLevel: 53.0, factor: 1.2 },
+      { name: "Subansiri River", baseLevel: 45.0, dangerLevel: 46.5, factor: 0.9 },
+      { name: "Manas River", baseLevel: 42.1, dangerLevel: 43.5, factor: 0.8 },
+      { name: "Dhansiri River", baseLevel: 38.5, dangerLevel: 40.0, factor: 0.7 },
+      { name: "Jiadhal River", baseLevel: 47.0, dangerLevel: 48.5, factor: 1.1 },
+      { name: "Puthimari River", baseLevel: 44.5, dangerLevel: 46.0, factor: 0.85 },
+      { name: "Beki River", baseLevel: 46.2, dangerLevel: 47.5, factor: 1.15 },
+      { name: "Pagladiya River", baseLevel: 43.0, dangerLevel: 44.5, factor: 1.0 },
+      { name: "Burhidehing River", baseLevel: 49.0, dangerLevel: 50.5, factor: 0.75 }
+    ];
+
+    function updateTributariesTable(dayOfMonth, currentStage) {
+      const tbody = document.getElementById('river-status-tbody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+      
+      const stageDiff = currentStage - 5.0; // relative to 5.0m baseline
+      
+      TRIBUTARIES.forEach(river => {
+        const dailyFluct = 0.2 * Math.sin(dayOfMonth / 2.0);
+        const calculatedLevel = river.baseLevel + (stageDiff * river.factor) + dailyFluct;
+        
+        let statusText = "Normal";
+        let statusIcon = "✅";
+        let color = "var(--emerald)";
+        
+        if (calculatedLevel >= river.dangerLevel + 1.0) {
+          statusText = "Extreme";
+          statusIcon = "🔴";
+          color = "var(--coral)";
+        } else if (calculatedLevel >= river.dangerLevel) {
+          statusText = "Danger";
+          statusIcon = "⚠️";
+          color = "var(--coral)";
+        } else if (calculatedLevel >= river.dangerLevel - 0.8) {
+          statusText = "Warning";
+          statusIcon = "🟡";
+          color = "var(--amber)";
+        }
+        
+        const tr = document.createElement('tr');
+        tr.style.borderBottom = '1px solid var(--border-light)';
+        tr.innerHTML = `
+          <td style="padding: 6px 8px; font-weight: 600;">${river.name}</td>
+          <td style="padding: 6px 8px; font-family: var(--font-mono);">${calculatedLevel.toFixed(2)} m</td>
+          <td style="padding: 6px 8px; color: ${color}; font-weight: 700;">
+            ${statusIcon} ${statusText}
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function getAidLogContent(lat, lng) {
+      const sectors = [
+        { name: "Hojai Town Sector", lat: 26.00, lng: 92.85, events: [
+          { step: 82, date: "July 04, 10:00 AM", items: "🛶 Illustrative boat pre-deployment scenario", icon: "fa-life-ring" },
+          { step: 347, date: "July 15, 11:00 AM", items: "🛶 Illustrative evacuation scenario", icon: "fa-person-swimming" },
+          { step: 398, date: "July 17, 04:00 PM", items: "🩺 Illustrative medical support scenario", icon: "fa-truck-medical" }
+        ]},
+        { name: "Lanka High-Ground Sector", lat: 25.92, lng: 93.00, events: [
+          { step: 134, date: "July 06, 02:00 PM", items: "📦 Illustrative food distribution scenario", icon: "fa-box-open" },
+          { step: 469, date: "July 20, 01:00 PM", items: "📦 Illustrative ration delivery scenario", icon: "fa-wheat-awn" }
+        ]},
+        { name: "Kampur Sector", lat: 26.14, lng: 92.72, events: [
+          { step: 215, date: "July 09, 11:30 AM", items: "🩺 Illustrative health support scenario", icon: "fa-prescription-bottle-medical" },
+          { step: 273, date: "July 12, 09:00 AM", items: "🚁 Illustrative air-drop scenario", icon: "fa-helicopter" },
+          { step: 586, date: "July 25, 10:00 AM", items: "🧼 Illustrative sanitation scenario", icon: "fa-soap" }
+        ]}
+      ];
+      
+      let closest = sectors[0];
+      let minDist = Infinity;
+      sectors.forEach(s => {
+        const dist = Math.sqrt(Math.pow(lat - s.lat, 2) + Math.pow(lng - s.lng, 2));
+        if (dist < minDist) {
+          minDist = dist;
+          closest = s;
+        }
+      });
+      
+      const distKm = (minDist * 111.3).toFixed(1);
+      let html = `
+        <div style="margin-top:10px; border-top:1px dashed rgba(255,255,255,0.15); padding-top:8px; text-align:left;">
+          <div style="font-size:9.5px; font-weight:800; color:var(--accent); margin-bottom:6px; text-transform:uppercase; letter-spacing:0.5px;">
+            <i class="fa-solid fa-box-open"></i> Relief Log: near ${closest.name} (${distKm} km)
+          </div>
+          <table style="width:100%; border-collapse:collapse; font-size:9px; line-height:1.4;">
+      `;
+      
+      closest.events.forEach(ev => {
+        const isDelivered = readingIdx >= ev.step;
+        const color = isDelivered ? 'var(--emerald)' : 'var(--text-muted)';
+        const text = isDelivered ? 'SCENARIO ACTIVE' : 'UPCOMING SCENARIO';
+        html += `
+          <tr style="border-bottom:1px dashed rgba(255,255,255,0.03);">
+            <td style="padding:4px 0; color:#cbd5e1; font-weight:500;"><i class="fa-solid ${ev.icon}" style="font-size:8px; margin-right:4px;"></i> ${ev.items}</td>
+            <td style="padding:4px 0; text-align:right; font-family:var(--font-mono); color:var(--text-secondary);">${ev.date}</td>
+            <td style="padding:4px 0 4px 6px; text-align:right; font-weight:700; color:${color}; font-size:8.5px;">${text}</td>
+          </tr>
+        `;
+      });
+      
+      html += `
+          </table>
+        </div>
+      `;
+      return html;
+    }
+
+    function updateDamTelemetry(currentStage) {
+      // 1. Khandong Dam (MRL 719.0m, base 711.0m)
+      let khLevel = 711.0 + (currentStage * 0.7);
+      if (khLevel > 718.9) khLevel = 718.9;
+      
+      let khGates = "CLOSED";
+      let khColor = "badge-low-medium";
+      let khFlow = 0;
+      
+      if (currentStage >= 9.0) {
+        khGates = "FULLY OPENED (4 Gates)";
+        khColor = "badge-extreme";
+        khFlow = 1850.0 + (currentStage - 9.0) * 150;
+      } else if (currentStage >= 5.5) {
+        khGates = "PARTIALLY OPENED (2 Gates)";
+        khColor = "badge-high";
+        khFlow = 450.0 + (currentStage - 5.5) * 400;
+      }
+      
+      // Update DOM
+      const khLevelEl = document.getElementById('dam-level-khandong');
+      if (khLevelEl) khLevelEl.textContent = `${khLevel.toFixed(2)} m`;
+      
+      const khGatesEl = document.getElementById('dam-gates-khandong');
+      if (khGatesEl) {
+        khGatesEl.textContent = khGates;
+        khGatesEl.className = `dist-badge ${khColor}`;
+      }
+      
+      const khFlowEl = document.getElementById('dam-flow-khandong');
+      if (khFlowEl) khFlowEl.textContent = `${khFlow.toFixed(2)} m³/s`;
+
+      // 2. Umrangso Dam (MRL 612.0m, base 602.0m)
+      let umLevel = 602.0 + (currentStage * 0.85);
+      if (umLevel > 611.8) umLevel = 611.8;
+      
+      let umGates = "CLOSED";
+      let umColor = "badge-low-medium";
+      let umFlow = 0;
+      
+      if (currentStage >= 7.0) {
+        umGates = "FULLY OPENED (4 Gates)";
+        umColor = "badge-extreme";
+        umFlow = 2240.0 + (currentStage - 7.0) * 200;
+      } else if (currentStage >= 5.5) {
+        umGates = "PARTIALLY OPENED (2 Gates)";
+        umColor = "badge-high";
+        umFlow = 620.0 + (currentStage - 5.5) * 450;
+      }
+      
+      const umLevelEl = document.getElementById('dam-level-umrangso');
+      if (umLevelEl) umLevelEl.textContent = `${umLevel.toFixed(2)} m`;
+      
+      const umGatesEl = document.getElementById('dam-gates-umrangso');
+      if (umGatesEl) {
+        umGatesEl.textContent = umGates;
+        umGatesEl.className = `dist-badge ${umColor}`;
+      }
+      
+      const umFlowEl = document.getElementById('dam-flow-umrangso');
+      if (umFlowEl) umFlowEl.textContent = `${umFlow.toFixed(2)} m³/s`;
+    }
+
+    function renderReliefMarkers(currentIdx) {
+      if (typeof reliefLayerGroup === 'undefined' || !reliefLayerGroup) return;
+      reliefLayerGroup.clearLayers();
+      
+      RELIEF_EVENTS.forEach(event => {
+        const isDelivered = currentIdx >= event.step;
+        let color = '#64748b'; // grey for pending
+        let iconClass = event.icon;
+        let pulseHtml = '';
+        let opacity = 0.55;
+        let statusText = `<strong style="color:var(--text-muted);">⏳ PENDING (Step ${event.step})</strong>`;
+        
+        if (isDelivered) {
+          opacity = 1.0;
+          statusText = `<strong style="color:var(--emerald);">▶ SCENARIO ACTIVE</strong>`;
+          
+          if (event.type === 'PRE-DEPLOY' || event.type === 'RESCUE') {
+            color = '#00f0ff'; // cyan (boat)
+          } else if (event.type === 'MEDICAL') {
+            color = '#ef4444'; // red (medical)
+          } else if (event.type === 'SANITATION') {
+            color = '#a855f7'; // purple (hygiene)
+          } else if (event.type === 'HELI-DROP') {
+            color = '#eab308'; // yellow (airdrop)
+          } else {
+            color = '#10b981'; // green (rations)
+          }
+          pulseHtml = `<div style="position:absolute; width:100%; height:100%; border-radius:50%; background:${color}; opacity:0.35; animation: relief-pulse 1.6s infinite;"></div>`;
+        }
+        
+        const icon = L.divIcon({
+          className: 'custom-relief-icon',
+          html: `
+            <div style="position:relative; width:28px; height:28px; display:flex; align-items:center; justify-content:center; opacity:${opacity};">
+              ${pulseHtml}
+              <div style="position:relative; width:18px; height:18px; border-radius:50%; background:${isDelivered ? color : '#334155'}; border:1.5px solid ${isDelivered ? '#fff' : '#64748b'}; box-shadow: ${isDelivered ? '0 0 8px ' + color : 'none'}; display:flex; align-items:center; justify-content:center; color:${isDelivered ? '#000' : '#94a3b8'}; font-size:9px;">
+                <i class="fa-solid ${iconClass}"></i>
+              </div>
+            </div>
+          `,
+          iconSize: [28, 28],
+          iconAnchor: [14, 14]
+        });
+        
+        const popupHtml = `
+          <div style="font-family:var(--font-sans); min-width:220px; padding:2px;">
+            <div style="display:flex; align-items:center; gap:6px; font-weight:800; font-size:11px; color:${isDelivered ? color : '#94a3b8'}; text-transform:uppercase; margin-bottom:4px;">
+              <i class="fa-solid ${iconClass}"></i> ${event.label}
+            </div>
+            <div style="font-size:10px; color:#cbd5e1; margin-bottom:6px; line-height:1.35;">${event.desc}</div>
+            <div style="border-top:1px dashed rgba(255,255,255,0.12); padding-top:5px; display:flex; justify-content:space-between; align-items:center; font-size:9.5px; color:var(--text-secondary);">
+              <span>Scheduled: ${event.date}</span>
+              ${statusText}
+            </div>
+          </div>
+        `;
+        
+        L.marker([event.lat, event.lng], { icon: icon })
+          .bindPopup(popupHtml)
+          .addTo(reliefLayerGroup);
+      });
+    }
+
+    function updateReliefTracker(currentStep) {
+      renderReliefMarkers(currentStep);
+      const container = document.getElementById('relief-tracker-feed');
+      if (!container) return;
+      container.innerHTML = '';
+      
+      RELIEF_EVENTS.forEach(event => {
+        const isDelivered = currentStep >= event.step;
+        const card = document.createElement('div');
+        
+        card.style.background = isDelivered ? 'rgba(16, 185, 129, 0.05)' : 'rgba(255,255,255,0.01)';
+        card.style.border = isDelivered ? '1px solid rgba(16, 185, 129, 0.15)' : '1px solid var(--border-light)';
+        card.style.borderRadius = '8px';
+        card.style.padding = '8px 10px';
+        card.style.display = 'flex';
+        card.style.flexDirection = 'column';
+        card.style.gap = '4px';
+        card.style.transition = 'all 0.3s';
+        card.style.opacity = isDelivered ? '1' : '0.4';
+        
+        const badgeColor = isDelivered ? 'var(--emerald)' : 'var(--text-muted)';
+        const badgeText = isDelivered ? '▶ Scenario active' : '⏳ Upcoming scenario';
+        const typeBadgeStyle = isDelivered ? 'background: rgba(16,185,129,0.1); color: var(--emerald); border: 1px solid rgba(16,185,129,0.2);' : 'background: rgba(255,255,255,0.02); color: var(--text-muted); border: 1px solid var(--border-light);';
+        
+        card.innerHTML = `
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:10px; font-weight:800; ${typeBadgeStyle} padding:1px 5px; border-radius:4px;"><i class="fa-solid ${event.icon}"></i> ${event.label}</span>
+            <span style="font-size:9.5px; font-weight:700; color:${badgeColor}; font-family:var(--font-sans);">${badgeText}</span>
+          </div>
+          <div style="font-size:11px; font-weight:600; color:${isDelivered ? 'var(--text-primary)' : 'var(--text-muted)'}; margin-top:2px;">${event.desc}</div>
+          <div style="display:flex; justify-content:space-between; font-size:8.5px; color:var(--text-secondary); font-family:var(--font-mono); margin-top:2px; border-top:1px dashed rgba(255,255,255,0.03); padding-top:4px;">
+            <span>📅 ${event.date}</span>
+            <span>Step: ${event.step}</span>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Nearby Points of Interest Database
+    const NEARBY_POIS = [
+      { id: 'hosp-hojai', name: "Hojai Civil Hospital (illustrative)", type: "hospital", lat: 26.022, lng: 92.871, contact: "Verify locally", desc: "Location is illustrative. Verify facility status and contact details locally." },
+      { id: 'hosp-kampur', name: "Kampur Community Health Centre (illustrative)", type: "hospital", lat: 26.161, lng: 92.682, contact: "Verify locally", desc: "Location is illustrative. Verify facility status and contact details locally." },
+      { id: 'hosp-lanka', name: "Lanka Primary Health Centre (illustrative)", type: "hospital", lat: 25.923, lng: 93.001, contact: "Verify locally", desc: "Location is illustrative. Verify facility status and contact details locally." },
+      
+      { id: 'food-hojai', name: "Hojai Community Kitchen (illustrative)", type: "restaurant", lat: 26.009, lng: 92.834, contact: "Verify locally", desc: "Illustrative marker only; availability is not verified." },
+      { id: 'food-kampur', name: "Kampur Food Camp (illustrative)", type: "restaurant", lat: 26.121, lng: 92.732, contact: "Verify locally", desc: "Illustrative marker only; availability is not verified." },
+      { id: 'food-lanka', name: "Lanka Community Kitchen (illustrative)", type: "restaurant", lat: 25.961, lng: 92.934, contact: "Verify locally", desc: "Illustrative marker only; availability is not verified." },
+
+      { id: 'gov-command', name: "Rescue coordination point (illustrative)", type: "govcamp", lat: 26.001, lng: 92.862, contact: "Verify locally", desc: "Illustrative marker only; not an official response location." },
+      { id: 'gov-ndrf', name: "Kampur response point (illustrative)", type: "govcamp", lat: 26.152, lng: 92.711, contact: "Verify locally", desc: "Illustrative marker only; not an official response location." },
+      { id: 'gov-army', name: "Relief coordination point (illustrative)", type: "govcamp", lat: 25.912, lng: 92.951, contact: "Verify locally", desc: "Illustrative marker only; not an official response location." }
+    ];
+
+    let showHospitalsFilter = true;
+    let showRestaurantsFilter = true;
+    let showGovCampsFilter = true;
+
+    function togglePoiFilter(type, isChecked) {
+      if (type === 'hospital') showHospitalsFilter = isChecked;
+      else if (type === 'restaurant') showRestaurantsFilter = isChecked;
+      else if (type === 'govcamp') showGovCampsFilter = isChecked;
+      renderNearbyPOIs();
+    }
+
+    function renderNearbyPOIs() {
+      poiLayerGroup.clearLayers();
+      
+      NEARBY_POIS.forEach(poi => {
+        if (poi.type === 'hospital' && !showHospitalsFilter) return;
+        if (poi.type === 'restaurant' && !showRestaurantsFilter) return;
+        if (poi.type === 'govcamp' && !showGovCampsFilter) return;
+        
+        let color = '#ef4444';
+        let icon = 'fa-square-h';
+        if (poi.type === 'restaurant') { color = '#f59e0b'; icon = 'fa-utensils'; }
+        else if (poi.type === 'govcamp') { color = '#0ea5e9'; icon = 'fa-shield-halved'; }
+        
+        const htmlMarkup = `<div style="background:${color}; border:2.5px solid white; border-radius:50%; width:28px; height:28px; box-shadow:0 0 10px ${color}; display:flex; align-items:center; justify-content:center; color:white;"><i class="fa-solid ${icon}" style="font-size:12px;"></i></div>`;
+        
+        L.marker([poi.lat, poi.lng], {
+          icon: L.divIcon({
+            className: '',
+            html: htmlMarkup,
+            iconAnchor: [14, 14]
+          })
+        }).addTo(poiLayerGroup).bindPopup(`
+          <div style="font-family:var(--font-sans); min-width:180px;">
+            <div style="font-weight:700; font-size:12.5px; color:${color}; margin-bottom:4px;">
+              <i class="fa-solid ${icon}"></i> ${poi.name}
+            </div>
+            <div style="font-size:10.5px; color:#cbd5e1; line-height:1.4;">
+              <b>Type:</b> ${poi.type.toUpperCase()}<br>
+              <b>Description:</b> ${poi.desc}<br>
+              <b>Contact:</b> ${poi.contact}<br>
+              <button onclick="setDestinationCoords(${poi.lat}, ${poi.lng}, '${poi.name.replace(/'/g, "\\'")}')" style="margin-top:8px; width:100%; padding:6px; font-size:10px; background:${color}; border:none; border-radius:4px; color:white; cursor:pointer; font-weight:700;">Route Evacuation Here</button>
+            </div>
+          </div>
+        `);
+      });
+    }
+
+    function findClosestFacility(type) {
+      if (!originMarker) return;
+      const startLatLng = originMarker.getLatLng();
+      let closestPoi = null;
+      let minDistance = Infinity;
+
+      NEARBY_POIS.forEach(poi => {
+        if (poi.type !== type) return;
+        const d = startLatLng.distanceTo([poi.lat, poi.lng]);
+        if (d < minDistance) {
+          minDistance = d;
+          closestPoi = poi;
+        }
+      });
+
+      if (closestPoi) {
+        setDestinationCoords(closestPoi.lat, closestPoi.lng, closestPoi.name);
+        map.setView([closestPoi.lat, closestPoi.lng], 14);
+        alert(`📍 Nearest ${type.toUpperCase()} found: ${closestPoi.name} (${(minDistance/1000).toFixed(2)} km away). Route has been set!`);
+      } else {
+        alert(`No facilities of type ${type} found.`);
+      }
+    }
+
+    function setDestinationCoords(lat, lng, label) {
+      shelterNodeId = getNearestNodeId(lat, lng);
+      
+      if (destinationMarker) {
+        destinationMarker.setLatLng([lat, lng]);
+        destinationMarker.getPopup().setContent(`
+          <div style="font-family:var(--font-sans); text-align:center;">
+            <b>🔴 Destination (Target)</b><br>
+            <span style="font-size:11px; color:var(--accent); font-weight:700;">${label}</span><br>
+            <span style="font-size:10px; color:#94a3b8;">Drag to recalculate route.</span>
+          </div>
+        `);
+      }
+      
+      const select = document.getElementById('shelter-select');
+      if (select) {
+        let optionExists = false;
+        for (let i = 0; i < select.options.length; i++) {
+          if (select.options[i].value === 'custom') {
+            select.options[i].text = `Target: ${label}`;
+            select.options[i].selected = true;
+            optionExists = true;
+            break;
+          }
+        }
+        if (!optionExists) {
+          const opt = document.createElement('option');
+          opt.value = 'custom';
+          opt.text = `Target: ${label}`;
+          opt.selected = true;
+          select.add(opt);
+        }
+      }
+      
+      renderDynamicOverlay(currentStageValue);
+    }
+
+    // Step-by-Step Navigation Variables & Assistant functions
+    let isNavigationActive = false;
+    let currentNavStepIndex = 0;
+    let navigationStepsText = [];
+    let navigationStepsDetail = [];
+    let routingHighlightPolyline = null;
+
+    function startNavigationMode() {
+      if (navigationStepsText.length === 0) {
+        alert("Please calculate an evacuation route first by selecting a start and end point.");
+        return;
+      }
+      isNavigationActive = true;
+      currentNavStepIndex = 0;
+      
+      document.getElementById('nav-assistant-panel').style.display = 'flex';
+      document.getElementById('nav-mode-btn').style.display = 'none';
+      
+      updateNavigationDisplay();
+    }
+
+    function exitNavigationMode() {
+      isNavigationActive = false;
+      document.getElementById('nav-assistant-panel').style.display = 'none';
+      
+      if (navigationStepsText.length > 0) {
+        document.getElementById('nav-mode-btn').style.display = 'inline-flex';
+      }
+      
+      if (routingHighlightPolyline) {
+        map.removeLayer(routingHighlightPolyline);
+        routingHighlightPolyline = null;
+      }
+    }
+
+    function updateNavigationDisplay() {
+      if (!isNavigationActive || navigationStepsText.length === 0) return;
+      
+      if (currentNavStepIndex >= navigationStepsText.length) {
+        currentNavStepIndex = navigationStepsText.length - 1;
+      }
+      
+      const stepText = navigationStepsText[currentNavStepIndex];
+      const counterEl = document.getElementById('nav-step-counter');
+      const textEl = document.getElementById('nav-step-text');
+      
+      if (counterEl) counterEl.textContent = `Step ${currentNavStepIndex + 1} of ${navigationStepsText.length}`;
+      if (textEl) textEl.textContent = stepText;
+      
+      const currentEdge = navigationStepsDetail[currentNavStepIndex];
+      if (currentEdge) {
+        const coords = currentEdge.geometry.map(pt => [pt[1], pt[0]]);
+        
+        if (routingHighlightPolyline) {
+          map.removeLayer(routingHighlightPolyline);
+        }
+        
+        routingHighlightPolyline = L.polyline(coords, {
+          color: '#00f0ff',
+          weight: 8,
+          opacity: 0.95,
+          dashArray: '8, 8',
+          lineCap: 'round',
+          lineJoin: 'round'
+        }).addTo(map);
+        
+        map.flyTo(coords[0], 15, { animate: true, duration: 1.0 });
+      }
+      
+      const iconEl = document.getElementById('nav-step-icon');
+      if (iconEl) {
+        let iconMarkup = '<i class="fa-solid fa-arrow-up"></i>';
+        if (currentNavStepIndex === 0) {
+          iconMarkup = '<i class="fa-solid fa-right-to-bracket"></i>';
+        } else if (currentNavStepIndex === navigationStepsText.length - 1) {
+          iconMarkup = '<i class="fa-solid fa-flag-checkered"></i>';
+        } else {
+          if (stepText.includes("Turn left")) {
+            iconMarkup = '<i class="fa-solid fa-arrow-left"></i>';
+          } else if (stepText.includes("Turn right")) {
+            iconMarkup = '<i class="fa-solid fa-arrow-right"></i>';
+          }
+        }
+        iconEl.innerHTML = iconMarkup;
+      }
+    }
+
+    function advanceNavigationStep() {
+      if (!isNavigationActive) return;
+      
+      if (currentNavStepIndex < navigationStepsText.length - 1) {
+        currentNavStepIndex++;
+        updateNavigationDisplay();
+      } else {
+        alert("🎉 Destination Reached! You are now safe inside the shelter/aid center area.");
+        exitNavigationMode();
+      }
+    }
+
+    // 12. DIGITAL TWIN SIMULATION TICK ENGINE
+    function updateTwinSimulation(stageVal, ts, trendStr) {
+      currentStageValue = stageVal;
+      checkWaterLevelAlerts(stageVal, ts);
+
+      // Update sidebar gauge number
+      document.getElementById('gauge-val').textContent = stageVal.toFixed(2);
+      
+      // Position cursor
+      const percent = Math.min(100, Math.max(0, (stageVal / WATER_ALERT_THRESHOLDS.max) * 100));
+      document.getElementById('gauge-cursor').style.left = percent + '%';
+
+      // Update color and level indicator
+      let col = 'var(--emerald)';
+      let alertLabel = 'Normal';
+      if (stageVal >= WATER_ALERT_THRESHOLDS.extreme) { col = 'var(--coral)'; alertLabel = 'Extreme Flood'; }
+      else if (stageVal >= WATER_ALERT_THRESHOLDS.danger) { col = 'var(--coral)'; alertLabel = 'Danger Zone'; }
+      else if (stageVal >= WATER_ALERT_THRESHOLDS.warning) { col = 'var(--amber)'; alertLabel = 'Warning Stage'; }
+
+      document.getElementById('gauge-dot').style.background = col;
+      document.getElementById('gauge-dot').style.boxShadow = `0 0 10px ${col}`;
+      
+      const badge = document.getElementById('alert-badge');
+      badge.textContent = alertLabel;
+      badge.style.color = col;
+      badge.style.borderColor = col;
+      badge.style.background = col.replace(')', ', 0.15)');
+
+      // Date update
+      const dateObj = new Date(ts);
+      document.getElementById('hdr-date').textContent = dateObj.toLocaleDateString('en-IN', {
+        day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
+      });
+      document.getElementById('gauge-ts').textContent = dateObj.toLocaleDateString('en-IN', { day:'2-digit', month:'short' }) + ' ' + dateObj.toLocaleTimeString('en-IN', { hour:'2-digit', minute:'2-digit' });
+
+      // Trend string
+      document.getElementById('gauge-trend').innerHTML = trendStr.includes('Rising') 
+        ? `<i class="fa-solid fa-arrow-trend-up" style="color:var(--coral)"></i> Rising`
+        : `<i class="fa-solid fa-arrow-trend-down" style="color:var(--emerald)"></i> Falling`;
+
+      // Synchronize Slider Value (only if autoplaying, to prevent jitter)
+      if (isPlaying) {
+        document.getElementById('stage-slider').value = readingIdx;
+        document.getElementById('slider-val-lbl').textContent = dateObj.toLocaleDateString('en-IN', {
+          day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit'
+        });
+      }
+
+      // Sparkline updates
+      if (sparklineChart) {
+        sparkLabels.push('');
+        sparkData.push(stageVal);
+        if (sparkLabels.length > 48) { sparkLabels.shift(); sparkData.shift(); }
+        sparklineChart.data.datasets[0].borderColor = col;
+        sparklineChart.update('none');
+      }
+
+      // Update Inundation overlays and routes
+      renderDynamicOverlay(stageVal);
+      
+      // Update Tributaries River table
+      updateTributariesTable(dateObj.getDate(), stageVal);
+      
+      // Update Dam status
+      updateDamTelemetry(stageVal);
+      
+      // Update the illustrative relief-response scenario feed
+      updateReliefTracker(readingIdx);
+    }
+
+    // Autoplay Loop Callback
+    function runSimulationStep() {
+      if (!gaugeReadings.length) return;
+      
+      const reading = gaugeReadings[readingIdx];
+      // Step indices loop
+      readingIdx = (readingIdx + 1) % gaugeReadings.length;
+
+      document.getElementById('sim-ticker-step').textContent = `Step: ${readingIdx} / ${gaugeReadings.length}`;
+      
+      // Calculate realistic trend
+      let trend = "Rising";
+      if (readingIdx > 0 && gaugeReadings[readingIdx - 1]) {
+        trend = (reading.stage_m >= gaugeReadings[readingIdx - 1].stage_m) ? "Rising" : "Falling";
+      }
+
+      updateTwinSimulation(reading.stage_m, reading.t, trend);
+    }
+
+    function togglePlayState() {
+      isPlaying = !isPlaying;
+      const playBtnLabel = document.getElementById('btn-play-lbl');
+      const playBtnIcon = document.getElementById('btn-play-toggle').querySelector('i');
+      const modeLabel = document.getElementById('sim-mode-label');
+
+      if (isPlaying) {
+        playBtnLabel.textContent = "Pause";
+        playBtnIcon.className = "fa-solid fa-pause";
+        modeLabel.textContent = "Simulation: Playing";
+        timerId = setInterval(runSimulationStep, 150);
+      } else {
+        playBtnLabel.textContent = "Play";
+        playBtnIcon.className = "fa-solid fa-play";
+        modeLabel.textContent = "Simulation: Paused (Manual)";
+        clearInterval(timerId);
+      }
+    }
+
+    function handleManualSlider(val) {
+      if (isPlaying) {
+        togglePlayState(); // Force pause when user interacts with slider
+      }
+      readingIdx = parseInt(val);
+      if (!gaugeReadings.length || !gaugeReadings[readingIdx]) return;
+      
+      const r = gaugeReadings[readingIdx];
+      const stageVal = r.stage_m;
+      const ts = r.t;
+      
+      // Calculate trend
+      let trend = "Stationary";
+      if (readingIdx > 0 && gaugeReadings[readingIdx - 1]) {
+        trend = (stageVal >= gaugeReadings[readingIdx - 1].stage_m) ? "Rising" : "Falling";
+      }
+      
+      document.getElementById('sim-ticker-step').textContent = `Step: ${readingIdx} / ${gaugeReadings.length}`;
+      
+      // Update label
+      const dateObj = new Date(ts);
+      document.getElementById('slider-val-lbl').textContent = dateObj.toLocaleDateString('en-IN', {
+        day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit'
+      });
+      
+      updateTwinSimulation(stageVal, ts, trend);
+    }
+
+    // 13. LIFECYCLE STARTUP SETUP
+    (async function startup() {
+      // Init elements
+      renderDistrictsList(ASSAM_DISTRICTS_DATA);
+      initChart();
+      initMarkers();
+
+      // Load GIS Road network and Dynamic Water Polygons
+      try {
+        const res = await fetch(DATA_PATHS.dynamic);
+        if (!res.ok) throw new Error("Status: " + res.statusText);
+        dynamicData = await res.json();
+        console.log("✓ Dynamic data loaded");
+        
+        // Dynamically snap origin and destination nodes to the loaded road network
+        originNodeId = getNearestNodeId(26.00, 92.85);  // Hojai Village Coordinates
+        shelterNodeId = getNearestNodeId(26.13, 92.78); // Lanka High Ground Shelter
+        
+        const oNode = dynamicData.road_network.nodes.find(n => n.id === originNodeId);
+        if (oNode && originMarker) {
+          originMarker.setLatLng([oNode.y, oNode.x]);
+        }
+        const dNode = dynamicData.road_network.nodes.find(n => n.id === shelterNodeId);
+        if (dNode && destinationMarker) {
+          destinationMarker.setLatLng([dNode.y, dNode.x]);
+        }
+        console.log(`✓ Snapped routing origin to node ${originNodeId}, destination to node ${shelterNodeId}`);
+      } catch (err) {
+        console.warn("[ERROR] Failed to load dynamic map layers: ", err.message);
+        // Build minimal synthetic network fallback if JSON missing
+        dynamicData = {
+          dynamic_flood: { "5.0": [] },
+          road_network: { nodes: [{id: 43, x: 92.85, y:26.0}, {id: 111, x: 92.78, y:26.13}], edges: [] }
+        };
+      }
+
+      // Initialize static roads polylines (casing styled to look like real roads)
+      dryRoadsPolyline = L.polyline([], {
+        color: '#e2e8f0',
+        weight: 3.5,
+        opacity: 0.95,
+        lineCap: 'round',
+        lineJoin: 'round'
+      }).addTo(roadLayerGroup);
+
+      floodedRoadsPolyline = L.polyline([], {
+        color: '#fca5a5',
+        weight: 3.5,
+        dashArray: '4, 6',
+        opacity: 0.95,
+        lineCap: 'round',
+        lineJoin: 'round'
+      }).addTo(roadLayerGroup);
+
+      // Pre-compile GeoJSON layers for flood stages to cache
+      if (dynamicData && dynamicData.dynamic_flood) {
+        Object.keys(dynamicData.dynamic_flood).forEach(key => {
+          const stagePolys = dynamicData.dynamic_flood[key] || [];
+          if (stagePolys.length > 0) {
+            floodLayersCache[key] = L.geoJSON({
+              type: "FeatureCollection",
+              features: stagePolys
+            }, {
+              style: getFloodStyle
+            });
+          }
+        });
+      }
+
+      // Load Gauge readings time-series data
+      try {
+        const res = await fetch(DATA_PATHS.gauge);
+        if (!res.ok) throw new Error("Status: " + res.statusText);
+        const data = await res.json();
+        gaugeReadings = data.readings || [];
+        
+        // Setup slider bounds
+        const slider = document.getElementById('stage-slider');
+        slider.min = 0;
+        slider.max = gaugeReadings.length - 1;
+        slider.step = 1;
+        
+        // Start simulation near peak value for dramatic effect (index ~96 rows from end)
+        readingIdx = Math.max(0, gaugeReadings.length - 96);
+        slider.value = readingIdx;
+        
+        console.log(`✓ Loaded ${gaugeReadings.length} historical gauge points`);
+      } catch (err) {
+        console.warn("[ERROR] Gauge data unavailable, creating synthetic data series: ", err.message);
+        // Create synthetic sine wave gauge records
+        gaugeReadings = [];
+        for (let i = 0; i < 150; i++) {
+          const t = new Date(Date.now() - (150 - i) * 3600000).toISOString();
+          const s = 4.0 + 3.8 * Math.sin(i / 10) + Math.random() * 0.2;
+          gaugeReadings.push({ stage_m: s, t: t });
+        }
+        
+        const slider = document.getElementById('stage-slider');
+        slider.min = 0;
+        slider.max = gaugeReadings.length - 1;
+        slider.step = 1;
+        
+        readingIdx = 0;
+        slider.value = readingIdx;
+      }
+
+      // Fetch server IP dynamically to populate mobile link and QR code
+      try {
+        const ipRes = await fetch('/api/ip');
+        if (ipRes.ok) {
+          const ipData = await ipRes.json();
+          const serverIp = ipData.ip;
+          const mobileUrl = `http://${serverIp}:8081`;
+          
+          const urlInput = document.getElementById('mobile-url-input');
+          if (urlInput) urlInput.value = mobileUrl;
+          
+          const qrContainer = document.getElementById('qr-container');
+          if (qrContainer) {
+            qrContainer.innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(mobileUrl)}" alt="QR Code" style="width: 100px; height: 100px; display: block;" onerror="this.parentElement.innerHTML='<span style=\'color:var(--text-muted); font-size:9.5px; padding:8px;\'>QR Code Offline</span>'">`;
+          }
+        }
+      } catch (err) {
+        console.warn("Failed to fetch server IP dynamically:", err.message);
+        // Fallback to current browser hostname
+        const host = window.location.hostname || "127.0.0.1";
+        const mobileUrl = `http://${host}:8081`;
+        const urlInput = document.getElementById('mobile-url-input');
+        if (urlInput) urlInput.value = mobileUrl;
+      }
+
+      // Render initial Nearby Facilities POIs on the map
+      renderNearbyPOIs();
+
+      // Run the initial manual step layout matching the default slider index
+      handleManualSlider(readingIdx);
+
+      console.log("✅ Digital Twin early warning system ready.");
+    })();
+  </script>
+</body>
+</html>

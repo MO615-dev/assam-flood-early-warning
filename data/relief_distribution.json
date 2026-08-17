@@ -1,0 +1,122 @@
+[
+  {
+    "village": "Hojai Central",
+    "lat": 26.0,
+    "lng": 92.85,
+    "dates": "30 July \u2013 1 Aug 2026",
+    "items": "Food packets, clean drinking water, medical kits",
+    "method": "Helicopter (NDRF Air Drop)"
+  },
+  {
+    "village": "Doboka Settlement",
+    "lat": 26.13,
+    "lng": 92.88,
+    "dates": "29 July \u2013 31 July 2026",
+    "items": "Dry rations, tarpaulins, water purification tablets",
+    "method": "Boat (SDRF Fleet)"
+  },
+  {
+    "village": "Kampur Ghat",
+    "lat": 26.15,
+    "lng": 92.65,
+    "dates": "28 July \u2013 30 July 2026",
+    "items": "Baby food, oral rehydration salts, blankets",
+    "method": "Boat (Assam Police)"
+  },
+  {
+    "village": "Lanka Town",
+    "lat": 25.92,
+    "lng": 92.95,
+    "dates": "27 July \u2013 29 July 2026",
+    "items": "Rice, pulses, cooking oil, kerosene",
+    "method": "Truck (High clearance)"
+  },
+  {
+    "village": "Raha Junction",
+    "lat": 26.22,
+    "lng": 92.52,
+    "dates": "29 July \u2013 2 Aug 2026",
+    "items": "Emergency medical aid, shelter kits",
+    "method": "Truck (Indian Army)"
+  },
+  {
+    "village": "Dhing Riverside",
+    "lat": 26.47,
+    "lng": 92.47,
+    "dates": "30 July \u2013 1 Aug 2026",
+    "items": "Cooked food, sanitary pads, drinking water",
+    "method": "Boat (Civil Defence)"
+  },
+  {
+    "village": "Nagaon South",
+    "lat": 26.18,
+    "lng": 92.72,
+    "dates": "26 July \u2013 28 July 2026",
+    "items": "First aid supplies, mosquito nets",
+    "method": "Truck"
+  },
+  {
+    "village": "Kopili Bank Village",
+    "lat": 26.08,
+    "lng": 92.79,
+    "dates": "31 July \u2013 2 Aug 2026",
+    "items": "Water tanks, chlorine tablets, dry food",
+    "method": "Helicopter (IAF Mi-17)"
+  },
+  {
+    "village": "Guwahati North Bank",
+    "lat": 26.2,
+    "lng": 91.73,
+    "dates": "28 July \u2013 30 July 2026",
+    "items": "Food packets, bottled water",
+    "method": "Boat"
+  },
+  {
+    "village": "Morigaon Sub-Division",
+    "lat": 26.25,
+    "lng": 92.33,
+    "dates": "29 July \u2013 1 Aug 2026",
+    "items": "Tarpaulins, hygiene kits, medical supplies",
+    "method": "Boat & Truck"
+  },
+  {
+    "village": "Jamunamukh",
+    "lat": 26.1,
+    "lng": 92.73,
+    "dates": "30 July \u2013 2 Aug 2026",
+    "items": "Ready-to-eat meals, infant formula",
+    "method": "Boat"
+  },
+  {
+    "village": "Bhuiyapara",
+    "lat": 26.05,
+    "lng": 92.82,
+    "dates": "31 July \u2013 3 Aug 2026",
+    "items": "Water purification units, dry ration kits",
+    "method": "Helicopter"
+  },
+  {
+    "village": "Kaki Reserve Boundary",
+    "lat": 25.88,
+    "lng": 92.98,
+    "dates": "28 July \u2013 30 July 2026",
+    "items": "Cattle feed, veterinary kits, basic food",
+    "method": "Tractor / Truck"
+  },
+  {
+    "village": "Lumding Road Hamlet",
+    "lat": 25.75,
+    "lng": 93.17,
+    "dates": "27 July \u2013 29 July 2026",
+    "items": "First aid, solar lamps, dry food",
+    "method": "Truck"
+  },
+  {
+    "village": "Silghat Steamer Ghat",
+    "lat": 26.6,
+    "lng": 92.93,
+    "dates": "30 July \u2013 2 Aug 2026",
+    "items": "Life jackets, emergency lights, food packages",
+    "method": "Motor Launch Boat"
+  }
+]

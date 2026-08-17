@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flood Alert Simulation</title>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Font: Outfit & JetBrains Mono -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #050811;
+      --bg-panel: rgba(10, 18, 36, 0.75);
+      --bg-card: rgba(17, 24, 43, 0.45);
+      --border-light: rgba(56, 189, 248, 0.08);
+      --border-glow: rgba(0, 240, 255, 0.25);
+      
+      --accent: #00f0ff; /* Neon Cyan */
+      --accent-glow: rgba(0, 240, 255, 0.3);
+      --crimson: #ff3b3b;
+      --amber: #fbbf24;
+      --emerald: #10b981;
+      
+      --font-sans: 'Outfit', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg-dark);
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(0, 240, 255, 0.12) 0px, transparent 60%),
+        radial-gradient(at 100% 100%, rgba(255, 59, 59, 0.08) 0px, transparent 60%),
+        linear-gradient(rgba(255, 255, 255, 0.002) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.002) 1px, transparent 1px);
+      background-size: 100% 100%, 20px 20px, 20px 20px;
+      color: #f8fafc;
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── CONTAINER FRAME ────────────────────────────────────────────── */
+    .phone-container {
+      width: 100%;
+      max-width: 410px;
+      background: var(--bg-panel);
+      backdrop-filter: blur(24px) saturate(180%);
+      border: 1px solid rgba(0, 240, 255, 0.15);
+      border-radius: 40px;
+      padding: 12px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), inset 0 0 20px rgba(255, 255, 255, 0.01);
+      position: relative;
+      overflow: hidden;
+    }
+    .phone-container::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1.5px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+
+    /* ── MOBILE STATUS BAR ──────────────────────────────────────────── */
+    .device-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 20px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      font-family: var(--font-sans);
+      letter-spacing: 0.5px;
+    }
+    .status-left { display: flex; align-items: center; gap: 4px; }
+    .status-right { display: flex; align-items: center; gap: 6px; }
+
+    /* Notch */
+    .device-notch {
+      width: 110px;
+      height: 20px;
+      background: #000000;
+      border-radius: 0 0 14px 14px;
+      margin: -6px auto 10px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-top: none;
+    }
+    .device-speaker {
+      width: 40px;
+      height: 3px;
+      background: #1e293b;
+      border-radius: 20px;
+    }
+    .device-camera {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #090d16;
+      margin-left: 8px;
+    }
+
+    /* ── MONITOR TERMINAL INFO ──────────────────────────────────────── */
+    .terminal-info-card {
+      background: rgba(17, 24, 43, 0.35);
+      border: 1px solid var(--border-light);
+      border-radius: 24px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    
+    /* Glowing Animated Broadcast Tower */
+    .broadcast-container {
+      position: relative;
+      width: 70px; height: 70px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .broadcast-tower-icon {
+      width: 38px; height: 38px;
+      background: rgba(255, 59, 59, 0.08);
+      border: 1.5px solid var(--crimson);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--crimson);
+      font-size: 16px;
+      z-index: 2;
+      box-shadow: 0 0 12px rgba(255, 59, 59, 0.3);
+    }
+    .broadcast-wave {
+      position: absolute;
+      border: 1.5px solid var(--accent);
+      border-radius: 50%;
+      animation: broadcast-ping 3s infinite linear;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .broadcast-wave:nth-child(2) { animation-delay: 1s; border-color: var(--accent); }
+    .broadcast-wave:nth-child(3) { animation-delay: 2s; border-color: var(--crimson); }
+    @keyframes broadcast-ping {
+      0% { width: 36px; height: 36px; opacity: 0.8; }
+      100% { width: 90px; height: 90px; opacity: 0; }
+    }
+
+    .terminal-title h1 {
+      font-size: 16px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      text-align: center;
+      background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .target-phone-pill {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      background: rgba(0, 240, 255, 0.06);
+      border: 1px solid rgba(0, 240, 255, 0.15);
+      padding: 4px 10px;
+      border-radius: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .connection-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .status-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--emerald);
+      box-shadow: 0 0 6px var(--emerald);
+      animation: status-pulse 1.5s infinite;
+    }
+    .status-dot.offline {
+      background: var(--crimson);
+      box-shadow: 0 0 6px var(--crimson);
+    }
+    @keyframes status-pulse {
+      0% { opacity: 0.5; }
+      50% { opacity: 1; }
+      100% { opacity: 0.5; }
+    }
+
+    /* Sound Mute Toggle */
+    .sound-toggle-btn {
+      position: absolute;
+      top: 12px; right: 12px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border-light);
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      color: var(--text-secondary);
+      font-size: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      outline: none;
+    }
+    .sound-toggle-btn:hover {
+      background: rgba(255,255,255,0.05);
+      color: var(--text-primary);
+      border-color: rgba(255,255,255,0.1);
+    }
+    .sound-toggle-btn.muted {
+      color: var(--crimson);
+      border-color: rgba(255, 59, 59, 0.2);
+      background: rgba(255, 59, 59, 0.05);
+    }
+
+    /* ── ALERTS FEED CONTAINER ──────────────────────────────────────── */
+    .alert-feed {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 380px;
+      max-height: 520px;
+      overflow-y: auto;
+      padding: 4px;
+      border-radius: 20px;
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.02);
+    }
+    .alert-feed::-webkit-scrollbar {
+      width: 3px;
+    }
+    .alert-feed::-webkit-scrollbar-thumb {
+      background: rgba(0, 240, 255, 0.15);
+      border-radius: 2px;
+    }
+
+    /* Empty Feed Scanner State */
+    .empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 380px;
+      color: var(--text-secondary);
+      text-align: center;
+      gap: 16px;
+      padding: 24px;
+      position: relative;
+    }
+    .scanner-radar {
+      position: relative;
+      width: 60px; height: 60px;
+      border: 2px solid rgba(0, 240, 255, 0.1);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .scanner-radar::after {
+      content: '';
+      position: absolute;
+      width: 100%; height: 100%;
+      border: 2px solid transparent;
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: radar-spin 2s linear infinite;
+    }
+    @keyframes radar-spin {
+      to { transform: rotate(360deg); }
+    }
+    .scanner-radar i {
+      font-size: 20px;
+      color: rgba(0, 240, 255, 0.25);
+      animation: pulse-alert-icon 1.5s infinite ease-in-out;
+    }
+    @keyframes pulse-alert-icon {
+      0%, 100% { transform: scale(1.0); opacity: 0.5; }
+      50% { transform: scale(1.15); opacity: 1; }
+    }
+    .empty-state p {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .empty-state span {
+      font-size: 10px;
+      line-height: 1.4;
+      color: var(--text-secondary);
+    }
+
+    /* ── SMS ALERT CARDS ────────────────────────────────────────────── */
+    .alert-card {
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid var(--border-light);
+      border-radius: 18px;
+      padding: 14px 16px;
+      display: flex;
+      gap: 12px;
+      transform: translateY(20px);
+      opacity: 0;
+      animation: slide-in 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    @keyframes slide-in {
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .alert-card.warning {
+      border-left: 4px solid var(--amber);
+      background: linear-gradient(90deg, rgba(251, 191, 36, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+      box-shadow: 0 4px 15px rgba(251, 191, 36, 0.05);
+    }
+
+    .alert-card.danger {
+      border-left: 4px solid var(--crimson);
+      background: linear-gradient(90deg, rgba(255, 59, 59, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+      box-shadow: 0 4px 15px rgba(255, 59, 59, 0.08);
+      animation: slide-in 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards, card-shake 0.5s ease;
+    }
+    @keyframes card-shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-4px); }
+      40%, 80% { transform: translateX(4px); }
+    }
+
+    .alert-card.safe {
+      border-left: 4px solid var(--emerald);
+      background: linear-gradient(90deg, rgba(16, 185, 129, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.05);
+    }
+
+    .alert-icon-box {
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+      box-shadow: inset 0 0 8px rgba(255,255,255,0.01);
+    }
+    .alert-icon-box.warning { background: rgba(251, 191, 36, 0.1); color: var(--amber); border: 1px solid rgba(251, 191, 36, 0.2); }
+    .alert-icon-box.danger { background: rgba(255, 59, 59, 0.1); color: var(--crimson); border: 1px solid rgba(255, 59, 59, 0.2); }
+    .alert-icon-box.safe { background: rgba(16, 185, 129, 0.1); color: var(--emerald); border: 1px solid rgba(16, 185, 129, 0.2); }
+
+    .alert-content {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      flex: 1;
+    }
+    .alert-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .alert-sender {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: #e2e8f0;
+    }
+    .alert-time {
+      font-size: 9.5px;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+    }
+    .alert-message {
+      font-size: 12px;
+      color: #cbd5e1;
+      line-height: 1.45;
+      font-weight: 500;
+    }
+    .alert-footer-stats {
+      display: flex;
+      gap: 12px;
+      font-size: 9.5px;
+      font-family: var(--font-mono);
+      color: var(--text-secondary);
+      border-top: 1px dashed rgba(255,255,255,0.04);
+      padding-top: 6px;
+      margin-top: 4px;
+    }
+    .alert-footer-stats span {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Simulated Home Bar Indicator at bottom */
+    .home-bar {
+      width: 120px;
+      height: 4.5px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      margin: 12px auto 2px auto;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="phone-container">
+    <!-- Device Notch -->
+    <div class="device-notch">
+      <div class="device-speaker"></div>
+      <div class="device-camera"></div>
+    </div>
+
+    <!-- Status Bar -->
+    <div class="device-header">
+      <div class="status-left">
+        <span id="device-time">12:00</span>
+      </div>
+      <div class="status-right">
+        <i class="fa-solid fa-signal"></i>
+        <span>DEMO NETWORK</span>
+        <i class="fa-solid fa-wifi"></i>
+        <i class="fa-solid fa-battery-full"></i>
+      </div>
+    </div>
+
+    <!-- Telemetry Information Card -->
+    <div class="terminal-info-card">
+      <button class="sound-toggle-btn" id="sound-btn" onclick="toggleMute()" title="Toggle Sound">
+        <i class="fa-solid fa-volume-high"></i>
+      </button>
+      
+      <div class="broadcast-container">
+        <div class="broadcast-wave"></div>
+        <div class="broadcast-wave"></div>
+        <div class="broadcast-wave"></div>
+        <div class="broadcast-tower-icon">
+          <i class="fa-solid fa-tower-broadcast"></i>
+        </div>
+      </div>
+      
+      <div class="terminal-title">
+        <h1>Emergency Warnings desk</h1>
+      </div>
+      
+      <div class="target-phone-pill">
+        <i class="fa-solid fa-circle-info"></i> Simulation only · No SMS provider connected
+      </div>
+      
+      <div class="connection-status">
+        <div class="status-dot" id="status-dot"></div>
+        <span id="status-text">SYSTEM STANDBY</span>
+      </div>
+    </div>
+
+    <!-- Alerts Feed -->
+    <div class="alert-feed" id="alert-container">
+      <div class="empty-state" id="empty-state">
+        <div class="scanner-radar">
+          <i class="fa-solid fa-tower-broadcast"></i>
+        </div>
+        <p>Telemetry Scan Active</p>
+        <span>No simulated alerts yet. Use the desktop dashboard timeline to generate local alert examples.</span>
+      </div>
+    </div>
+
+    <!-- Simulated Home Bar -->
+    <div class="home-bar"></div>
+  </div>
+
+  <script>
+    let isMuted = false;
+    let alertsCache = [];
+
+    // Auto-update simulated clock time
+    function updateClock() {
+      const now = new Date();
+      let hours = now.getHours();
+      let minutes = now.getMinutes();
+      hours = hours < 10 ? '0' + hours : hours;
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+      const clockEl = document.getElementById('device-time');
+      if (clockEl) clockEl.textContent = `${hours}:${minutes}`;
+    }
+    setInterval(updateClock, 30000);
+    updateClock();
+
+    // Synthesize alarm chimes via Web Audio API
+    function playBeep(type) {
+      if (isMuted) return;
+      try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        
+        if (type === 'danger') {
+          // Double alert sweep
+          const osc1 = audioCtx.createOscillator();
+          const osc2 = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          
+          osc1.type = 'sine';
+          osc1.frequency.setValueAtTime(880, audioCtx.currentTime);
+          osc2.type = 'sine';
+          osc2.frequency.setValueAtTime(440, audioCtx.currentTime);
+
+          gain.gain.setValueAtTime(0.25, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
+
+          osc1.connect(gain);
+          osc2.connect(gain);
+          gain.connect(audioCtx.destination);
+          
+          osc1.start();
+          osc2.start();
+          
+          setTimeout(() => {
+            osc1.stop();
+            osc2.stop();
+            const osc3 = audioCtx.createOscillator();
+            const gain2 = audioCtx.createGain();
+            osc3.type = 'sine';
+            osc3.frequency.setValueAtTime(880, audioCtx.currentTime);
+            gain2.gain.setValueAtTime(0.25, audioCtx.currentTime);
+            gain2.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
+            osc3.connect(gain2);
+            gain2.connect(audioCtx.destination);
+            osc3.start();
+            setTimeout(() => osc3.stop(), 400);
+          }, 220);
+
+        } else if (type === 'warning') {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(620, audioCtx.currentTime);
+          gain.gain.setValueAtTime(0.18, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.35);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start();
+          setTimeout(() => osc.stop(), 350);
+          
+        } else {
+          // Safe chime sweep
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(1046.50, audioCtx.currentTime + 0.25);
+          gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start();
+          setTimeout(() => osc.stop(), 300);
+        }
+      } catch (err) {
+        console.warn("Audio Context blocked: ", err);
+      }
+    }
+
+    function toggleMute() {
+      isMuted = !isMuted;
+      const btn = document.getElementById('sound-btn');
+      if (isMuted) {
+        btn.className = "sound-toggle-btn muted";
+        btn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
+      } else {
+        btn.className = "sound-toggle-btn";
+        btn.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
+      }
+    }
+
+    async function pollAlerts() {
+      const container = document.getElementById('alert-container');
+      const emptyState = document.getElementById('empty-state');
+      const dot = document.getElementById('status-dot');
+      const text = document.getElementById('status-text');
+
+      try {
+        const res = await fetch('/api/alerts_list');
+        if (!res.ok) throw new Error("Connection lost");
+        
+        const list = await res.json();
+        
+        // Active
+        dot.className = "status-dot";
+        text.textContent = "CONNECTED · TELEMETRY OK";
+
+        if (list.length === 0) {
+          if (emptyState) emptyState.style.display = 'flex';
+          container.innerHTML = '';
+          container.appendChild(emptyState);
+          return;
+        }
+
+        if (emptyState) emptyState.style.display = 'none';
+
+        // Detect new alert entries
+        let hasNew = false;
+        list.forEach(item => {
+          const isCached = alertsCache.some(c => 
+            c.message === item.message && 
+            c.stage === item.stage && 
+            c.status === item.status
+          );
+          if (!isCached) {
+            hasNew = true;
+          }
+        });
+
+        if (hasNew || alertsCache.length !== list.length) {
+          alertsCache = list;
+          container.innerHTML = '';
+          
+          const reversedList = [...list].reverse();
+          reversedList.forEach((item) => {
+            const card = document.createElement('div');
+            let statusClass = 'warning';
+            let icon = 'fa-bell';
+            
+            if (item.status.includes('CRITICAL') || item.status.includes('EXTREME')) {
+              statusClass = 'danger';
+              icon = 'fa-triangle-exclamation';
+            } else if (item.status.includes('ALL-CLEAR') || item.status.includes('SAFE')) {
+              statusClass = 'safe';
+              icon = 'fa-circle-check';
+            }
+
+            card.className = `alert-card ${statusClass}`;
+            card.innerHTML = `
+              <div class="alert-icon-box ${statusClass}"><i class="fa-solid ${icon}"></i></div>
+              <div class="alert-content">
+                <div class="alert-meta">
+                  <span class="alert-sender">${item.status}</span>
+                  <span class="alert-time">${item.timestamp}</span>
+                </div>
+                <div class="alert-message">${item.message}</div>
+                <div class="alert-footer-stats">
+                  <span><i class="fa-solid fa-water"></i> STAGE: ${item.stage}m</span>
+                  <span><i class="fa-solid fa-tower-broadcast"></i> TYPE: CELL BROADCAST</span>
+                </div>
+              </div>
+            `;
+            container.appendChild(card);
+          });
+
+          // Play alarm sound for newest received warning
+          const latestItem = list[list.length - 1];
+          let type = 'warning';
+          if (latestItem.status.includes('CRITICAL') || latestItem.status.includes('EXTREME')) type = 'danger';
+          else if (latestItem.status.includes('ALL-CLEAR') || latestItem.status.includes('SAFE')) type = 'safe';
+          
+          playBeep(type);
+        }
+
+      } catch (err) {
+        dot.className = "status-dot offline";
+        text.textContent = "DISCONNECTED · RECONNECTING...";
+        console.warn("Connection lost: ", err.message);
+      }
+    }
+
+    setInterval(pollAlerts, 1500);
+    pollAlerts();
+  </script>
+</body>
+</html>

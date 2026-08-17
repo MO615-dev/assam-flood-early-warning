@@ -1,0 +1,13 @@
+{
+  "gauge_id": "KPL-001",
+  "gauge_name": "Kopili at Umrangso",
+  "lat": 25.967,
+  "lon": 92.951,
+  "stage_m": 3.174,
+  "alert": "NORMAL",
+  "alert_color": "#22c55e",
+  "alert_level": 0,
+  "timestamp": "2020-08-01T00:00:00",
+  "trend": "FALLING",
+  "quality": "GOOD"
+}

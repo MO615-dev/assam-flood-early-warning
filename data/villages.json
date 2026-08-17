@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Hojai Village Central",
+    "lat": 26.0,
+    "lng": 92.85,
+    "depth": 1.25,
+    "risk_level": "High",
+    "color": "#cc0000"
+  },
+  {
+    "name": "Doboka Settlement",
+    "lat": 26.13,
+    "lng": 92.88,
+    "depth": 0.75,
+    "risk_level": "Medium",
+    "color": "#ff9900"
+  },
+  {
+    "name": "Lanka Riverside",
+    "lat": 25.92,
+    "lng": 92.95,
+    "depth": 0.35,
+    "risk_level": "Low",
+    "color": "#66ccff"
+  },
+  {
+    "name": "Kopili Ghat",
+    "lat": 26.08,
+    "lng": 92.79,
+    "depth": 1.8,
+    "risk_level": "High",
+    "color": "#cc0000"
+  },
+  {
+    "name": "Kampur Village",
+    "lat": 26.15,
+    "lng": 92.65,
+    "depth": 1.1,
+    "risk_level": "High",
+    "color": "#cc0000"
+  },
+  {
+    "name": "Jamunamukh East",
+    "lat": 26.1,
+    "lng": 92.73,
+    "depth": 0.65,
+    "risk_level": "Medium",
+    "color": "#ff9900"
+  },
+  {
+    "name": "Nagaon South Hamlet",
+    "lat": 26.18,
+    "lng": 92.72,
+    "depth": 0.0,
+    "risk_level": "Safe",
+    "color": "#00cc00"
+  },
+  {
+    "name": "Guwahati Dispur Area",
+    "lat": 26.14,
+    "lng": 91.78,
+    "depth": 0.0,
+    "risk_level": "Safe",
+    "color": "#00cc00"
+  },
+  {
+    "name": "Guwahati North Bank",
+    "lat": 26.2,
+    "lng": 91.73,
+    "depth": 0.4,
+    "risk_level": "Low",
+    "color": "#66ccff"
+  },
+  {
+    "name": "Morigaon Central",
+    "lat": 26.25,
+    "lng": 92.33,
+    "depth": 0.8,
+    "risk_level": "Medium",
+    "color": "#ff9900"
+  }
+]

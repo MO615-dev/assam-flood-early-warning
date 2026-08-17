@@ -1,0 +1,4136 @@
+{
+  "0": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 3.8 km",
+      "distance": "3.8 km",
+      "lat": 26.0075,
+      "lng": 92.714,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.019,
+      "lng": 92.714,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.064999999999998,
+      "lng": 92.714,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 2.8 km",
+      "distance": "2.8 km",
+      "lat": 26.0765,
+      "lng": 92.72800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 3.1 km",
+      "distance": "3.1 km",
+      "lat": 26.0765,
+      "lng": 92.756,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0765,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 6.7 km",
+      "distance": "6.7 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "1": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 3.8 km",
+      "distance": "3.8 km",
+      "lat": 26.0075,
+      "lng": 92.742,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.019,
+      "lng": 92.742,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.1 km",
+      "distance": "4.1 km",
+      "lat": 26.041999999999998,
+      "lng": 92.756,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.041999999999998,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.1 km",
+      "distance": "4.1 km",
+      "lat": 26.064999999999998,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "2": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 3.8 km",
+      "distance": "3.8 km",
+      "lat": 26.0075,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.019,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.064999999999998,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 2.8 km",
+      "distance": "2.8 km",
+      "lat": 26.0765,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "3": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 3.8 km",
+      "distance": "3.8 km",
+      "lat": 26.0075,
+      "lng": 92.798,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.019,
+      "lng": 92.798,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 6.7 km",
+      "distance": "6.7 km",
+      "lat": 26.064999999999998,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "4": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 3.8 km",
+      "distance": "3.8 km",
+      "lat": 26.0075,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.019,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.064999999999998,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 5.9 km",
+      "distance": "5.9 km",
+      "lat": 26.0765,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "5": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 3.8 km",
+      "distance": "3.8 km",
+      "lat": 26.0075,
+      "lng": 92.854,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.019,
+      "lng": 92.854,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.064999999999998,
+      "lng": 92.854,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.854,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.4 km",
+      "distance": "4.4 km",
+      "lat": 26.088,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.088,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 6.9 km",
+      "distance": "6.9 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "6": [
+    {
+      "instruction": "Continue on SH-18 State Road for 3.8 km",
+      "distance": "3.8 km",
+      "lat": 26.0075,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.019,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 2.6 km",
+      "distance": "2.6 km",
+      "lat": 26.041999999999998,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.041999999999998,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.041999999999998,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.7 km",
+      "distance": "5.7 km",
+      "lat": 26.064999999999998,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "7": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 3.8 km",
+      "distance": "3.8 km",
+      "lat": 26.0075,
+      "lng": 92.896,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.019,
+      "lng": 92.896,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.064999999999998,
+      "lng": 92.896,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.896,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 2.8 km",
+      "distance": "2.8 km",
+      "lat": 26.088,
+      "lng": 92.882,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.088,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.088,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.088,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 6.9 km",
+      "distance": "6.9 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "8": [
+    {
+      "instruction": "Continue on SH-18 State Road for 3.8 km",
+      "distance": "3.8 km",
+      "lat": 26.0075,
+      "lng": 92.924,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.019,
+      "lng": 92.924,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.064999999999998,
+      "lng": 92.924,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.924,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.088,
+      "lng": 92.924,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.9 km",
+      "distance": "5.9 km",
+      "lat": 26.0995,
+      "lng": 92.882,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0995,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.0995,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0995,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.7 km",
+      "distance": "5.7 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "9": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 3.8 km",
+      "distance": "3.8 km",
+      "lat": 26.0075,
+      "lng": 92.952,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.019,
+      "lng": 92.952,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.4 km",
+      "distance": "5.4 km",
+      "lat": 26.0535,
+      "lng": 92.938,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0535,
+      "lng": 92.924,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.9 km",
+      "distance": "5.9 km",
+      "lat": 26.064999999999998,
+      "lng": 92.882,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.882,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.088,
+      "lng": 92.882,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.088,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.088,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.088,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 6.9 km",
+      "distance": "6.9 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "10": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 2.6 km",
+      "distance": "2.6 km",
+      "lat": 26.0075,
+      "lng": 92.714,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.019,
+      "lng": 92.714,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.064999999999998,
+      "lng": 92.714,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.714,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.0765,
+      "lng": 92.756,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0765,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 6.7 km",
+      "distance": "6.7 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "11": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 2.6 km",
+      "distance": "2.6 km",
+      "lat": 26.0075,
+      "lng": 92.742,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.019,
+      "lng": 92.742,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.4 km",
+      "distance": "5.4 km",
+      "lat": 26.0535,
+      "lng": 92.756,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0535,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 2.8 km",
+      "distance": "2.8 km",
+      "lat": 26.064999999999998,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "12": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 2.6 km",
+      "distance": "2.6 km",
+      "lat": 26.0075,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.019,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.064999999999998,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 2.8 km",
+      "distance": "2.8 km",
+      "lat": 26.0765,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "13": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 2.6 km",
+      "distance": "2.6 km",
+      "lat": 26.0075,
+      "lng": 92.798,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.019,
+      "lng": 92.798,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 6.7 km",
+      "distance": "6.7 km",
+      "lat": 26.064999999999998,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "14": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 2.6 km",
+      "distance": "2.6 km",
+      "lat": 26.0075,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.019,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 2.6 km",
+      "distance": "2.6 km",
+      "lat": 26.041999999999998,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 2.8 km",
+      "distance": "2.8 km",
+      "lat": 26.0535,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.4 km",
+      "distance": "4.4 km",
+      "lat": 26.064999999999998,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "15": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 2.6 km",
+      "distance": "2.6 km",
+      "lat": 26.0075,
+      "lng": 92.854,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.019,
+      "lng": 92.854,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.064999999999998,
+      "lng": 92.854,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 9.0 km",
+      "distance": "9.0 km",
+      "lat": 26.0765,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "16": [
+    {
+      "instruction": "Continue on SH-18 State Road for 2.6 km",
+      "distance": "2.6 km",
+      "lat": 26.0075,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.019,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.064999999999998,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 2.6 km",
+      "distance": "2.6 km",
+      "lat": 26.0995,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.0995,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0995,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.7 km",
+      "distance": "5.7 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "17": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 2.6 km",
+      "distance": "2.6 km",
+      "lat": 26.0075,
+      "lng": 92.896,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.019,
+      "lng": 92.896,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.019,
+      "lng": 92.882,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.019,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.019,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.019,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 8.2 km",
+      "distance": "8.2 km",
+      "lat": 26.064999999999998,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "18": [
+    {
+      "instruction": "Continue on SH-18 State Road for 2.6 km",
+      "distance": "2.6 km",
+      "lat": 26.0075,
+      "lng": 92.924,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.019,
+      "lng": 92.924,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 2.6 km",
+      "distance": "2.6 km",
+      "lat": 26.041999999999998,
+      "lng": 92.924,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.1 km",
+      "distance": "4.1 km",
+      "lat": 26.064999999999998,
+      "lng": 92.91,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 5.9 km",
+      "distance": "5.9 km",
+      "lat": 26.0765,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.088,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.088,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.088,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 6.9 km",
+      "distance": "6.9 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "19": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 2.6 km",
+      "distance": "2.6 km",
+      "lat": 26.0075,
+      "lng": 92.952,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.019,
+      "lng": 92.952,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.1 km",
+      "distance": "4.1 km",
+      "lat": 26.041999999999998,
+      "lng": 92.938,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.041999999999998,
+      "lng": 92.924,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.1 km",
+      "distance": "4.1 km",
+      "lat": 26.064999999999998,
+      "lng": 92.91,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 2.8 km",
+      "distance": "2.8 km",
+      "lat": 26.0765,
+      "lng": 92.896,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 2.8 km",
+      "distance": "2.8 km",
+      "lat": 26.088,
+      "lng": 92.882,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.088,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.088,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.088,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 6.9 km",
+      "distance": "6.9 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "20": [
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.019,
+      "lng": 92.714,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.064999999999998,
+      "lng": 92.714,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 2.8 km",
+      "distance": "2.8 km",
+      "lat": 26.0765,
+      "lng": 92.72800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 3.1 km",
+      "distance": "3.1 km",
+      "lat": 26.0765,
+      "lng": 92.756,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0765,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 6.7 km",
+      "distance": "6.7 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "21": [
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.019,
+      "lng": 92.742,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.064999999999998,
+      "lng": 92.742,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.742,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0765,
+      "lng": 92.756,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0765,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 6.7 km",
+      "distance": "6.7 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "22": [
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.019,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.064999999999998,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 6.7 km",
+      "distance": "6.7 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "23": [
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.019,
+      "lng": 92.798,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.064999999999998,
+      "lng": 92.798,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 2.8 km",
+      "distance": "2.8 km",
+      "lat": 26.0765,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "24": [
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.019,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.064999999999998,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 2.8 km",
+      "distance": "2.8 km",
+      "lat": 26.0765,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 8.2 km",
+      "distance": "8.2 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "25": [
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.019,
+      "lng": 92.854,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.064999999999998,
+      "lng": 92.854,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.854,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.4 km",
+      "distance": "4.4 km",
+      "lat": 26.088,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.088,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 6.9 km",
+      "distance": "6.9 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "26": [
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.019,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.064999999999998,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 10.6 km",
+      "distance": "10.6 km",
+      "lat": 26.0765,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "27": [
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.019,
+      "lng": 92.896,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.4 km",
+      "distance": "5.4 km",
+      "lat": 26.0535,
+      "lng": 92.882,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0535,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.0535,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0535,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.4 km",
+      "distance": "4.4 km",
+      "lat": 26.064999999999998,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "28": [
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.019,
+      "lng": 92.924,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.064999999999998,
+      "lng": 92.924,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.924,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 2.6 km",
+      "distance": "2.6 km",
+      "lat": 26.0995,
+      "lng": 92.924,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.0995,
+      "lng": 92.882,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0995,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.0995,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0995,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.7 km",
+      "distance": "5.7 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "29": [
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.019,
+      "lng": 92.952,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.019,
+      "lng": 92.938,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.019,
+      "lng": 92.924,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.019,
+      "lng": 92.882,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.019,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 8.5 km",
+      "distance": "8.5 km",
+      "lat": 26.0535,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0535,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.4 km",
+      "distance": "4.4 km",
+      "lat": 26.064999999999998,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "30": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 3.8 km",
+      "distance": "3.8 km",
+      "lat": 26.064999999999998,
+      "lng": 92.714,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 9.0 km",
+      "distance": "9.0 km",
+      "lat": 26.0765,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "31": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 3.8 km",
+      "distance": "3.8 km",
+      "lat": 26.064999999999998,
+      "lng": 92.742,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 4.4 km",
+      "distance": "4.4 km",
+      "lat": 26.0765,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 6.7 km",
+      "distance": "6.7 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "32": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 3.8 km",
+      "distance": "3.8 km",
+      "lat": 26.064999999999998,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 6.7 km",
+      "distance": "6.7 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "33": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 3.8 km",
+      "distance": "3.8 km",
+      "lat": 26.064999999999998,
+      "lng": 92.798,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.798,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 6.7 km",
+      "distance": "6.7 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "34": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 3.8 km",
+      "distance": "3.8 km",
+      "lat": 26.064999999999998,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 2.6 km",
+      "distance": "2.6 km",
+      "lat": 26.0995,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0995,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.7 km",
+      "distance": "5.7 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "35": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 3.8 km",
+      "distance": "3.8 km",
+      "lat": 26.064999999999998,
+      "lng": 92.854,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.854,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.7 km",
+      "distance": "5.7 km",
+      "lat": 26.0995,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0995,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.7 km",
+      "distance": "5.7 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "36": [
+    {
+      "instruction": "Continue on SH-18 State Road for 3.8 km",
+      "distance": "3.8 km",
+      "lat": 26.064999999999998,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 10.6 km",
+      "distance": "10.6 km",
+      "lat": 26.0765,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "37": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 3.8 km",
+      "distance": "3.8 km",
+      "lat": 26.064999999999998,
+      "lng": 92.896,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.896,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0765,
+      "lng": 92.882,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0765,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.9 km",
+      "distance": "5.9 km",
+      "lat": 26.088,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.088,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 6.9 km",
+      "distance": "6.9 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "38": [
+    {
+      "instruction": "Continue on SH-18 State Road for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.041999999999998,
+      "lng": 92.924,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.041999999999998,
+      "lng": 92.882,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.041999999999998,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.9 km",
+      "distance": "5.9 km",
+      "lat": 26.0535,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0535,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.4 km",
+      "distance": "4.4 km",
+      "lat": 26.064999999999998,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "39": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 3.8 km",
+      "distance": "3.8 km",
+      "lat": 26.064999999999998,
+      "lng": 92.952,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.952,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0765,
+      "lng": 92.938,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0765,
+      "lng": 92.924,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.9 km",
+      "distance": "5.9 km",
+      "lat": 26.088,
+      "lng": 92.882,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.088,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.088,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.088,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 6.9 km",
+      "distance": "6.9 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "40": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.064999999999998,
+      "lng": 92.714,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.714,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.9 km",
+      "distance": "5.9 km",
+      "lat": 26.088,
+      "lng": 92.756,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.088,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.4 km",
+      "distance": "5.4 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "41": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.064999999999998,
+      "lng": 92.742,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.742,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 2.8 km",
+      "distance": "2.8 km",
+      "lat": 26.088,
+      "lng": 92.756,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.088,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.4 km",
+      "distance": "5.4 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "42": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.064999999999998,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 6.7 km",
+      "distance": "6.7 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "43": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.064999999999998,
+      "lng": 92.798,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.798,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 6.7 km",
+      "distance": "6.7 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "44": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.064999999999998,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 2.6 km",
+      "distance": "2.6 km",
+      "lat": 26.0995,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0995,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.7 km",
+      "distance": "5.7 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "45": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.064999999999998,
+      "lng": 92.854,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.854,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.7 km",
+      "distance": "5.7 km",
+      "lat": 26.0995,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0995,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.7 km",
+      "distance": "5.7 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "46": [
+    {
+      "instruction": "Continue on SH-18 State Road for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.064999999999998,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.0765,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0765,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 8.2 km",
+      "distance": "8.2 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "47": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.064999999999998,
+      "lng": 92.896,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.896,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0765,
+      "lng": 92.882,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0765,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.9 km",
+      "distance": "5.9 km",
+      "lat": 26.088,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.088,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 6.9 km",
+      "distance": "6.9 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "48": [
+    {
+      "instruction": "Continue on SH-18 State Road for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.064999999999998,
+      "lng": 92.924,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 16.8 km",
+      "distance": "16.8 km",
+      "lat": 26.0765,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.1 km",
+      "distance": "5.1 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "49": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.064999999999998,
+      "lng": 92.952,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.952,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.1 km",
+      "distance": "4.1 km",
+      "lat": 26.0995,
+      "lng": 92.938,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0995,
+      "lng": 92.924,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.0995,
+      "lng": 92.882,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0995,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.0995,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0995,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.7 km",
+      "distance": "5.7 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "50": [
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.714,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.9 km",
+      "distance": "5.9 km",
+      "lat": 26.088,
+      "lng": 92.756,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.088,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.4 km",
+      "distance": "5.4 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "51": [
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.742,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 2.8 km",
+      "distance": "2.8 km",
+      "lat": 26.088,
+      "lng": 92.756,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.088,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.4 km",
+      "distance": "5.4 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "52": [
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 6.7 km",
+      "distance": "6.7 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "53": [
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.798,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 6.7 km",
+      "distance": "6.7 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "54": [
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.088,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.088,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 6.9 km",
+      "distance": "6.9 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "55": [
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.854,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.4 km",
+      "distance": "4.4 km",
+      "lat": 26.088,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.088,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 6.9 km",
+      "distance": "6.9 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "56": [
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 3.8 km",
+      "distance": "3.8 km",
+      "lat": 26.111,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.111,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.111,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.4 km",
+      "distance": "4.4 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "57": [
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.896,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.1 km",
+      "distance": "4.1 km",
+      "lat": 26.0995,
+      "lng": 92.882,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0995,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.0995,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0995,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.7 km",
+      "distance": "5.7 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "58": [
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.924,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 3.8 km",
+      "distance": "3.8 km",
+      "lat": 26.111,
+      "lng": 92.924,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.111,
+      "lng": 92.882,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.111,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.111,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.111,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.4 km",
+      "distance": "4.4 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "59": [
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0765,
+      "lng": 92.952,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.1 km",
+      "distance": "4.1 km",
+      "lat": 26.0995,
+      "lng": 92.938,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0995,
+      "lng": 92.924,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.0995,
+      "lng": 92.882,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0995,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.0995,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0995,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.7 km",
+      "distance": "5.7 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "60": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 3.8 km",
+      "distance": "3.8 km",
+      "lat": 26.1225,
+      "lng": 92.714,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.134,
+      "lng": 92.714,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.134,
+      "lng": 92.756,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.134,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "61": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 3.8 km",
+      "distance": "3.8 km",
+      "lat": 26.1225,
+      "lng": 92.742,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "62": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 3.8 km",
+      "distance": "3.8 km",
+      "lat": 26.1225,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "63": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.4 km",
+      "distance": "5.4 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "64": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 3.8 km",
+      "distance": "3.8 km",
+      "lat": 26.1225,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "65": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 3.8 km",
+      "distance": "3.8 km",
+      "lat": 26.1225,
+      "lng": 92.854,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "66": [
+    {
+      "instruction": "Continue on SH-18 State Road for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0995,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.0995,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0995,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.7 km",
+      "distance": "5.7 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "67": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 2.8 km",
+      "distance": "2.8 km",
+      "lat": 26.0995,
+      "lng": 92.882,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0995,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.0995,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0995,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.7 km",
+      "distance": "5.7 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "68": [
+    {
+      "instruction": "Continue on SH-18 State Road for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.0995,
+      "lng": 92.924,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.0995,
+      "lng": 92.882,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0995,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.0995,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.0995,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 5.7 km",
+      "distance": "5.7 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "69": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.088,
+      "lng": 92.938,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.088,
+      "lng": 92.924,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.088,
+      "lng": 92.882,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.088,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.088,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.088,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 6.9 km",
+      "distance": "6.9 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "70": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.1225,
+      "lng": 92.714,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.134,
+      "lng": 92.714,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.134,
+      "lng": 92.756,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.134,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "71": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.1225,
+      "lng": 92.742,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.134,
+      "lng": 92.742,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.134,
+      "lng": 92.756,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.134,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "72": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.1225,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.134,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "73": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.1225,
+      "lng": 92.798,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "74": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.1225,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "75": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.1225,
+      "lng": 92.854,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.134,
+      "lng": 92.854,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 3.1 km",
+      "distance": "3.1 km",
+      "lat": 26.134,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.134,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "76": [
+    {
+      "instruction": "Continue on SH-18 State Road for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.1225,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "77": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.1225,
+      "lng": 92.896,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on NH-27 Highway for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.134,
+      "lng": 92.896,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.134,
+      "lng": 92.882,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.134,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.134,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.134,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "78": [
+    {
+      "instruction": "Continue on SH-18 State Road for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.1225,
+      "lng": 92.924,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "79": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.111,
+      "lng": 92.938,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.111,
+      "lng": 92.924,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.111,
+      "lng": 92.882,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.111,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.111,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.111,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.4 km",
+      "distance": "4.4 km",
+      "lat": 26.1225,
+      "lng": 92.784,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "80": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.134,
+      "lng": 92.756,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.134,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "81": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.134,
+      "lng": 92.756,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.134,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "82": [
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "83": [
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "84": [
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.134,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "85": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 3.1 km",
+      "distance": "3.1 km",
+      "lat": 26.134,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.134,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "86": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.134,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.134,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "87": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.134,
+      "lng": 92.882,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.134,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.134,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.134,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "88": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.134,
+      "lng": 92.882,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.134,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.134,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.134,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "89": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.134,
+      "lng": 92.938,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.134,
+      "lng": 92.924,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.134,
+      "lng": 92.882,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.134,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.134,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.134,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "90": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.1455,
+      "lng": 92.756,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.1455,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "91": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 2.8 km",
+      "distance": "2.8 km",
+      "lat": 26.134,
+      "lng": 92.756,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.134,
+      "lng": 92.77000000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "92": [
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "93": [
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "94": [
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.1455,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "95": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 3.1 km",
+      "distance": "3.1 km",
+      "lat": 26.1455,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.1455,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "96": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.1455,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.1455,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "97": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 2.8 km",
+      "distance": "2.8 km",
+      "lat": 26.134,
+      "lng": 92.882,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.134,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.134,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.134,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "98": [
+    {
+      "instruction": "Continue on SH-18 State Road for 1.3 km",
+      "distance": "1.3 km",
+      "lat": 26.134,
+      "lng": 92.924,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.134,
+      "lng": 92.882,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.134,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.134,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.134,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ],
+  "99": [
+    {
+      "instruction": "Continue on Local Evacuation Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.1455,
+      "lng": 92.938,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.1455,
+      "lng": 92.924,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.1455,
+      "lng": 92.882,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.1455,
+      "lng": 92.86800000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on Local Evacuation Road for 4.7 km",
+      "distance": "4.7 km",
+      "lat": 26.1455,
+      "lng": 92.82600000000001,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Continue on SH-18 State Road for 1.6 km",
+      "distance": "1.6 km",
+      "lat": 26.1455,
+      "lng": 92.812,
+      "icon": "fa-road"
+    },
+    {
+      "instruction": "Turn onto Ridge By-pass and arrive at Doboka High Ground School Shelter",
+      "distance": "0.4 km",
+      "lat": 26.13,
+      "lng": 92.78,
+      "icon": "fa-shield-halved"
+    }
+  ]
+}

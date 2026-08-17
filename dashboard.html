@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🛰 Brahmaputra Flood Early Warning System – 2026 Live Prototype</title>
+    
+    <!-- Leaflet CSS & JS (Free, Instant High-Performance Basemap) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Turf.js for Spatial Analysis -->
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Load Offline Data Bundle with Cache Buster -->
+    <script src="data/data.js?v=20260806_3"></script>
+
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-panel: #1e293b;
+            --bg-card: #334155;
+            --accent: #38bdf8;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --danger: #cc0000;
+            --warning: #ff9900;
+            --low-risk: #66ccff;
+            --safe: #00cc00;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* HEADER / CONTROL BAR */
+        header {
+            background-color: var(--bg-panel);
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #334155;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            z-index: 1000;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .logo {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #0284c7, #0369a1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: #ffffff;
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        
+        .subtitle {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* LIVE GAUGE */
+        .live-gauge {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background-color: #0f172a;
+            padding: 6px 18px;
+            border-radius: 20px;
+            border: 1px solid #334155;
+        }
+        
+        .pulse-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--danger);
+            box-shadow: 0 0 0 0 rgba(204, 0, 0, 0.7);
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(204, 0, 0, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(204, 0, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(204, 0, 0, 0); }
+        }
+
+        .gauge-text {
+            font-size: 0.85rem;
+            font-family: monospace;
+        }
+
+        /* MAIN CONTENT LAYOUT */
+        .main-container {
+            display: flex;
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* MAP */
+        #map {
+            flex: 1;
+            height: 100%;
+            background-color: #000;
+            z-index: 1;
+        }
+
+        /* SIDEBARS */
+        .sidebar {
+            width: 380px;
+            background-color: var(--bg-panel);
+            border-left: 1px solid #334155;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            z-index: 10;
+        }
+
+        .left-sidebar {
+            width: 340px;
+            border-right: 1px solid #334155;
+            border-left: none;
+        }
+
+        .section {
+            padding: 16px;
+            border-bottom: 1px solid #334155;
+        }
+        
+        .section-title {
+            font-size: 0.95rem;
+            margin-top: 0;
+            margin-bottom: 12px;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* MAP LEGEND */
+        .legend-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            font-size: 0.8rem;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+        }
+
+        /* VILLAGE & RIVER TABLES */
+        .item-card {
+            background-color: var(--bg-card);
+            padding: 10px 12px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+        }
+
+        .badge {
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        .badge-danger { background-color: rgba(204,0,0,0.25); color: #ff6b6b; border: 1px solid #cc0000; }
+        .badge-warning { background-color: rgba(255,153,0,0.25); color: #ffd166; border: 1px solid #ff9900; }
+        .badge-low { background-color: rgba(102,204,255,0.25); color: #66ccff; border: 1px solid #66ccff; }
+        .badge-safe { background-color: rgba(0,204,0,0.25); color: #00cc00; border: 1px solid #00cc00; }
+
+        .btn-fly {
+            background-color: var(--accent);
+            color: #0f172a;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.75rem;
+        }
+        .btn-fly:hover { opacity: 0.9; }
+
+        /* DIRECTIONS PANEL (GOOGLE MAPS STYLE) */
+        .direction-step {
+            padding: 12px;
+            margin-bottom: 8px;
+            background-color: var(--bg-card);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            border-left: 4px solid var(--accent);
+            cursor: pointer;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            transition: transform 0.1s, background 0.2s;
+        }
+        .direction-step:hover {
+            background-color: #475569;
+            transform: translateX(2px);
+        }
+        .direction-step.alert {
+            border-left-color: var(--danger);
+            background-color: rgba(204,0,0,0.2);
+            color: #ff8585;
+            font-weight: bold;
+        }
+
+        /* FLOATING MAP BUTTON */
+        .controls-overlay {
+            position: absolute;
+            top: 20px;
+            left: 360px;
+            z-index: 500;
+            display: flex;
+            gap: 10px;
+        }
+
+        .map-btn {
+            background-color: var(--bg-panel);
+            color: var(--text-main);
+            border: 1px solid #334155;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .map-btn:hover { background-color: var(--bg-card); }
+
+        /* USER LOCATION PULSE MARKER */
+        .user-location-marker {
+            width: 18px;
+            height: 18px;
+            background-color: #38bdf8;
+            border: 3px solid #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #38bdf8;
+            animation: userPulse 2s infinite;
+        }
+        @keyframes userPulse {
+            0% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(56, 189, 248, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
+        }
+
+        /* POPUP STYLES */
+        .leaflet-popup-content-wrapper {
+            background-color: var(--bg-panel);
+            color: var(--text-main);
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 4px;
+        }
+        .leaflet-popup-tip { background-color: var(--bg-panel); }
+
+        .relief-box {
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            padding: 8px;
+            margin-top: 8px;
+            font-size: 0.8rem;
+        }
+
+        .river-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+        .river-table td, .river-table th {
+            padding: 6px 4px;
+            border-bottom: 1px solid #334155;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MAPBOX TOKEN PLACEHOLDER (Instruct user to replace if using Mapbox GL JS engine) -->
+    <!-- const MAPBOX_TOKEN = 'YOUR_MAPBOX_TOKEN'; -->
+
+    <!-- Header -->
+    <header>
+        <div class="header-left">
+            <div class="logo">AS</div>
+            <div>
+                <h1>🛰 Brahmaputra Flood Early Warning System – 2026</h1>
+                <div class="subtitle">Digital Twin Prototype — Real-Time Spatial Risk & Route Finder</div>
+            </div>
+        </div>
+        <div class="live-gauge">
+            <div class="pulse-dot"></div>
+            <div class="gauge-text">River Level: <span id="gauge-val">50.45m</span> (Danger: 49.68m)</div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        
+        <!-- Left Sidebar: Legend, Villages, Rivers -->
+        <div class="sidebar left-sidebar">
+            
+            <!-- Map Legend Section -->
+            <div class="section">
+                <h3 class="section-title"><i class="fa-solid fa-palette"></i> Flood Depth Classes</h3>
+                <div class="legend-grid">
+                    <div class="legend-item"><div class="legend-color" style="background:#ff0000;"></div> > 1.0m (High/Red)</div>
+                    <div class="legend-item"><div class="legend-color" style="background:#ffff00;"></div> 0.5 – 1.0m (Med/Yellow)</div>
+                    <div class="legend-item"><div class="legend-color" style="background:#66ccff;"></div> 0.0 – 0.5m (Low/Blue)</div>
+                    <div class="legend-item"><div class="legend-color" style="background:#00cc00;"></div> Safe / Green</div>
+                </div>
+            </div>
+
+            <!-- Timeline Slider & Tributary Status -->
+            <div class="section">
+                <h3 class="section-title"><i class="fa-solid fa-calendar-days"></i> Timeline Hydrograph</h3>
+                <input type="range" id="time-slider" min="0" max="35" value="27" style="width:100%;">
+                <div style="font-size:0.85rem; font-weight:bold; margin-top:6px;" id="slider-date">July 28, 2026</div>
+                <div style="font-size:0.8rem; color:var(--text-muted);" id="slider-discharge">Estimated Peak Discharge: 246,861 m³/s</div>
+            </div>
+
+            <!-- Villages at Risk Section -->
+            <div class="section" style="max-height: 250px;">
+                <h3 class="section-title"><i class="fa-solid fa-house-chimney-crack"></i> Villages at Risk</h3>
+                <div id="villages-container" style="overflow-y:auto; max-height: 180px;"></div>
+            </div>
+
+            <!-- River Status Section -->
+            <div class="section" style="flex:1;">
+                <h3 class="section-title"><i class="fa-solid fa-water"></i> 10 Tributaries Status</h3>
+                <div style="overflow-y:auto; max-height: 200px;">
+                    <table class="river-table" id="river-table">
+                        <thead>
+                            <tr>
+                                <th>Tributary</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="river-tbody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Center Map -->
+        <div id="map">
+            <div class="controls-overlay">
+                <button class="map-btn" id="btn-my-location"><i class="fa-solid fa-crosshairs"></i> Find My GPS Location</button>
+            </div>
+        </div>
+
+        <!-- Right Sidebar: Google Maps Styled Evacuation Directions -->
+        <div class="sidebar">
+            
+            <div class="section">
+                <h3 class="section-title"><i class="fa-solid fa-route"></i> Route Summary</h3>
+                <div id="route-summary" style="font-size:0.85rem; color:var(--text-muted);">
+                    Click anywhere on the map to calculate the live safe route to the nearest high-ground shelter.
+                </div>
+            </div>
+
+            <div class="section" style="flex: 1; display: flex; flex-direction: column;">
+                <h3 class="section-title"><i class="fa-solid fa-directions"></i> Turn-by-Turn Directions</h3>
+                <div id="directions-container" style="overflow-y: auto; flex: 1;"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        // ==========================================
+        // 1. INITIALIZATION & BASEMAP
+        // ==========================================
+        
+        // Assam Model Bounding Box (25.5–27.5°N, 89.5–95.5°E)
+        const ASSAM_BBOX = { minLat: 25.5, maxLat: 27.5, minLng: 89.5, maxLng: 95.5 };
+        
+        // Center view on Kopili River Flood Basin, Assam (26.06, 92.82)
+        const map = L.map('map').setView([26.06, 92.82], 11);
+
+        // High-Resolution Satellite Base Layer (Esri World Imagery)
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri',
+            maxZoom: 18
+        }).addTo(map);
+
+        // Street Labels Overlay
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; OpenStreetMap',
+            maxZoom: 18,
+            pane: 'markerPane'
+        }).addTo(map);
+
+        // ==========================================
+        // 2. 4-COLOR CLASSIFIED FLOOD LAYER
+        // ==========================================
+        let floodGeoJsonLayer;
+
+        if (typeof floodClasses !== 'undefined' && floodClasses.features) {
+            floodGeoJsonLayer = L.geoJSON(floodClasses, {
+                style: function(feature) {
+                    return {
+                        fillColor: feature.properties.color || '#38bdf8',
+                        fillOpacity: 0.75,
+                        color: feature.properties.color || '#38bdf8',
+                        weight: 1,
+                        opacity: 0.75
+                    };
+                }
+            }).addTo(map);
+        }
+
+        // 2b. OVERFLOWING RIVERS LAYER (RED FOR FLOODING RIVERS)
+        let riverLayerGroup = L.layerGroup().addTo(map);
+        if (typeof riverLinesData !== 'undefined' && riverLinesData.features) {
+            L.geoJSON(riverLinesData, {
+                style: function(feature) {
+                    return {
+                        color: feature.properties.color || '#ff0000',
+                        weight: feature.properties.width || 6,
+                        opacity: 0.95
+                    };
+                }
+            }).bindPopup(function(layer) {
+                return `<b>🌊 ${layer.feature.properties.name}</b><br><span style="color:#ff0000; font-weight:bold;">Status: ${layer.feature.properties.status} (OVERFLOWING)</span>`;
+            }).addTo(riverLayerGroup);
+        }
+
+        // ==========================================
+        // 3. REAL GPS USER LOCATION
+        // ==========================================
+        function trackUserLocation() {
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    const userLat = position.coords.latitude;
+                    const userLng = position.coords.longitude;
+
+                    // Place user pulse marker
+                    const userIcon = L.divIcon({
+                        className: 'user-location-marker',
+                        iconSize: [18, 18]
+                    });
+                    
+                    const userMarker = L.marker([userLat, userLng], { icon: userIcon }).addTo(map);
+                    map.flyTo([userLat, userLng], 12);
+
+                    // Check Assam BBox
+                    const isInside = (
+                        userLat >= ASSAM_BBOX.minLat && userLat <= ASSAM_BBOX.maxLat &&
+                        userLng >= ASSAM_BBOX.minLng && userLng <= ASSAM_BBOX.maxLng
+                    );
+
+                    let msg = isInside 
+                        ? `<b>📍 Live Location</b><br>You are inside the 2026 Assam flood model area.`
+                        : `<b>📍 Live Location:</b> [${userLat.toFixed(4)}, ${userLng.toFixed(4)}]<br>
+                           <span style="color:#ffd166;">⚠️ You are outside the Assam flood model.</span><br>
+                           Showing demo area Guwahati / Kopili. Global flood risk not available in this prototype.`;
+
+                    userMarker.bindPopup(msg).openPopup();
+
+                    if (isInside) {
+                        calculateRouteFromPoint(userLat, userLng);
+                    }
+
+                }, error => {
+                    console.log("Geolocation error:", error.message);
+                });
+            }
+        }
+
+        trackUserLocation();
+        document.getElementById('btn-my-location').addEventListener('click', trackUserLocation);
+
+        // Auto-refresh GPS location every 10s
+        setInterval(() => {
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(pos => {
+                    // Silent refresh
+                });
+            }
+        }, 10000);
+
+        // ==========================================
+        // 4. CLICK RISK & RELIEF HISTORY ASSESSMENT
+        // ==========================================
+        map.on('click', e => {
+            const lat = e.latlng.lat;
+            const lng = e.latlng.lng;
+
+            const isInside = (
+                lat >= ASSAM_BBOX.minLat && lat <= ASSAM_BBOX.maxLat &&
+                lng >= ASSAM_BBOX.minLng && lng <= ASSAM_BBOX.maxLng
+            );
+
+            if (!isInside) {
+                L.popup()
+                    .setLatLng([lat, lng])
+                    .setContent(`<b>📍 Location Query</b><br>[${lat.toFixed(4)}, ${lng.toFixed(4)}]<br><br><i>No flood data for this region in the 2026 Assam model.</i>`)
+                    .openOn(map);
+                return;
+            }
+
+            // Depth calculation from depthGrid
+            let depth = 0;
+            if (typeof depthGrid !== 'undefined' && depthGrid.length > 0) {
+                let minDist = Infinity;
+                depthGrid.forEach(pt => {
+                    const d = Math.hypot(pt.lat - lat, pt.lng - lng);
+                    if (d < minDist) {
+                        minDist = d;
+                        depth = pt.depth;
+                    }
+                });
+            }
+
+            let riskBadge = depth > 1.0 ? '🔴 High (Danger)' :
+                           (depth > 0.5 ? '🟠 Medium' :
+                           (depth > 0 ? '🔵 Low' : '🟢 Safe'));
+
+            // Query Relief Distribution History within 5 km (~0.05 degrees)
+            let reliefHTML = `<div class="relief-box">📦 <i>No relief distribution data recorded for this area. Emergency response can be organized if needed.</i></div>`;
+            
+            if (typeof reliefData !== 'undefined') {
+                const nearestRelief = reliefData.find(r => Math.hypot(r.lat - lat, r.lng - lng) < 0.08);
+                if (nearestRelief) {
+                    reliefHTML = `
+                        <div class="relief-box">
+                            <b>📦 Relief History (${nearestRelief.village})</b><br>
+                            <b>Dates:</b> ${nearestRelief.dates}<br>
+                            <b>Items:</b> ${nearestRelief.items}<br>
+                            <b>Delivery Method:</b> ${nearestRelief.method}
+                        </div>
+                    `;
+                }
+            }
+
+            L.popup()
+                .setLatLng([lat, lng])
+                .setContent(`
+                    <b>📍 Location Query</b><br>
+                    <b>Coord:</b> [${lat.toFixed(4)}, ${lng.toFixed(4)}]<br>
+                    <b>💧 Flood Depth:</b> ${depth > 0 ? depth.toFixed(2) + ' m' : '0.00 m (Dry)'}<br>
+                    <b>Risk Level:</b> ${riskBadge}
+                    ${reliefHTML}
+                `)
+                .openOn(map);
+
+            // Calculate safe route from clicked point!
+            calculateRouteFromPoint(lat, lng);
+        });
+
+        // ==========================================
+        // 5. DYNAMIC SAFE ROUTE & DIRECTIONS FINDER
+        // ==========================================
+        function calculateRouteFromPoint(lat, lng) {
+            activeRouteLayer.clearLayers();
+
+            if (typeof gridRoutes !== 'undefined' && gridRoutes.features && gridRoutes.features.length > 0) {
+                let nearestFeat = null;
+                let minDist = Infinity;
+
+                gridRoutes.features.forEach(f => {
+                    const gridLat = f.properties.grid_lat;
+                    const gridLng = f.properties.grid_lng;
+                    const d = Math.hypot(gridLat - lat, gridLng - lng);
+                    if (d < minDist) {
+                        minDist = d;
+                        nearestFeat = f;
+                    }
+                });
+
+                if (nearestFeat) {
+                    // Draw thick green safe route line
+                    L.geoJSON(nearestFeat, {
+                        style: { color: '#00cc00', weight: 6, opacity: 0.9 }
+                    }).addTo(activeRouteLayer);
+
+                    const props = nearestFeat.properties;
+                    document.getElementById('route-summary').innerHTML = `
+                        <b>From:</b> [${lat.toFixed(3)}, ${lng.toFixed(3)}]<br>
+                        <b>To:</b> ${props.shelter_name}<br>
+                        <b>Distance:</b> ${props.distance_km} km | <span style="color:#00cc00; font-weight:bold;">✅ Safe Road Route</span>
+                    `;
+
+                    // Populate Directions Panel
+                    const dirContainer = document.getElementById('directions-container');
+                    dirContainer.innerHTML = '';
+
+                    const steps = gridDirections[String(props.grid_id)] || gridDirections[props.grid_id] || [];
+                    steps.forEach((step, idx) => {
+                        const div = document.createElement('div');
+                        div.className = 'direction-step' + (step.instruction.includes('CRITICAL') ? ' alert' : '');
+                        div.innerHTML = `
+                            <i class="fa-solid ${step.icon || 'fa-road'}" style="margin-top:2px; color:var(--accent);"></i>
+                            <div>
+                                <div><b>${step.instruction}</b></div>
+                                <div style="font-size:0.75rem; color:#94a3b8;">${step.distance}</div>
+                            </div>
+                        `;
+                        div.onclick = () => map.flyTo([step.lat, step.lng], 15);
+                        dirContainer.appendChild(div);
+                    });
+                }
+            }
+        }
+
+        // ==========================================
+        // 6. VILLAGES AT RISK SIDEBAR
+        // ==========================================
+        const villageContainer = document.getElementById('villages-container');
+
+        if (typeof villagesData !== 'undefined') {
+            // Sort highest depth to lowest
+            const sortedVillages = [...villagesData].sort((a,b) => b.depth - a.depth);
+
+            sortedVillages.forEach(v => {
+                L.circleMarker([v.lat, v.lng], {
+                    radius: 7,
+                    fillColor: v.color,
+                    color: '#ffffff',
+                    weight: 2,
+                    fillOpacity: 0.9
+                }).bindPopup(`<b>🏘 ${v.name}</b><br>Depth: ${v.depth}m | Risk: ${v.risk_level}`).addTo(map);
+
+                const card = document.createElement('div');
+                card.className = 'item-card';
+                let badgeClass = v.risk_level === 'High' ? 'badge-danger' : (v.risk_level === 'Medium' ? 'badge-warning' : (v.risk_level === 'Low' ? 'badge-low' : 'badge-safe'));
+                
+                card.innerHTML = `
+                    <div>
+                        <b>${v.name}</b><br>
+                        <span style="font-size:0.75rem; color:#94a3b8;">Depth: ${v.depth}m</span>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:6px;">
+                        <span class="badge ${badgeClass}">${v.risk_level}</span>
+                        <button class="btn-fly" onclick="map.flyTo([${v.lat}, ${v.lng}], 14); calculateRouteFromPoint(${v.lat}, ${v.lng});">Fly</button>
+                    </div>
+                `;
+                villageContainer.appendChild(card);
+            });
+        }
+
+        // ==========================================
+        // 7. RIVER TRIBUTARIES DATE-WISE SLIDER
+        // ==========================================
+        const slider = document.getElementById('time-slider');
+        const dates = typeof dischargeData !== 'undefined' ? Object.keys(dischargeData) : [];
+        const values = typeof dischargeData !== 'undefined' ? Object.values(dischargeData) : [];
+
+        function updateRiverTable(selectedDate) {
+            const tbody = document.getElementById('river-tbody');
+            tbody.innerHTML = '';
+
+            if (typeof riverStatusData !== 'undefined') {
+                riverStatusData.forEach(r => {
+                    const st = r.status_by_date[selectedDate] || { status: "Normal", icon: "✅" };
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${r.name}</td>
+                        <td>${st.icon} ${st.status}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            }
+        }
+
+        slider.addEventListener('input', e => {
+            const idx = parseInt(e.target.value);
+            if (dates[idx]) {
+                const dateStr = dates[idx];
+                document.getElementById('slider-date').textContent = dateStr;
+                const q = values[idx];
+                document.getElementById('slider-discharge').textContent = `Estimated Peak Discharge: ${Math.round(q).toLocaleString()} m³/s`;
+                
+                updateRiverTable(dateStr);
+
+                // Scale flood layer opacity dynamically with discharge (q)!
+                let opacity = q > 100000 ? 0.8 : (q > 30000 ? 0.5 : (q > 10000 ? 0.2 : 0.0));
+                if (typeof floodGeoJsonLayer !== 'undefined') {
+                    floodGeoJsonLayer.setStyle({ fillOpacity: opacity, opacity: opacity });
+                }
+            }
+        });
+
+        // Trigger initial slider update
+        slider.dispatchEvent(new Event('input'));
+    </script>
+</body>
+</html>

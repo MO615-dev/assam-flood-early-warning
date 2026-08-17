@@ -1,0 +1,1492 @@
+[
+  {
+    "name": "Brahmaputra (Guwahati)",
+    "status_by_date": {
+      "2026-07-01": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-02": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-03": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-04": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-05": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-06": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-07": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-08": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-09": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-10": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-11": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-12": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-13": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-14": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-15": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-16": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-17": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-18": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-19": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-20": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-21": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-07-22": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-07-23": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-07-24": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-07-25": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-07-26": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-07-27": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-07-28": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-07-29": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-07-30": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-07-31": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-08-01": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-02": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-03": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-04": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-05": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      }
+    }
+  },
+  {
+    "name": "Kopili River (Kamburpada)",
+    "status_by_date": {
+      "2026-07-01": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-02": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-03": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-04": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-05": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-06": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-07": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-08": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-09": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-10": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-11": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-12": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-13": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-14": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-15": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-16": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-17": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-18": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-19": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-20": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-21": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-07-22": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-07-23": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-07-24": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-07-25": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-07-26": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-07-27": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-07-28": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-07-29": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-07-30": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-07-31": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-08-01": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-02": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-03": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-04": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-05": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      }
+    }
+  },
+  {
+    "name": "Subansiri River",
+    "status_by_date": {
+      "2026-07-01": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-02": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-03": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-04": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-05": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-06": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-07": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-08": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-09": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-10": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-11": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-12": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-13": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-14": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-15": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-16": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-17": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-18": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-19": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-20": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-21": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-22": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-23": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-24": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-25": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-26": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-27": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-28": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-29": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-30": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-31": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-01": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-02": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-03": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-04": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-05": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      }
+    }
+  },
+  {
+    "name": "Manas River",
+    "status_by_date": {
+      "2026-07-01": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-02": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-03": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-04": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-05": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-06": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-07": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-08": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-09": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-10": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-11": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-12": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-13": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-14": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-15": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-16": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-17": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-18": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-19": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-20": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-21": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-22": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-23": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-24": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-25": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-26": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-27": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-28": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-29": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-30": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-31": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-01": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-02": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-03": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-04": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-05": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      }
+    }
+  },
+  {
+    "name": "Dhansiri River",
+    "status_by_date": {
+      "2026-07-01": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-02": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-03": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-04": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-05": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-06": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-07": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-08": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-09": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-10": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-11": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-12": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-13": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-14": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-15": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-16": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-17": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-18": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-19": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-20": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-21": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-22": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-23": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-24": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-25": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-26": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-27": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-28": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-29": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-30": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-31": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-01": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-02": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-03": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-04": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-05": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      }
+    }
+  },
+  {
+    "name": "Jiadhal River",
+    "status_by_date": {
+      "2026-07-01": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-02": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-03": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-04": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-05": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-06": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-07": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-08": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-09": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-10": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-11": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-12": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-13": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-14": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-15": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-16": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-17": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-18": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-19": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-20": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-21": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-07-22": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-07-23": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-07-24": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-07-25": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-07-26": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-07-27": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-07-28": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-07-29": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-07-30": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-07-31": {
+        "status": "Flooding",
+        "icon": "\u274c"
+      },
+      "2026-08-01": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-02": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-03": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-04": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-05": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      }
+    }
+  },
+  {
+    "name": "Puthimari River",
+    "status_by_date": {
+      "2026-07-01": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-02": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-03": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-04": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-05": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-06": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-07": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-08": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-09": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-10": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-11": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-12": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-13": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-14": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-15": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-16": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-17": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-18": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-19": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-20": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-21": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-22": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-23": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-24": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-25": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-26": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-27": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-28": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-29": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-30": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-31": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-01": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-02": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-03": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-04": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-05": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      }
+    }
+  },
+  {
+    "name": "Beki River",
+    "status_by_date": {
+      "2026-07-01": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-02": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-03": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-04": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-05": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-06": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-07": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-08": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-09": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-10": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-11": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-12": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-13": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-14": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-15": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-16": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-17": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-18": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-19": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-20": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-21": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-22": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-23": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-24": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-25": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-26": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-27": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-28": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-29": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-30": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-31": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-01": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-02": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-03": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-04": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-05": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      }
+    }
+  },
+  {
+    "name": "Pagladiya River",
+    "status_by_date": {
+      "2026-07-01": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-02": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-03": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-04": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-05": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-06": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-07": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-08": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-09": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-10": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-11": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-12": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-13": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-14": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-15": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-16": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-17": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-18": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-19": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-20": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-21": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-22": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-23": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-24": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-25": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-26": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-27": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-28": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-29": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-30": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-31": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-01": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-02": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-03": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-04": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-05": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      }
+    }
+  },
+  {
+    "name": "Burhidehing River",
+    "status_by_date": {
+      "2026-07-01": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-02": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-03": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-04": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-05": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-06": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-07": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-08": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-09": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-10": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-11": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-12": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-13": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-14": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-15": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-16": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-17": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-18": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-19": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-20": {
+        "status": "Normal",
+        "icon": "\u2705"
+      },
+      "2026-07-21": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-22": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-23": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-24": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-25": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-26": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-27": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-28": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-29": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-30": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-07-31": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-01": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-02": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-03": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-04": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      },
+      "2026-08-05": {
+        "status": "Above Danger",
+        "icon": "\u26a0\ufe0f"
+      }
+    }
+  }
+]
