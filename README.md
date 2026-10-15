@@ -1,55 +1,66 @@
-# Kopili Flood Response Prototype
+# Mathematical Digital Twin for Assam Flood Prediction & Safe Evacuation Routing
 
-An educational prototype exploring how terrain, rainfall and river-stage models can support flood situational awareness and evacuation planning in the Kopili River Basin, Assam. It combines a Python geospatial pipeline with a browser dashboard for exploring modeled flood extents, gauge scenarios and routes.
+A software project exploring how rainfall, terrain, river-stage scenarios and road networks can be combined to model flood conditions and examine evacuation routes in Assam. The current geographic focus of the bundled dashboard and route data is the Kopili River Basin.
 
-> **Important:** This is a research and demonstration project. It is not an operational warning service. Dashboard readings, alert messages, flood extents and evacuation routes are modeled or simulated and may be incomplete or wrong. Do not use them to make safety, travel or emergency-response decisions. Follow official alerts and local authorities.
+The project brings together a Python geospatial processing workflow and an interactive browser dashboard. It includes rainfall-to-runoff calculations, HAND-based flood-depth mapping, an example gauge-assimilation workflow, and graph-based route analysis.
 
-## Demo
+> **Scope and safety:** This is a research and demonstration system, not an operational digital twin, flood forecast, public warning service, or authority-approved evacuation tool. The hosted dashboard uses prepared data and simulated controls; it does not ingest live rainfall or gauge feeds, contact responders, send SMS, or verify that a route or shelter is safe. Outputs are not validated for emergency decisions. Follow official warnings and local authorities.
 
-The interactive dashboard is published with GitHub Pages: **[Open the dashboard](https://MO615-dev.github.io/assam-flood-early-warning/)**.
+## Project brief
 
-The dashboard is a static site. Its simulation controls do not connect to live gauges, emergency services or an SMS provider. The optional local Python server records example alerts locally; it does not transmit messages.
+The goal is to demonstrate a mathematical workflow for turning environmental and infrastructure data into flood-risk visualizations and route scenarios. The long-term concept is a digital twin that could update as authoritative observations arrive. This repository is an early prototype: it processes prepared inputs and presents example scenarios, but does not maintain a live synchronized model.
 
-## What it demonstrates
+The intended workflow is:
 
-- Rainfall-to-runoff calculations and example discharge series.
-- Height Above Nearest Drainage (HAND)-based flood-depth scenarios.
-- A Kalman-filter gauge-assimilation example with synthetic observations.
-- Road-network analysis and modeled evacuation-route examples.
-- A Leaflet dashboard with map layers, charts and timeline controls.
+```text
+Rainfall and terrain inputs → runoff and water-level scenarios → HAND flood-depth map → road-network analysis → interactive dashboard
+```
 
-These are proof-of-concept methods and example outputs, not validated forecasts. Results depend on input data, model assumptions, spatial resolution and thresholds.
+The methods are useful for exploring assumptions and communicating a concept. Their presence does not establish forecast accuracy, validated inundation, or safe routes. The model extent, inputs, calibration and results must be independently checked before any real-world use.
+
+## Live dashboard
+
+The static dashboard is hosted on GitHub Pages: **[Open the project](https://mo615-dev.github.io/assam-flood-early-warning/)**.
+
+Pages serves the browser interface and bundled sample data from `webapp/`. It does not run the Python processing pipeline or local server. Some map layers require an internet connection and an external map provider.
+
+## Methods represented
+
+- **Rainfall to runoff:** SCS Curve Number calculations in the Python workflow.
+- **Terrain-based inundation:** Height Above Nearest Drainage (HAND) analysis and example flood-depth layers.
+- **Gauge assimilation:** A Kalman-filter demonstration using prepared or synthetic observations.
+- **Route analysis:** Road-network graph processing and flood-threshold-based route scenarios.
+- **Dashboard:** Map layers, charts, timeline controls, example alerts and route visualization.
+
+These are simplified methods and scenarios. The dashboard should not be interpreted as a live operational service or as proof that routes are passable.
 
 ## Repository layout
 
 | Path | Purpose |
 | --- | --- |
-| `webapp/` | Static dashboard, bundled map/chart libraries and sample data deployed to Pages |
-| `webapp/server.py` | Optional local-only server for the desktop and mobile alert simulation |
+| `webapp/` | Static dashboard and prepared data deployed to GitHub Pages |
+| `webapp/server.py` | Optional local-only server for simulated alert interactions |
 | `run_full_pipeline.py` | Runs the Python processing phases in sequence |
-| `download_dem_rivers.py`, `rainfall_runoff.py`, `flood_hand.py` | Data acquisition, runoff and HAND modeling |
-| `sensor_assimilation.py`, `flood_routing.py` | Gauge-assimilation demonstration and route analysis |
-| `prepare_*.py` | Builds data consumed by the dashboard |
-| `data/`, `*.csv`, `*.geojson`, `*.png` | Prepared examples, reports and visual outputs |
-| `.github/workflows/pages.yml` | Publishes `webapp/` to GitHub Pages on pushes to `main` |
+| `download_dem_rivers.py`, `rainfall_runoff.py`, `flood_hand.py` | Input preparation, runoff and HAND processing |
+| `sensor_assimilation.py`, `flood_routing.py` | Gauge-assimilation example and route analysis |
+| `prepare_*.py` | Prepares outputs consumed by the dashboard |
+| `.github/workflows/pages.yml` | Publishes `webapp/` to Pages when changes reach `main` |
 
-Downloaded rasters, source hydrography and cache files are excluded from Git because they can be large and can be regenerated. The dashboard's prepared sample files are included.
+Large source rasters, downloaded hydrography and caches are excluded from Git when they can be regenerated. Prepared dashboard files are included so the hosted interface can load without running the full pipeline.
 
-## Run locally
+## Run the dashboard locally
 
-### Dashboard only
-
-Python 3 is enough to serve the static dashboard:
+Python 3 can serve the static files:
 
 ```bash
 python -m http.server 8080 --directory webapp
 ```
 
-Open <http://localhost:8080>.
+Then open <http://localhost:8080>.
 
-### Full processing pipeline
+## Run the processing workflow
 
-Python 3.10 or later is recommended. Geospatial packages such as Rasterio and GeoPandas may need platform-specific system libraries; on Windows, a Conda environment using `conda-forge` is often the easiest setup.
+Python 3.10 or later is recommended. Geospatial libraries may require platform-specific dependencies; on Windows, a Conda environment using `conda-forge` is often convenient.
 
 ```bash
 python -m venv .venv
@@ -59,30 +70,18 @@ python -m pip install -r requirements.txt
 python run_full_pipeline.py
 ```
 
-The pipeline downloads some inputs and can take several minutes. It may require an internet connection and adequate disk space and memory. Review the source scripts and data-provider terms before reusing downloaded data.
+Some stages download external datasets and may need an internet connection, disk space and memory. Check provider terms and attribution before redistributing downloaded data.
 
-### Optional local alert demo
+## Data and limitations
 
-```bash
-python webapp/server.py
-```
+The workflow references public sources including CHIRPS rainfall, Copernicus DEM, HydroSHEDS hydrography and OpenStreetMap infrastructure. Availability, coverage, licensing and attribution vary by provider. Dashboard sample data and simulated readings should be distinguished from current observations. The repository does not establish independent validation against authoritative gauges or observed flood extents.
 
-The local server listens on ports 8080 and 8081. Its alerts are examples stored on the machine running the server; no SMS is sent. Avoid exposing this development server to an untrusted network.
-
-## Data and methods
-
-The scripts reference Copernicus DEM via Microsoft Planetary Computer, HydroSHEDS HydroRIVERS, CHIRPS rainfall and OpenStreetMap roads. The dashboard includes prepared example files so the map can load without running the pipeline. Some displayed time series and sensor readings are simulated. Source data can have separate licenses and attribution requirements; consult each provider before redistribution.
-
-The modeling workflow includes SCS Curve Number runoff estimation, HAND terrain analysis, a one-dimensional Kalman-filter example, and graph-based route selection. These methods are simplified for demonstration and have not been established as operationally accurate for emergency use.
+Before any operational consideration, the project would need current authoritative inputs, documented calibration, uncertainty analysis, independent historical and field validation, route and shelter verification, security and reliability work, and review by qualified local agencies and communities.
 
 ## Deployment
 
-GitHub Actions deploys the contents of `webapp/` to GitHub Pages when a change is pushed to `main` or the workflow is manually started. The workflow is defined in `.github/workflows/pages.yml`. Pages hosts only the static front end; the local Python endpoints are not deployed there.
-
-## Contributing
-
-Please open an issue describing a bug or proposed change before making a large change. Keep data provenance, assumptions and simulation status clear in the dashboard and documentation. Never commit credentials, personal contact details, local logs, caches or large source rasters.
+GitHub Actions publishes `webapp/` to GitHub Pages when changes are pushed to `main` or the workflow is run manually. The workflow is in `.github/workflows/pages.yml`. The static host does not deploy the local Python endpoints.
 
 ## License
 
-No license has been selected yet. Until one is added, standard copyright applies and reuse is not granted by this repository's public visibility.
+No license has been selected. Public visibility alone does not grant permission to reuse the code. Data sources may have separate terms.

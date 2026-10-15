@@ -471,7 +471,7 @@ def create_discharge_json():
 def bundle_all_into_data_js(flood_classes, depth_grid, relief, villages, shelters, rivers, river_lines, routes, directions, discharge):
     print("[8/8] Bundling all data into offline data/data.js...")
     
-    js_content = f"""// Standalone GIS Data Bundle for Assam Flood Early Warning System 2026
+    js_content = f"""// Standalone GIS Data Bundle for Assam Flood Modeling Dashboard
 // Created automatically by prepare_dashboard_data.py
 
 const floodClasses = {json.dumps(flood_classes)};

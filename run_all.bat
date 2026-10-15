@@ -1,7 +1,7 @@
 @echo off
 color 0B
 echo =======================================================
-echo ASSAM FLOOD EARLY WARNING SYSTEM - ONE CLICK LAUNCHER
+echo MATHEMATICAL DIGITAL TWIN FOR ASSAM FLOOD MODELING - ONE CLICK LAUNCHER
 echo =======================================================
 echo.
 
