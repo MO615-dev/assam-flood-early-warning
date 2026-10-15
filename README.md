@@ -1,56 +1,30 @@
 # Mathematical Digital Twin for Assam Flood Prediction & Safe Evacuation Routing
 
-A software project exploring how rainfall, terrain, river-stage scenarios and road networks can be combined to model flood conditions and examine evacuation routes in Assam. The current geographic focus of the bundled dashboard and route data is the Kopili River Basin.
+A browser dashboard and geospatial workflow for exploring flood scenarios and evacuation routes in Assam, currently focused on the Kopili River Basin.
 
-The project brings together a Python geospatial processing workflow and an interactive browser dashboard. It includes rainfall-to-runoff calculations, HAND-based flood-depth mapping, an example gauge-assimilation workflow, and graph-based route analysis.
+![Example HAND-based flood map for the Kopili River Basin](flood_map.png)
 
-> **Scope and safety:** This is a research and demonstration system, not an operational digital twin, flood forecast, public warning service, or authority-approved evacuation tool. The hosted dashboard uses prepared data and simulated controls; it does not ingest live rainfall or gauge feeds, contact responders, send SMS, or verify that a route or shelter is safe. Outputs are not validated for emergency decisions. Follow official warnings and local authorities.
+*Example modeled visualization included with the project. It does not show current flood conditions and is not validated emergency guidance.*
 
-## Project brief
+## Try the project
 
-The goal is to demonstrate a mathematical workflow for turning environmental and infrastructure data into flood-risk visualizations and route scenarios. The long-term concept is a digital twin that could update as authoritative observations arrive. This repository is an early prototype: it processes prepared inputs and presents example scenarios, but does not maintain a live synchronized model.
+**[Open the live dashboard](https://mo615-dev.github.io/assam-flood-early-warning/)** · [View the source on GitHub](https://github.com/MO615-dev/assam-flood-early-warning)
 
-The intended workflow is:
+> **Safety:** This is a modeling prototype and demonstration, not a live flood forecast, warning service, or verified evacuation tool. The hosted dashboard uses prepared data and simulated controls; it does not ingest live rainfall or gauge feeds, contact responders, or send SMS. Do not use its maps or routes for emergency decisions. Follow official warnings and local authorities.
 
-```text
-Rainfall and terrain inputs → runoff and water-level scenarios → HAND flood-depth map → road-network analysis → interactive dashboard
-```
+## What you can explore
 
-The methods are useful for exploring assumptions and communicating a concept. Their presence does not establish forecast accuracy, validated inundation, or safe routes. The model extent, inputs, calibration and results must be independently checked before any real-world use.
+- View prepared flood-depth and terrain layers for the Kopili Basin.
+- Explore example rainfall-to-runoff calculations and discharge series.
+- See a Kalman-filter gauge-assimilation demonstration using prepared or synthetic observations.
+- Inspect road-network and flood-threshold route scenarios.
+- Use the dashboard’s map, charts, timeline and simulated alert interactions.
 
-## Live dashboard
+## Quick start
 
-The static dashboard is hosted on GitHub Pages: **[Open the project](https://mo615-dev.github.io/assam-flood-early-warning/)**.
+The fastest way to try the project is the [hosted dashboard](https://mo615-dev.github.io/assam-flood-early-warning/).
 
-Pages serves the browser interface and bundled sample data from `webapp/`. It does not run the Python processing pipeline or local server. Some map layers require an internet connection and an external map provider.
-
-## Methods represented
-
-- **Rainfall to runoff:** SCS Curve Number calculations in the Python workflow.
-- **Terrain-based inundation:** Height Above Nearest Drainage (HAND) analysis and example flood-depth layers.
-- **Gauge assimilation:** A Kalman-filter demonstration using prepared or synthetic observations.
-- **Route analysis:** Road-network graph processing and flood-threshold-based route scenarios.
-- **Dashboard:** Map layers, charts, timeline controls, example alerts and route visualization.
-
-These are simplified methods and scenarios. The dashboard should not be interpreted as a live operational service or as proof that routes are passable.
-
-## Repository layout
-
-| Path | Purpose |
-| --- | --- |
-| `webapp/` | Static dashboard and prepared data deployed to GitHub Pages |
-| `webapp/server.py` | Optional local-only server for simulated alert interactions |
-| `run_full_pipeline.py` | Runs the Python processing phases in sequence |
-| `download_dem_rivers.py`, `rainfall_runoff.py`, `flood_hand.py` | Input preparation, runoff and HAND processing |
-| `sensor_assimilation.py`, `flood_routing.py` | Gauge-assimilation example and route analysis |
-| `prepare_*.py` | Prepares outputs consumed by the dashboard |
-| `.github/workflows/pages.yml` | Publishes `webapp/` to Pages when changes reach `main` |
-
-Large source rasters, downloaded hydrography and caches are excluded from Git when they can be regenerated. Prepared dashboard files are included so the hosted interface can load without running the full pipeline.
-
-## Run the dashboard locally
-
-Python 3 can serve the static files:
+To run the static dashboard locally, install Python 3 and start a local web server:
 
 ```bash
 python -m http.server 8080 --directory webapp
@@ -58,9 +32,15 @@ python -m http.server 8080 --directory webapp
 
 Then open <http://localhost:8080>.
 
-## Run the processing workflow
+## How it works
 
-Python 3.10 or later is recommended. Geospatial libraries may require platform-specific dependencies; on Windows, a Conda environment using `conda-forge` is often convenient.
+The Python workflow combines rainfall-to-runoff calculations, terrain-based HAND (Height Above Nearest Drainage) analysis, a gauge-assimilation example, and road-network graph analysis. Prepared outputs are bundled with the dashboard so visitors can explore the interface without running the geospatial pipeline. GitHub Pages serves the static front end; it does not run Python processing or provide a live data connection.
+
+The current system is an early prototype rather than a continuously synchronized digital twin. Results depend on input data, model assumptions, terrain resolution and selected thresholds. The repository does not establish independent validation against authoritative gauges, observed flood extents, or field-verified routes.
+
+## Run the data-processing workflow
+
+Python 3.10 or later is recommended. Rasterio and other geospatial packages may need platform-specific system libraries; on Windows, a Conda environment using `conda-forge` is often convenient.
 
 ```bash
 python -m venv .venv
@@ -70,18 +50,25 @@ python -m pip install -r requirements.txt
 python run_full_pipeline.py
 ```
 
-Some stages download external datasets and may need an internet connection, disk space and memory. Check provider terms and attribution before redistributing downloaded data.
+Some pipeline stages download data and need an internet connection, storage and memory. Review each provider’s terms and attribution requirements before redistributing source data.
 
-## Data and limitations
+## Project structure
 
-The workflow references public sources including CHIRPS rainfall, Copernicus DEM, HydroSHEDS hydrography and OpenStreetMap infrastructure. Availability, coverage, licensing and attribution vary by provider. Dashboard sample data and simulated readings should be distinguished from current observations. The repository does not establish independent validation against authoritative gauges or observed flood extents.
+| Path | Purpose |
+| --- | --- |
+| `webapp/` | Static dashboard and prepared data deployed to GitHub Pages |
+| `run_full_pipeline.py` | Runs the Python processing stages |
+| `rainfall_runoff.py`, `flood_hand.py` | Runoff and HAND terrain analysis |
+| `sensor_assimilation.py`, `flood_routing.py` | Gauge-assimilation example and route analysis |
+| `prepare_*.py` | Prepares outputs for the dashboard |
+| `.github/workflows/pages.yml` | Deploys `webapp/` to Pages when changes reach `main` |
 
-Before any operational consideration, the project would need current authoritative inputs, documented calibration, uncertainty analysis, independent historical and field validation, route and shelter verification, security and reliability work, and review by qualified local agencies and communities.
+## Data, tools and acknowledgements
 
-## Deployment
+The workflow references CHIRPS rainfall, Copernicus DEM data, HydroSHEDS hydrography and OpenStreetMap infrastructure. Thanks to those projects and their contributors for making data and software available. Coverage, dates, licensing and attribution requirements vary by source; consult the providers before reuse.
 
-GitHub Actions publishes `webapp/` to GitHub Pages when changes are pushed to `main` or the workflow is run manually. The workflow is in `.github/workflows/pages.yml`. The static host does not deploy the local Python endpoints.
+The processing workflow uses Python geospatial and scientific libraries, including Rasterio, GeoPandas, Shapely, NumPy, SciPy, Pandas and NetworkX. The browser dashboard uses Leaflet and Chart.js. Bundled third-party assets remain subject to their respective licenses.
 
 ## License
 
-No license has been selected. Public visibility alone does not grant permission to reuse the code. Data sources may have separate terms.
+This repository has no selected license. Public visibility alone does not grant permission to reuse its code. Data and bundled dependencies may have separate terms.
